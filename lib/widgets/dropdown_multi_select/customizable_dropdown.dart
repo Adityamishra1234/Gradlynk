@@ -154,23 +154,6 @@ class _CustomizableDropdown2State extends State<CustomizableDropdown2>
   }
 
   @override
-  void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-    print("didChangeDependencies");
-    // filterSearchResults("");
-    super.didChangeDependencies();
-  }
-
-  @override
-  void didUpdateWidget(covariant CustomizableDropdown2 oldWidget) {
-    // TODO: implement didUpdateWidget
-
-    // filterSearchResults(editingController.text);
-    print("didUpdateWidget");
-    super.didUpdateWidget(oldWidget);
-  }
-
-  @override
   Widget build(BuildContext context) {
     // print(widget.selectedItem);
     selectedItem = widget.selectedItem;
@@ -229,7 +212,8 @@ class _CustomizableDropdown2State extends State<CustomizableDropdown2>
                                             return Container(
                                                 height: 10,
                                                 alignment: Alignment.center,
-                                                padding: const EdgeInsets.all(6),
+                                                padding:
+                                                    const EdgeInsets.all(6),
                                                 decoration: BoxDecoration(
                                                     color: ThemeConstants
                                                         .ultraLightgreyColor,

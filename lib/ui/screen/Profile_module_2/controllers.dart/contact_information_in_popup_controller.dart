@@ -635,7 +635,7 @@ class ContactInformationInPopUpController extends GetxController
 
       case 8:
         return showAnimatedDialog(
-            animationType: DialogTransitionType.slideFromBottomFade,
+            animationType: DialogTransitionType.slideFromLeftFade,
             curve: Curves.easeInOutQuart,
             context: context,
             builder: (_) {

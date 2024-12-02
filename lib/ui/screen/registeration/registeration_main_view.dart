@@ -14,7 +14,7 @@ class RegisterationMainView extends StatelessWidget {
       body: SafeArea(
         child: Stack(children: [
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 25),
+            padding: const EdgeInsets.symmetric(horizontal: 25),
             width: double.infinity,
             alignment: Alignment.center,
             decoration: BoxDecoration(
@@ -23,9 +23,9 @@ class RegisterationMainView extends StatelessWidget {
             height: MediaQuery.of(context).size.height,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 20),
+                const SizedBox(height: 35),
                 Container(
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
@@ -35,14 +35,16 @@ class RegisterationMainView extends StatelessWidget {
                   height: 30,
                   child: CustomAutoSizeTextMontserrat(
                     text: 'Welcome to Gradlynk',
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
                 SizedBox(
                   child: CustomAutoSizeTextMontserrat(
                     text: 'Create a New Account',
                     textColor: ThemeConstants.blackcolor,
-                    fontSize: 35,
+                    fontSize: 22,
                     fontWeight: FontWeight.w700,
+                    textalingCentre: true,
                   ),
                 ),
               ],
@@ -54,7 +56,7 @@ class RegisterationMainView extends StatelessWidget {
             child: Image.asset('assets/images/registerBgImage.png'),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 150),
+            padding: const EdgeInsets.only(top: 150), //will change here(16th april 2024)
             child: RegisterationFormWidget(),
           ),
         ]),

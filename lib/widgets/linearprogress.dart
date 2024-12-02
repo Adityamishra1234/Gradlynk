@@ -45,7 +45,7 @@ class LinearProgressIndicatorAppState
   }
 
   // this function updates the progress value
-  void _updateProgress() {
+  void updateProgress() {
     const oneSec = Duration(seconds: 1);
     Timer.periodic(oneSec, (Timer t) {
       setState(() {

@@ -64,7 +64,6 @@ class AboutInstitute extends StatelessWidget {
                                 text: completeCourseDetail[0].universityName,
                                 fontSize: 14,
                                 textColor: ThemeConstants.blackcolor,
-                                fontWeight: FontWeight.w600,
                                 maxLines: 5,
                               ),
                             ),
@@ -112,7 +111,6 @@ class AboutInstitute extends StatelessWidget {
                                   text: completeCourseDetail[0].instituteType,
                                   textColor: ThemeConstants.blackcolor,
                                   fontSize: 14,
-                                  fontWeight: FontWeight.w600,
                                   maxLines: 2,
                                 ),
                               ),
@@ -158,7 +156,6 @@ class AboutInstitute extends StatelessWidget {
                               child: CustomAutoSizeTextMontserrat(
                                 text: completeCourseDetail[0].campusName,
                                 textColor: ThemeConstants.blackcolor,
-                                fontWeight: FontWeight.w600,
                                 fontSize: 14,
                                 maxLines: 2,
                               ),
@@ -205,9 +202,8 @@ class AboutInstitute extends StatelessWidget {
                                 child: HtmlWidget(
                                   completeCourseDetail[0].campusAddress!,
                                   textStyle: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.w600,
                                     color: ThemeConstants.blackcolor,
-                                    fontSize: 14.0,
+                                    fontSize: 12.0,
                                   ),
                                 )),
                           ),
@@ -232,12 +228,15 @@ class AboutInstitute extends StatelessWidget {
                 height: 5,
               ),
             if (getNUllChecker(completeCourseDetail[0].aboutUniv) == false)
-              CustomAutoSizeTextMontserrat(
-                text: completeCourseDetail[0].aboutUniv,
-                fontSize: 14,
-                textColor: ThemeConstants.TextColor,
+              HtmlWidget(completeCourseDetail[0].aboutUniv,
+                textStyle: TextStyle(
+                fontSize: 15,
                 fontWeight: FontWeight.w500,
+                height: 1.5,
+                color: ThemeConstants.TextColor
               ),
+              ),
+            const SizedBox(height: 5,),
             if (getNUllChecker(completeCourseDetail[0].sIECRepresented) ==
                 false)
               Row(
@@ -247,6 +246,7 @@ class AboutInstitute extends StatelessWidget {
                     child: CustomAutoSizeTextMontserrat(
                       text: "SIEC Represented",
                       maxLines: 2,
+                      fontSize: 14,
                       textColor: ThemeConstants.GreenColor,
                       fontWeight: FontWeight.bold,
                     ),
@@ -261,6 +261,7 @@ class AboutInstitute extends StatelessWidget {
                 child: CustomAutoSizeTextMontserrat(
                   text: completeCourseDetail[0].sIECRepresented ?? "",
                   textColor: ThemeConstants.TextColor,
+                  fontSize: 12,
                 ),
               ),
             // Todo

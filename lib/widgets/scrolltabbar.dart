@@ -53,24 +53,25 @@ class ScrollTabBar extends StatelessWidget {
                   itemBuilder: (_, i) {
                     return Padding(
                       padding: const EdgeInsets.only(top: 5),
-                      child: Container(
-                        child: Column(children: [
-                          ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              foregroundColor: ThemeConstants.whitecolor, side: BorderSide(
-                                  color: ThemeConstants.bluegreycolor), backgroundColor: ThemeConstants.whitecolor, // foreground
-                            ),
-                            onPressed: () {},
-                            child: CustomAutoSizeTextMontserrat(text: "Tesst"),
+                      child: Column(children: [
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            foregroundColor: ThemeConstants.whitecolor,
+                            side:
+                                BorderSide(color: ThemeConstants.bluegreycolor),
+                            backgroundColor:
+                                ThemeConstants.whitecolor, // foreground
                           ),
-                          const SizedBox(
-                            height: 40,
-                            child: Card(
-                              child: Center(child: Text("choose 2")),
-                            ),
+                          onPressed: () {},
+                          child: CustomAutoSizeTextMontserrat(text: "Tesst"),
+                        ),
+                        const SizedBox(
+                          height: 40,
+                          child: Card(
+                            child: Center(child: Text("choose 2")),
                           ),
-                        ]),
-                      ),
+                        ),
+                      ]),
                     );
                   },
                 ),

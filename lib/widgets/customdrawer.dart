@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:nice_loading_button/nice_loading_button.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:studentpanel/presentation/features/event_history/event_history_view.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/drawerController.dart';
@@ -20,11 +22,15 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class CustomDrawer extends StatelessWidget {
   int? index;
+
   CustomDrawer({Key? key, this.index}) : super(key: key);
+
   // var controller = Get.put(DrawerGetXController());
   var controller = Get.find<BaseController>();
+
   @override
   Widget build(BuildContext context) {
+    VersionUtil.fetchAppVersion();
     final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
     return Drawer(
       // elevation: 10,
@@ -36,7 +42,7 @@ class CustomDrawer extends StatelessWidget {
 
       width: 240,
       child: SingleChildScrollView(
-          child: Container(
+          child: SizedBox(
         height: MediaQuery.of(context).size.height,
         // padding: EdgeInsets.symmetric(
         //     vertical: MediaQuery.of(context).size.height * 0.005),
@@ -51,16 +57,28 @@ class CustomDrawer extends StatelessWidget {
                     child: Column(
                       // mainAxisAlignment: MainAxisAlignment.,
                       children: [
+                        const SizedBox(
+                          height: 30,
+                        ),
                         Container(
                           decoration: BoxDecoration(
                             color: ThemeConstants.lightblueColor,
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(
-                                width: 0.5, color: ThemeConstants.bluecolor),
+                            borderRadius: BorderRadius.circular(15),
+                            // border: Border.all(
+                            //     width: 0.5, color: ThemeConstants.bluecolor),
+                            boxShadow: [
+                              BoxShadow(
+                                color:
+                                    ThemeConstants.bluecolor.withOpacity(0.5),
+                                spreadRadius: -2.5,
+                                blurRadius: 5,
+                                offset: const Offset(0, 4.5),
+                              )
+                            ],
                           ),
                           width: double.infinity,
                           margin: const EdgeInsets.symmetric(
-                              vertical: 20, horizontal: 10),
+                              vertical: 10, horizontal: 10),
                           padding: const EdgeInsets.all(10),
                           height: 80,
                           child: Row(children: [
@@ -73,7 +91,7 @@ class CustomDrawer extends StatelessWidget {
                               //   print(exception);
                               //   print(stackTrace.toString());
                               // },
-                              radius: 25.0,
+                              radius: 20.0,
                               backgroundImage: const NetworkImage(
                                   "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"),
                               backgroundColor: Colors.transparent,
@@ -90,12 +108,36 @@ class CustomDrawer extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      CustomAutoSizeTextMontserrat(
-                                        text:
-                                            "${firstLetterChaptial(Get.find<BaseController>().model1.enquiryName)}",
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
+                                      Row(
+                                        children: [
+                                          Text("Hi, ",
+                                              maxLines: 2,
+                                              style: GoogleFonts.lato(
+                                                textStyle: const TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Color(0xff414040),
+                                                ),
+                                              )),
+                                          Text(
+                                              "${firstLetterChaptial(Get.find<BaseController>().model1.enquiryName)}",
+                                              maxLines: 2,
+                                              style: GoogleFonts.lato(
+                                                textStyle: const TextStyle(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Color(0xff414040),
+                                                ),
+                                              )),
+                                        ],
                                       ),
+
+                                      // CustomAutoSizeTextMontserrat(
+                                      //   text:
+                                      //       "Hi, ${firstLetterChaptial(Get.find<BaseController>().model1.enquiryName)}",
+                                      //   fontSize: 14,
+                                      //   fontWeight: FontWeight.w500,
+                                      // ),
                                       const SizedBox(
                                         height: 2.5,
                                       ),
@@ -131,16 +173,18 @@ class CustomDrawer extends StatelessWidget {
                                         height: 5,
                                       ),
                                       Text(
-                                        "${controller.data.value.totalPercentageComplete}% completed",
-                                        style: TextStyle(
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w500,
-                                            color: ThemeConstants.TextColor),
-                                      )
+                                          "${controller.data.value.totalPercentageComplete}% completed",
+                                          style: GoogleFonts.lato(
+                                            textStyle: TextStyle(
+                                                fontSize: 10,
+                                                fontWeight: FontWeight.w500,
+                                                color:
+                                                    ThemeConstants.TextColor),
+                                          ))
                                     ]),
                               )
                             ] else ...[
-                              Spacer(),
+                              const Spacer(),
                               SizedBox(
                                 width: 30,
                                 height: 30,
@@ -148,7 +192,7 @@ class CustomDrawer extends StatelessWidget {
                                   color: ThemeConstants.bluecolor,
                                 ),
                               ),
-                              Spacer(),
+                              const Spacer(),
                             ]
                           ]),
                         ),
@@ -1196,45 +1240,105 @@ class CustomDrawer extends StatelessWidget {
                         //       )),
                         // ),
 
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 20, top: 40),
-                          child: Center(
-                            child: LoadingButton(
-                              height: 35,
-                              borderRadius: 8,
-                              animate: true,
-                              color: ThemeConstants.bluecolor,
-                              width: 120,
-                              loader: Container(
-                                padding: const EdgeInsets.all(10),
-                                width: 30,
-                                height: 30,
-                                child: const CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                      Colors.white),
-                                ),
-                              ),
-                              child: CustomAutoSizeTextMontserrat(
-                                text: "Logout",
-                                textColor: ThemeConstants.whitecolor,
-                              ),
-                              onTap: (startLoading, stopLoading,
-                                  buttonState) async {
-                                if (buttonState == ButtonState.idle) {
-                                  startLoading();
-                                  // Do something here
-                                  Get.deleteAll();
-                                  await Get.find<BaseController>().logout();
-                                  stopLoading();
-                                }
-                              },
-                            ),
-                          ),
+                        const Divider(
+                          indent: 20,
+                          endIndent: 20,
+                          thickness: 1,
+                          color: Color(0xFFD6D6D6),
                         ),
 
-                        const SizedBox(),
-                        const SizedBox(),
-                        const SizedBox(),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 8, top: 10),
+                          child: Center(
+                            child: LoadingButton(
+                                height: 35,
+                                borderRadius: 8,
+                                animate: true,
+                                color: ThemeConstants.bluecolor,
+                                width: 120,
+                                loader: Container(
+                                  padding: const EdgeInsets.all(10),
+                                  width: 30,
+                                  height: 30,
+                                  child: const CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                        Colors.white),
+                                  ),
+                                ),
+                                child: CustomAutoSizeTextMontserrat(
+                                  text: "Logout",
+                                  textColor: ThemeConstants.whitecolor,
+                                ),
+                                onTap: (startLoading, stopLoading,
+                                    buttonState) async {
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          title: const Text("Logout"),
+                                          content: const Text(
+                                              "Are you sure you want to Logout?"),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () async {
+                                                if (buttonState ==
+                                                    ButtonState.idle) {
+                                                  startLoading();
+
+                                                  Get.deleteAll();
+                                                  await Get.find<
+                                                          BaseController>()
+                                                      .logout();
+                                                  stopLoading();
+                                                }
+                                              },
+                                              child: const Text(
+                                                "Yes",
+                                                style: TextStyle(
+                                                    color: Colors.blueAccent,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.of(context)
+                                                    .pop(false);
+                                              },
+                                              child: const Text(
+                                                "No",
+                                                style: TextStyle(
+                                                  color: Colors.grey,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        );
+                                      });
+                                }
+
+                                // (startLoading, stopLoading,
+                                //                                   buttonState) async {
+                                //                                 if (buttonState == ButtonState.idle) {
+                                //                                   startLoading();
+                                //                                   // Do something here
+                                //                                   Get.deleteAll();
+                                //                                   await Get.find<BaseController>().logout();
+                                //                                   stopLoading();
+                                //                                 }
+                                //                               },
+                                ),
+                          ),
+                        ),
+                        CustomAutoSizeTextMontserrat(
+                          text: "Version ${VersionUtil.getAppVersion()}",
+                          fontSize: 10,
+                          fontWeight: FontWeight.w500,
+                        ),
+
+                        // const SizedBox(),
+                        // const SizedBox(),
+                        // const SizedBox(),
 
                         const SizedBox(),
                         SizedBox(
@@ -1256,5 +1360,20 @@ class CustomDrawer extends StatelessWidget {
         ),
       )),
     );
+  }
+}
+
+class VersionUtil {
+  static String? _cachedVersion;
+
+  static Future<void> fetchAppVersion() async {
+    if (_cachedVersion == null) {
+      PackageInfo packageInfo = await PackageInfo.fromPlatform();
+      _cachedVersion = packageInfo.version;
+    }
+  }
+
+  static String getAppVersion() {
+    return _cachedVersion ?? 'Unknown';
   }
 }

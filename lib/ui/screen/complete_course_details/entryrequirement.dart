@@ -141,7 +141,6 @@ class EntryRequirement extends StatelessWidget {
                                   .academicRequirementCourseLevel,
                               fontSize: 14,
                               textColor: ThemeConstants.blackcolor,
-                              fontWeight: FontWeight.w600,
                               maxLines: 2,
                             ),
                           ),
@@ -192,7 +191,6 @@ class EntryRequirement extends StatelessWidget {
                               text: completeCourseDetail[0].minPercentage,
                               fontSize: 14,
                               textColor: ThemeConstants.blackcolor,
-                              fontWeight: FontWeight.w600,
                               maxLines: 2,
                             ),
                           ),
@@ -240,7 +238,6 @@ class EntryRequirement extends StatelessWidget {
                               child: HtmlWidget(
                             completeCourseDetail[0].minGrade ?? "",
                             textStyle: GoogleFonts.montserrat(
-                              fontWeight: FontWeight.w600,
                               color: ThemeConstants.blackcolor,
                               fontSize: 14.0,
                             ),

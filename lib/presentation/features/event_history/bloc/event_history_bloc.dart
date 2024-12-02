@@ -125,7 +125,8 @@ class EventHistoryBloc extends Bloc<EventHistoryEvent, EventHistoryInitial> {
     }
 
     eventHistoryStudentTimeline = [];
-    eventHistoryStudentTimeline.add(CustomStepper(
+    eventHistoryStudentTimeline.add(
+        CustomStepper(
       iconColor: ThemeConstants.bluecolor,
       backIconColor: ThemeConstants.lightblueColor,
       text: "Start Time",

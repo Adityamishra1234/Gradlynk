@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/raise_new_ticket_controller.dart';
@@ -9,6 +10,10 @@ import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
+
+import '../../../widgets/TopSnackBar/top_snack_bar.dart';
+import '../../../widgets/drawerfilter.dart';
+import '../mark_attendance/qrCodeScreen.dart';
 
 class RaiseYourTicket extends StatefulWidget {
   RaiseYourTicket({super.key});
@@ -24,11 +29,111 @@ class _RaiseYourTicketState extends State<RaiseYourTicket> {
   var result;
   List files = [];
   var controller = Get.put(RaiseYourTicketController());
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
+    final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
     return Scaffold(
-        appBar: CustomAppBar("sd"),
+        key: _scaffoldKey,
+        appBar: AppBar(
+          elevation: 2.5,
+          automaticallyImplyLeading: false,
+          actions: [
+            if (displayMobileLayout == true)
+              IconButton(
+                icon: const Icon(Icons.arrow_back, color: Colors.black),
+                onPressed: () => Get.back(),
+              ),
+            if (displayMobileLayout == false)
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: IconButton(
+                  // icon: Image.asset("assets/images/gradlynk lense.png"),
+                  icon: const Icon(
+                    Icons.menu,
+                    color: Colors.black,
+                  ),
+                  // icon: const Icon(Icons.menu,color: Colors.black,),
+                  onPressed: () {
+                    // Get.find<BaseController>().profileDataValidator();
+                    _scaffoldKey.currentState!.openDrawer();
+
+                    DrawerFilter();
+                  },
+                ),
+              ),
+            // svgImage("work", Colors.transparent, 32, 32),
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Image.network(
+                "https://sieceducation.in/assets/assets/images/logo.png",
+                width: 130,
+                height: 30,
+              ),
+            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(top: 10),
+            //   child: Row(
+            //     children: [
+            //     Text("Hi, ", style: GoogleFonts.abhayaLibre(textStyle: const TextStyle(
+            //                         fontSize: 24,
+            //                         fontWeight: FontWeight.w700,
+            //                         color: Colors.black,
+            //                       ),)),
+            //       Text(
+            //             style: GoogleFonts.abhayaLibre(textStyle: const TextStyle(
+            //               fontSize: 24,
+            //               fontWeight: FontWeight.w700,
+            //               color: Colors.black,
+            //             ),),
+            //           "${firstLetterChaptial(controller.personalModal.enquiryName) ?? firstLetterChaptial(controller.model1.enquiryName)}"
+            //         ),
+            //     ],
+            //   ),
+            // ),
+            const Spacer(),
+            if (Get.find<BaseController>().meetingZoneStatus.qrCodeGenerated ==
+                true)
+              IconButton(
+                icon: svgImage("qr code", ThemeConstants.IconColor, 25, 25),
+                onPressed: () {
+                  showAnimatedDialog(
+                      animationType: DialogTransitionType.slideFromBottomFade,
+                      curve: Curves.easeInOutQuart,
+                      context: context,
+                      builder: (_) => QRScreen(
+                          Url: Get.find<BaseController>()
+                              .meetingZoneStatus
+                              .qrCodeView!,
+                          code: Get.find<BaseController>()
+                              .meetingZoneStatus
+                              .student_code!));
+                },
+              ),
+
+            // IconButton(
+            //   icon: SvgPicture.asset(
+            //     "assets/icons/profile.svg",
+            //     height: 30,
+            //     color: const Color.fromARGB(255, 99, 99, 99),
+            //   ),
+            //   onPressed: () {
+            //     Get.toNamed(ProfilePage.routeNamed);
+            //   },
+            // ),
+
+            const SizedBox(
+              width: 5,
+            )
+          ],
+          // title: Text(
+          //   title,
+          //   style: const TextStyle(color: Colors.black),
+          // ),
+          backgroundColor: Colors.white,
+        ),
         drawer: CustomDrawer(
           index: 12,
         ),
@@ -39,9 +144,9 @@ class _RaiseYourTicketState extends State<RaiseYourTicket> {
                 Align(
                   alignment: AlignmentDirectional.topStart,
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(15.0),
                     child: CustomAutoSizeTextMontserrat(
-                      text: "Use this ticket to",
+                      text: "Use this ticket to -",
                       fontSize: 18,
                       textColor: ThemeConstants.bluecolor,
                     ),
@@ -65,14 +170,15 @@ class _RaiseYourTicketState extends State<RaiseYourTicket> {
                               ? ThemeConstants.whitecolor
                               : ThemeConstants.red,
                           borderRadius:
-                              const BorderRadius.all(Radius.circular(10.0)),
+                              const BorderRadius.all(Radius.circular(8.0)),
                           border:
-                              Border.all(width: 0.5, color: ThemeConstants.red),
+                              Border.all(width: 0.8, color: ThemeConstants.red),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(12.0),
                           child: CustomAutoSizeTextMontserrat(
                             text: "Raise an issue",
+                            fontWeight: FontWeight.bold,
                             textColor: controller.raiseAnIssue.value == true
                                 ? ThemeConstants.whitecolor
                                 : ThemeConstants.red,
@@ -96,14 +202,15 @@ class _RaiseYourTicketState extends State<RaiseYourTicket> {
                                   ? ThemeConstants.whitecolor
                                   : ThemeConstants.GreenColor,
                           borderRadius:
-                              const BorderRadius.all(Radius.circular(10.0)),
+                              const BorderRadius.all(Radius.circular(8.0)),
                           border: Border.all(
-                              width: 0.5, color: ThemeConstants.GreenColor),
+                              width: 0.8, color: ThemeConstants.GreenColor),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(12.0),
                           child: CustomAutoSizeTextMontserrat(
                             text: "Suggest an Improvisation",
+                            fontWeight: FontWeight.bold,
                             textColor:
                                 controller.suggestAnImprovisation.value == true
                                     ? ThemeConstants.whitecolor
@@ -118,10 +225,10 @@ class _RaiseYourTicketState extends State<RaiseYourTicket> {
                   Align(
                     alignment: AlignmentDirectional.topStart,
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 10.0, top: 10.0),
+                      padding: const EdgeInsets.only(left: 10.0, top: 20.0),
                       child: CustomAutoSizeTextMontserrat(
                         text:
-                            "We apologise for the inconvenience.\nKindly specify your issue:",
+                            "We apologise for the inconvenience! \nKindly specify your issue:",
                         mandatory: true,
                       ),
                     ),
@@ -295,7 +402,7 @@ class _RaiseYourTicketState extends State<RaiseYourTicket> {
                   Align(
                     alignment: AlignmentDirectional.topStart,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.only(left: 10.0, top: 20),
                       child: CustomAutoSizeTextMontserrat(
                         text:
                             "We appreciate your efforts.\nKindly suggest an improvisation:",
@@ -352,11 +459,7 @@ class _RaiseYourTicketState extends State<RaiseYourTicket> {
                           width: 100,
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                elevation: 0.0,
-                                primary:
-                                    ThemeConstants.lightgreycolor, // background
-                                onPrimary:
-                                    ThemeConstants.lightgreycolor, // foreground
+                                foregroundColor: ThemeConstants.lightgreycolor, backgroundColor: ThemeConstants.lightgreycolor, elevation: 0.0, // foreground
                               ),
                               onPressed: () {
                                 setState(() {
@@ -377,24 +480,35 @@ class _RaiseYourTicketState extends State<RaiseYourTicket> {
                           width: 150,
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                elevation: 0.0,
-                                primary: ThemeConstants.bluecolor, // background
-                                onPrimary:
-                                    ThemeConstants.bluecolor, // foreground
+                                foregroundColor: ThemeConstants.bluecolor, backgroundColor: ThemeConstants.bluecolor, elevation: 0.0, // foreground
                               ),
                               onPressed: () async {
                                 bool temp = true;
                                 if (controller.raiseAnIssue.value == true) {
                                   if (issueController.text.isEmpty) {
                                     temp = false;
-                                    getToast("Kindly enter your issue");
+                                    // getToast("Kindly enter your issue");
+                                    showTopSnackBar(
+                                      context,
+                                      const CustomSnackBar.info(message: "Kindly enter your issue"),
+                                      showOutAnimationDuration: const Duration(milliseconds: 800),
+                                      hideOutAnimationDuration: const Duration(milliseconds: 800),
+                                      displayDuration: const Duration(milliseconds: 1500),
+                                    );
                                   }
                                 }
                                 if (controller.suggestAnImprovisation.value ==
                                     true) {
                                   if (suggesationController.text.isEmpty) {
                                     temp = false;
-                                    getToast("Please enter  Suggestation");
+                                    // getToast("Please enter  Suggestation");
+                                    showTopSnackBar(
+                                      context,
+                                      const CustomSnackBar.info(message: "Please enter your suggestion"),
+                                      showOutAnimationDuration: const Duration(milliseconds: 800),
+                                      hideOutAnimationDuration: const Duration(milliseconds: 800),
+                                      displayDuration: const Duration(milliseconds: 1500),
+                                    );
                                   }
                                 }
                                 if (temp == true) {
@@ -409,7 +523,14 @@ class _RaiseYourTicketState extends State<RaiseYourTicket> {
                                     files.length == 2 ? files[1] : null,
                                   );
                                   if (res != null) {
-                                    getToast("Ticket raise successful");
+                                    // getToast("Ticket raise successful");
+                                    showTopSnackBar(
+                                      context,
+                                     const CustomSnackBar.success(message: "Ticket Raised successfully"),
+                                      showOutAnimationDuration: const Duration(milliseconds: 800),
+                                      hideOutAnimationDuration: const Duration(milliseconds: 800),
+                                      displayDuration: const Duration(milliseconds: 1500),
+                                    );
                                     setState(() {
                                       files = [];
                                       issueController.text = "";

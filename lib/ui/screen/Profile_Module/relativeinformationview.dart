@@ -46,11 +46,11 @@ class RelativeInformationView extends StatelessWidget {
         //         )),
         //   ),
         // ),
-        if (model.length != 0)
+        if (model.isNotEmpty)
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.6,
             child: ListView.builder(
-                padding: EdgeInsets.all(0),
+                padding: const EdgeInsets.all(0),
                 itemCount: model.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
@@ -288,7 +288,7 @@ class RelativeInformationView extends StatelessWidget {
                   );
                 }),
           ),
-        if (model.length == 0) Empty_details()
+        if (model.isEmpty) const Emptydetails()
       ],
     );
   }

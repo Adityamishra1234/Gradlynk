@@ -1,6 +1,8 @@
 // ignore_for_file: deprecated_member_use
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
@@ -16,6 +18,10 @@ import 'package:studentpanel/widgets/customdrawer.dart';
 import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 import 'package:studentpanel/widgets/customtextfield.dart';
 
+import '../../../widgets/TopSnackBar/top_snack_bar.dart';
+import '../../../widgets/drawerfilter.dart';
+import '../mark_attendance/qrCodeScreen.dart';
+
 enum BestTutorSite { Ascending, Deascending }
 
 class CourseSearch2 extends StatefulWidget {
@@ -27,6 +33,7 @@ class CourseSearch2 extends StatefulWidget {
 }
 
 class _CourseSearch2State extends State<CourseSearch2> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   var controller = Get.put(CourseSearchController());
   // List<int> countryindexvaluelist = [];
   List<int> courseindexvaluelist = [];
@@ -48,7 +55,106 @@ class _CourseSearch2State extends State<CourseSearch2> {
       width = width;
     }
     return Scaffold(
-      appBar: const CustomAppBar("title"),
+      key: _scaffoldKey,
+      appBar:  AppBar(
+        elevation: 2.5,
+        automaticallyImplyLeading: false,
+        actions: [
+          if (displayMobileLayout == true)
+            IconButton(
+              icon: const Icon(Icons.arrow_back,
+                  color: Colors.black),
+              onPressed: () => Get.back(),
+            ),
+          if (displayMobileLayout == false)
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child:  IconButton(
+                // icon: Image.asset("assets/images/gradlynk lense.png"),
+                icon: const Icon(Icons.menu, color: Colors.black,),
+                // icon: const Icon(Icons.menu,color: Colors.black,),
+                onPressed: () {
+                  // Get.find<BaseController>().profileDataValidator();
+                  _scaffoldKey.currentState!.openDrawer();
+
+                  DrawerFilter();
+                },
+              ),
+            ),
+          // svgImage("work", Colors.transparent, 32, 32),
+          const Spacer(),
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Image.network(
+              "https://sieceducation.in/assets/assets/images/logo.png",
+              width: 130,
+              height: 30,
+            ),
+          ),
+          // Padding(
+          //   padding: const EdgeInsets.only(top: 10),
+          //   child: Row(
+          //     children: [
+          //     Text("Hi, ", style: GoogleFonts.abhayaLibre(textStyle: const TextStyle(
+          //                         fontSize: 24,
+          //                         fontWeight: FontWeight.w700,
+          //                         color: Colors.black,
+          //                       ),)),
+          //       Text(
+          //             style: GoogleFonts.abhayaLibre(textStyle: const TextStyle(
+          //               fontSize: 24,
+          //               fontWeight: FontWeight.w700,
+          //               color: Colors.black,
+          //             ),),
+          //           "${firstLetterChaptial(controller.personalModal.enquiryName) ?? firstLetterChaptial(controller.model1.enquiryName)}"
+          //         ),
+          //     ],
+          //   ),
+          // ),
+          const Spacer(),
+          if (Get.find<BaseController>()
+              .meetingZoneStatus
+              .qrCodeGenerated ==
+              true)
+            IconButton(
+              icon: svgImage(
+                  "qr code", ThemeConstants.IconColor, 25, 25),
+              onPressed: () {
+                showAnimatedDialog(
+                    animationType: DialogTransitionType.slideFromBottomFade,
+                    curve: Curves.easeInOutQuart,
+                    context: context,
+                    builder: (_) => QRScreen(
+                        Url: Get.find<BaseController>()
+                            .meetingZoneStatus
+                            .qrCodeView!,
+                        code: Get.find<BaseController>()
+                            .meetingZoneStatus
+                            .student_code!));
+              },
+            ),
+
+          // IconButton(
+          //   icon: SvgPicture.asset(
+          //     "assets/icons/profile.svg",
+          //     height: 30,
+          //     color: const Color.fromARGB(255, 99, 99, 99),
+          //   ),
+          //   onPressed: () {
+          //     Get.toNamed(ProfilePage.routeNamed);
+          //   },
+          // ),
+
+          const SizedBox(
+            width: 5,
+          )
+        ],
+        // title: Text(
+        //   title,
+        //   style: const TextStyle(color: Colors.black),
+        // ),
+        backgroundColor: Colors.white,
+      ),
       drawer: displayMobileLayout == false
           ? CustomDrawer(
               index: 3,
@@ -64,6 +170,520 @@ class _CourseSearch2State extends State<CourseSearch2> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  const SizedBox(
+                    height: 20.0,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12),
+                    child: Row(
+                     mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        // Padding(
+                        //   padding: const EdgeInsets.only(top: 20),
+                        //   child: SizedBox(
+                        //     width: width,
+                        //     child: Row(
+                        //       children: [
+                        //         Padding(
+                        //           padding: const EdgeInsets.only(right: 10),
+                        //           child: SizedBox(
+                        //             width: 100,
+                        //             child: ElevatedButton(
+                        //                 style: ButtonStyle(
+                        //                     elevation:
+                        //                     MaterialStateProperty.all<double>(0),
+                        //                     foregroundColor:
+                        //                     MaterialStateProperty.all<Color>(
+                        //                         Colors.white),
+                        //                     backgroundColor:
+                        //                     MaterialStateProperty.all<Color>(
+                        //                         Colors.white),
+                        //                     shape: MaterialStateProperty.all<
+                        //                         RoundedRectangleBorder>(
+                        //                         RoundedRectangleBorder(
+                        //                             borderRadius:
+                        //                             BorderRadius.circular(5.0),
+                        //                             side: BorderSide(
+                        //                                 color: ThemeConstants.TextColor)))),
+                        //                 onPressed: () {
+                        //                   Get.delete<CourseSearchController>();
+                        //                   Get.back();
+                        //                   Get.to(const CourseSearch2());
+                        //
+                        //                   // controller.clearAll();
+                        //                 },
+                        //                 child: CustomAutoSizeTextMontserrat(
+                        //                   text: "Clear",
+                        //                   textColor: ThemeConstants.TextColor,
+                        //                 )),
+                        //           ),
+                        //         ),
+                        //         Padding(
+                        //           padding: const EdgeInsets.only(right: 20),
+                        //           child: SizedBox(
+                        //             width: 100,
+                        //             child: ElevatedButton(
+                        //                 style: ElevatedButton.styleFrom(
+                        //                   elevation: 0.0,
+                        //                   primary:
+                        //                   ThemeConstants.bluecolor, // background
+                        //                   onPrimary:
+                        //                   ThemeConstants.bluecolor, // foreground
+                        //                 ),
+                        //                 onPressed: () async {
+                        //                   if (controller.selectedCountry.id == null) {
+                        //                     showTopSnackBar(
+                        //                       context,
+                        //                       CustomSnackBar.info(message: SnackBarConstants.courseSearchPart1!),
+                        //                       showOutAnimationDuration: const Duration(milliseconds: 800),
+                        //                       hideOutAnimationDuration: const Duration(milliseconds: 800),
+                        //                       displayDuration: const Duration(milliseconds: 1500),
+                        //                     );
+                        //                     // getToast(
+                        //                     //     SnackBarConstants.courseSearchPart1!);
+                        //                   } else if (controller.courseLevelSelector ==
+                        //                       200) {
+                        //                     showTopSnackBar(
+                        //                       context,
+                        //                       CustomSnackBar.info(message: SnackBarConstants.courseSearchPart6!),
+                        //                       showOutAnimationDuration: const Duration(milliseconds: 800),
+                        //                       hideOutAnimationDuration: const Duration(milliseconds: 800),
+                        //                       displayDuration: const Duration(milliseconds: 1500),
+                        //                     );
+                        //                     // getToast(
+                        //                     //     SnackBarConstants.courseSearchPart6!);
+                        //                   } else if ((controller.selectedCountry.id ==
+                        //                       9998 ||
+                        //                       controller.selectedCountry.id ==
+                        //                           9999) &&
+                        //                       controller
+                        //                           .selectedCountryCodeFromContinent ==
+                        //                           null) {
+                        //                     showTopSnackBar(
+                        //                       context,
+                        //                       CustomSnackBar.info(message: SnackBarConstants.courseSearchPart1!),
+                        //                       showOutAnimationDuration: const Duration(milliseconds: 800),
+                        //                       hideOutAnimationDuration: const Duration(milliseconds: 800),
+                        //                       displayDuration: const Duration(milliseconds: 1500),
+                        //                     );
+                        //                     // getToast(
+                        //                     //     SnackBarConstants.courseSearchPart1!);
+                        //                   } else if (controller.courseSearchType ==
+                        //                       1 &&
+                        //                       controller.selectedIndustryName ==
+                        //                           'Select Profession') {
+                        //                     showTopSnackBar(
+                        //                       context,
+                        //                       CustomSnackBar.info(message: SnackBarConstants.courseSearchPart4!),
+                        //                       showOutAnimationDuration: const Duration(milliseconds: 800),
+                        //                       hideOutAnimationDuration: const Duration(milliseconds: 800),
+                        //                       displayDuration: const Duration(milliseconds: 1500),
+                        //                     );
+                        //                     // getToast(
+                        //                     //     SnackBarConstants.courseSearchPart4!);
+                        //                   } else {
+                        //                     Navigator.push(
+                        //                         context,
+                        //                         MaterialPageRoute(
+                        //                             builder:
+                        //                                 (context) => CourseSearchList(
+                        //                               university_code: controller
+                        //                                   .selectedUniversityID ==
+                        //                                   null
+                        //                                   ? ""
+                        //                                   : controller
+                        //                                   .selectedUniversityID,
+                        //                               showJobIndustry:
+                        //                               controller.courseSearchType ==
+                        //                                   0
+                        //                                   ? false
+                        //                                   : true,
+                        //                               profession: controller
+                        //                                   .selectedIndustryCode,
+                        //                               career_outcome: controller
+                        //                                   .selectedcareerOutcomeDropDownID,
+                        //                               filterRedirect: false,
+                        //                               stateCode: controller
+                        //                                   .selectStateCode ==
+                        //                                   null
+                        //                                   ? ""
+                        //                                   : controller
+                        //                                   .selectStateCode
+                        //                                   .toString(),
+                        //                               cityCode: controller
+                        //                                   .selectCityCode ==
+                        //                                   null
+                        //                                   ? ""
+                        //                                   : controller
+                        //                                   .selectCityCode
+                        //                                   .toString(),
+                        //                               boardFieldCode: controller
+                        //                                   .selectCourseBoardFieldCode ==
+                        //                                   null
+                        //                                   ? ""
+                        //                                   : controller
+                        //                                   .selectCourseBoardFieldCode
+                        //                                   .toString(),
+                        //                               countryId: controller
+                        //                                   .selectedCountry
+                        //                                   .id ==
+                        //                                   null
+                        //                                   ? ""
+                        //                                   : controller.selectedCountry.id ==
+                        //                                   9998 ||
+                        //                                   controller
+                        //                                       .selectedCountry
+                        //                                       .id ==
+                        //                                       9999
+                        //                                   ? controller
+                        //                                   .selectedCountryCodeFromContinent
+                        //                                   .toString()
+                        //                                   : controller
+                        //                                   .selectedCountry
+                        //                                   .id
+                        //                                   .toString(),
+                        //                               narrowField: controller
+                        //                                   .selectCourseNarrowFieldCode ==
+                        //                                   null
+                        //                                   ? ""
+                        //                                   : controller
+                        //                                   .selectCourseNarrowFieldCode
+                        //                                   .toString(),
+                        //                               courseLevel: controller
+                        //                                   .courseLevelSelector ==
+                        //                                   null
+                        //                                   ? ""
+                        //                                   : controller
+                        //                                   .courseLevelSelector
+                        //                                   .toString(),
+                        //                               enq_id: Get.find<
+                        //                                   BaseController>()
+                        //                                   .model1
+                        //                                   .id
+                        //                                   .toString(),
+                        //                             )));
+                        //                     // Get.to(CourseSearchList(
+                        //                     //   filterRedirect: false,
+                        //                     //   stateCode:
+                        //                     //       _.selectStateCode == null
+                        //                     //           ? ""
+                        //                     //           : _.selectStateCode
+                        //                     //               .toString(),
+                        //                     //   cityCode:
+                        //                     //       _.selectCityCode == null
+                        //                     //           ? ""
+                        //                     //           : _.selectCityCode
+                        //                     //               .toString(),
+                        //                     //   boardFieldCode:
+                        //                     //       _.selectCourseBoardFieldCode ==
+                        //                     //               null
+                        //                     //           ? ""
+                        //                     //            : _.selectCourseBoardFieldCode
+                        //                     //               .toString(),
+                        //                     //   countryId:
+                        //                     //       _.selectCountryCode ==
+                        //                     //               null
+                        //                     //           ? ""
+                        //                     //           : _.selectCountryCode
+                        //                     //               .toString(),
+                        //                     //   narrowField:
+                        //                     //       _.selectCourseNarrowFieldCode ==
+                        //                     //               null
+                        //                     //           ? ""
+                        //                     //           : _.selectCourseNarrowFieldCode
+                        //                     //               .toString(),
+                        //                     //   courseLevel:
+                        //                     //       _.selectCourseLevelCode ==
+                        //                     //               null
+                        //                     //           ? ""
+                        //                     //           : _.selectCourseLevelCode
+                        //                     //               .toString(),
+                        //                     //   enq_id:
+                        //                     //       Get.find<BaseController>()
+                        //                     //           .model1
+                        //                     //           .id
+                        //                     //           .toString(),
+                        //                     // ));
+                        //                   }
+                        //                 },
+                        //                 child: CustomAutoSizeTextMontserrat(
+                        //                   text: "Search",
+                        //                   textColor: ThemeConstants.whitecolor,
+                        //                 )),
+                        //           ),
+                        //         ),
+                        //       ],
+                        //     ),
+                        //   ),
+                        // ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 10),
+                          child: SizedBox(
+                            width: width/2.5,
+                            child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  foregroundColor: ThemeConstants.bluecolor, backgroundColor: ThemeConstants.bluecolor, elevation: 0.0, // foreground
+                                ),
+                                onPressed: () async {
+                                  if (controller.selectedCountry.id == null) {
+                                    showTopSnackBar(
+                                      context,
+                                      CustomSnackBar.info(message: SnackBarConstants.courseSearchPart1!),
+                                      showOutAnimationDuration: const Duration(milliseconds: 800),
+                                      hideOutAnimationDuration: const Duration(milliseconds: 800),
+                                      displayDuration: const Duration(milliseconds: 1500),
+                                    );
+                                    // getToast(
+                                    //     SnackBarConstants.courseSearchPart1!);
+                                  } else if (controller.courseLevelSelector ==
+                                      200) {
+                                    showTopSnackBar(
+                                      context,
+                                      CustomSnackBar.info(message: SnackBarConstants.courseSearchPart6!),
+                                      showOutAnimationDuration: const Duration(milliseconds: 800),
+                                      hideOutAnimationDuration: const Duration(milliseconds: 800),
+                                      displayDuration: const Duration(milliseconds: 1500),
+                                    );
+                                    // getToast(
+                                    //     SnackBarConstants.courseSearchPart6!);
+                                  } else if ((controller.selectedCountry.id ==
+                                      9998 ||
+                                      controller.selectedCountry.id ==
+                                          9999) &&
+                                      controller
+                                          .selectedCountryCodeFromContinent ==
+                                          null) {
+                                    showTopSnackBar(
+                                      context,
+                                      CustomSnackBar.info(message: SnackBarConstants.courseSearchPart1!),
+                                      showOutAnimationDuration: const Duration(milliseconds: 800),
+                                      hideOutAnimationDuration: const Duration(milliseconds: 800),
+                                      displayDuration: const Duration(milliseconds: 1500),
+                                    );
+                                    // getToast(
+                                    //     SnackBarConstants.courseSearchPart1!);
+                                  } else if (controller.courseSearchType ==
+                                      1 &&
+                                      controller.selectedIndustryName ==
+                                          'Select Profession') {
+                                    showTopSnackBar(
+                                      context,
+                                      CustomSnackBar.info(message: SnackBarConstants.courseSearchPart4!),
+                                      showOutAnimationDuration: const Duration(milliseconds: 800),
+                                      hideOutAnimationDuration: const Duration(milliseconds: 800),
+                                      displayDuration: const Duration(milliseconds: 1500),
+                                    );
+                                    // getToast(
+                                    //     SnackBarConstants.courseSearchPart4!);
+                                  } else {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder:
+                                                (context) => CourseSearchList(
+                                              university_code: controller
+                                                  .selectedUniversityID ?? "",
+                                              showJobIndustry:
+                                              controller.courseSearchType ==
+                                                  0
+                                                  ? false
+                                                  : true,
+                                              profession: controller
+                                                  .selectedIndustryCode,
+                                              career_outcome: controller
+                                                  .selectedcareerOutcomeDropDownID,
+                                              filterRedirect: false,
+                                              stateCode: controller
+                                                  .selectStateCode ==
+                                                  null
+                                                  ? ""
+                                                  : controller
+                                                  .selectStateCode
+                                                  .toString(),
+                                              cityCode: controller
+                                                  .selectCityCode ==
+                                                  null
+                                                  ? ""
+                                                  : controller
+                                                  .selectCityCode
+                                                  .toString(),
+                                              boardFieldCode: controller
+                                                  .selectCourseBoardFieldCode ==
+                                                  null
+                                                  ? ""
+                                                  : controller
+                                                  .selectCourseBoardFieldCode
+                                                  .toString(),
+                                              countryId: controller
+                                                  .selectedCountry
+                                                  .id ==
+                                                  null
+                                                  ? ""
+                                                  : controller.selectedCountry.id ==
+                                                  9998 ||
+                                                  controller
+                                                      .selectedCountry
+                                                      .id ==
+                                                      9999
+                                                  ? controller
+                                                  .selectedCountryCodeFromContinent
+                                                  .toString()
+                                                  : controller
+                                                  .selectedCountry
+                                                  .id
+                                                  .toString(),
+                                              narrowField: controller
+                                                  .selectCourseNarrowFieldCode ==
+                                                  null
+                                                  ? ""
+                                                  : controller
+                                                  .selectCourseNarrowFieldCode
+                                                  .toString(),
+                                              courseLevel: controller
+                                                  .courseLevelSelector == null
+                                                  ? ""
+                                                  : controller
+                                                  .courseLevelSelector
+                                                  .toString(),
+                                              enq_id: Get.find<
+                                                  BaseController>()
+                                                  .model1
+                                                  .id
+                                                  .toString(),
+                                            )));
+                                    // Get.to(CourseSearchList(
+                                    //   filterRedirect: false,
+                                    //   stateCode:
+                                    //       _.selectStateCode == null
+                                    //           ? ""
+                                    //           : _.selectStateCode
+                                    //               .toString(),
+                                    //   cityCode:
+                                    //       _.selectCityCode == null
+                                    //           ? ""
+                                    //           : _.selectCityCode
+                                    //               .toString(),
+                                    //   boardFieldCode:
+                                    //       _.selectCourseBoardFieldCode ==
+                                    //               null
+                                    //           ? ""
+                                    //            : _.selectCourseBoardFieldCode
+                                    //               .toString(),
+                                    //   countryId:
+                                    //       _.selectCountryCode ==
+                                    //               null
+                                    //           ? ""
+                                    //           : _.selectCountryCode
+                                    //               .toString(),
+                                    //   narrowField:
+                                    //       _.selectCourseNarrowFieldCode ==
+                                    //               null
+                                    //           ? ""
+                                    //           : _.selectCourseNarrowFieldCode
+                                    //               .toString(),
+                                    //   courseLevel:
+                                    //       _.selectCourseLevelCode ==
+                                    //               null
+                                    //           ? ""
+                                    //           : _.selectCourseLevelCode
+                                    //               .toString(),
+                                    //   enq_id:
+                                    //       Get.find<BaseController>()
+                                    //           .model1
+                                    //           .id
+                                    //           .toString(),
+                                    // ));
+                                  }
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const Icon(Icons.search, color: CupertinoColors.white, size: 15,),
+                                    const SizedBox(width: 5,),
+                                    CustomAutoSizeTextMontserrat(
+                                      text: "Search",
+                                      textColor: ThemeConstants.whitecolor,
+                                    ),
+                                  ],
+                                )),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 10),
+                          child: SizedBox(
+                            width: width/2.5,
+                            child: ElevatedButton(
+                                style: ButtonStyle(
+                                    elevation:
+                                    MaterialStateProperty.all<double>(0),
+                                    foregroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        Colors.white),
+                                    backgroundColor:
+                                    MaterialStateProperty.all<Color>(
+                                        ThemeConstants.lightblueColor2),
+                                    shape: MaterialStateProperty.all<
+                                        RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                            borderRadius:
+                                            BorderRadius.circular(5.0),
+                                            side: BorderSide(
+                                                color: ThemeConstants.TextColor)))),
+                                onPressed: () {
+                                  Get.delete<CourseSearchController>();
+                                  Get.back();
+                                  Get.to(const CourseSearch2());
+
+                                  // controller.clearAll();
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const Icon(Icons.clear, color: Colors.black,size: 18,),
+                                    const SizedBox(width: 8,),
+                                    CustomAutoSizeTextMontserrat(
+                                      text: "Clear all",
+                                      textColor: ThemeConstants.TextColor,
+                                    ),
+                                  ],
+                                )),
+                          ),
+                        ),
+
+                        // Container(
+                        //   height: 36,
+                        //   width: 100,
+                        //   decoration: BoxDecoration(
+                        //       color: ThemeConstants.lightorangeColor,
+                        //       border: Border.all(
+                        //         color: ThemeConstants.orangeColor,
+                        //       ),
+                        //       borderRadius:
+                        //       BorderRadiusDirectional.circular(
+                        //           5.0)),
+                        //   child: Center(
+                        //     child: Padding(
+                        //       padding: const EdgeInsets.only(
+                        //           left: 10, right: 10),
+                        //       child: Row(
+                        //         children: [
+                        //           svgImage(
+                        //               "filter", ThemeConstants.orangeColor, 14, 14),
+                        //           const SizedBox(width: 5,),
+                        //           CustomAutoSizeTextMontserrat(
+                        //               text: "Filter",
+                        //               fontSize: 14,
+                        //               fontWeight: FontWeight.w600,
+                        //               textColor:
+                        //               ThemeConstants.orangeColor),
+                        //         ],
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
+                      ],
+                    ),
+                  ),
                   const SizedBox(
                     height: 20.0,
                   ),
@@ -84,11 +704,12 @@ class _CourseSearch2State extends State<CourseSearch2> {
                     height: 5,
                   ),
                   Container(
-                    margin: const EdgeInsets.symmetric(vertical: 5),
+                    margin: const EdgeInsets.symmetric(vertical: 2),
                     width: MediaQuery.of(context).size.width,
                     padding: const EdgeInsets.symmetric(vertical: 5),
-                    height: 110,
+                    height: 130,
                     child: ListView.builder(
+                      physics: const BouncingScrollPhysics(),
                         scrollDirection: Axis.horizontal,
                         itemCount: controller.countryWithFlagDataList.length,
                         itemBuilder: (context, index) => InkWell(
@@ -117,25 +738,34 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 5),
                                 margin:
-                                    const EdgeInsets.symmetric(horizontal: 10),
+                                    const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
                                 width: 140,
                                 decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: ThemeConstants.bluecolor.withOpacity(0.2),
+                                        spreadRadius: -2.5,
+                                        blurRadius: 3,
+                                        offset: const Offset(0, 5.5),
+                                      )
+                                    ],
                                     color: controller.selectedCountry.id ==
                                             controller
                                                 .countryWithFlagDataList[index]
                                                 .id
                                         ? ThemeConstants.lightblueColor2
                                         : ThemeConstants.whitecolor,
-                                    borderRadius: BorderRadius.circular(15),
+                                    borderRadius: BorderRadius.circular(8),
                                     border: Border.all(
-                                        width: 1,
-                                        color: ThemeConstants.bluecolor)),
+                                        width: 0.3,
+                                        color: ThemeConstants.lightgreycolor)
+                                ),
                                 child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.center,
                                     children: [
-                                      Container(
+                                      SizedBox(
                                         width: 50,
                                         height: 50,
                                         child: CachedNetworkImage(
@@ -150,7 +780,11 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                       Text(
                                         '${controller.countryWithFlagDataList[index].country}',
                                         textAlign: TextAlign.center,
-                                        style: const TextStyle(
+                                        style:  TextStyle(
+                                          // color: controller.selectedCountry.id ==
+                                          //     controller
+                                          //         .countryWithFlagDataList[index]
+                                          //         .id ? ThemeConstants.bluecolor:ThemeConstants.blackcolor,
                                           fontSize: 12,
                                           fontWeight: FontWeight.w500,
                                         ),
@@ -172,7 +806,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                         padding: const EdgeInsets.only(left: 20.0),
                         child: CustomAutoSizeTextMontserrat(
                           text: "Select Country",
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w600,
                           mandatory: true,
                           // fontWeight: FontWeight.bold,,
                           fontSize: 16,
@@ -217,7 +851,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                               padding: const EdgeInsets.only(left: 20.0),
                               child: CustomAutoSizeTextMontserrat(
                                 text: "State",
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w600,
                                 // fontWeight: FontWeight.bold,,
                                 fontSize: 16,
                               ),
@@ -226,7 +860,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                           const SizedBox(
                             height: 5,
                           ),
-                          Container(
+                          SizedBox(
                             width: MediaQuery.of(context).size.width * 0.5,
                             child: CustomDropDownSingle(
                               selectedValue: controller.selectStateName,
@@ -255,7 +889,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                               padding: const EdgeInsets.only(left: 20.0),
                               child: CustomAutoSizeTextMontserrat(
                                 text: "City",
-                                fontWeight: FontWeight.w500,
+                                fontWeight: FontWeight.w600,
                                 // fontWeight: FontWeight.bold,,
                                 fontSize: 16,
                               ),
@@ -264,7 +898,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                           const SizedBox(
                             height: 5,
                           ),
-                          Container(
+                          SizedBox(
                             width: MediaQuery.of(context).size.width * 0.5,
                             child: CustomDropDownSingle(
                               selectedValue: controller.selectCityName,
@@ -298,7 +932,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                       padding: const EdgeInsets.only(left: 20.0),
                       child: CustomAutoSizeTextMontserrat(
                         text: "University",
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w600,
                         // fontWeight: FontWeight.bold,,
                         fontSize: 16,
                       ),
@@ -307,7 +941,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                   const SizedBox(
                     height: 5,
                   ),
-                  Container(
+                  SizedBox(
                     width: MediaQuery.of(context).size.width,
                     child: CustomDropDownSingle(
                       selectedValue: controller.selectedUniversityName,
@@ -354,8 +988,8 @@ class _CourseSearch2State extends State<CourseSearch2> {
                           },
                           child: CustomIconTextTogether(
                               showICOn: true,
-                              verticalPadding: 5,
-                              horizontelPadding: 15,
+                              verticalPadding: 10,
+                              horizontelPadding: 16,
                               fontWeight: FontWeight.w400,
                               textSize: 10,
                               Bgcolor: controller.courseSearchType == 0
@@ -382,8 +1016,8 @@ class _CourseSearch2State extends State<CourseSearch2> {
                             controller.update();
                           },
                           child: CustomIconTextTogether(
-                              verticalPadding: 5,
-                              horizontelPadding: 15,
+                              verticalPadding: 10,
+                              horizontelPadding: 16,
                               showICOn: true,
                               fontWeight: FontWeight.w400,
                               textSize: 10,
@@ -409,7 +1043,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                     ),
                   ),
                   const SizedBox(
-                    height: 15,
+                    height: 25,
                   ),
 
                   if (controller.courseSearchType == 0) ...[
@@ -420,7 +1054,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                         child: CustomAutoSizeTextMontserrat(
                           text: "Course Level",
                           mandatory: true,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w600,
                           // fontWeight: FontWeight.bold,,
                           fontSize: 16,
                           // fontWeight: FontWeight.bold,,
@@ -590,18 +1224,19 @@ class _CourseSearch2State extends State<CourseSearch2> {
                           text: "Course Broad Field",
 
                           // fontWeight: FontWeight.bold,,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w600,
                           // fontWeight: FontWeight.bold,,
                           fontSize: 16,
                         ),
                       ),
                     ),
                     Container(
-                      margin: const EdgeInsets.symmetric(vertical: 5),
-                      width: MediaQuery.of(context).size.width * .95,
+                      margin: const EdgeInsets.symmetric(vertical: 3),
+                      width: MediaQuery.of(context).size.width,
                       padding: const EdgeInsets.symmetric(vertical: 5),
-                      height: 110,
+                      height: 130,
                       child: ListView.builder(
+                        physics: const BouncingScrollPhysics(),
                           scrollDirection: Axis.horizontal,
                           itemCount:
                               controller.AllCourseSearchBroadField.length,
@@ -618,9 +1253,17 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                   padding:
                                       const EdgeInsets.symmetric(horizontal: 5),
                                   margin: const EdgeInsets.symmetric(
-                                      horizontal: 10),
+                                      horizontal: 10, vertical: 10),
                                   width: 140,
                                   decoration: BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: ThemeConstants.bluecolor.withOpacity(0.2),
+                                          spreadRadius: -2.5,
+                                          blurRadius: 3,
+                                          offset: const Offset(0, 5.5),
+                                        )
+                                      ],
                                       color: controller
                                                   .selectCourseBoardFieldCode ==
                                               controller
@@ -629,17 +1272,17 @@ class _CourseSearch2State extends State<CourseSearch2> {
                                                   .id
                                           ? ThemeConstants.lightblueColor2
                                           : ThemeConstants.whitecolor,
-                                      borderRadius: BorderRadius.circular(15),
+                                      borderRadius: BorderRadius.circular(8),
                                       border: Border.all(
                                           width: 1,
-                                          color: ThemeConstants.bluecolor)),
+                                          color: ThemeConstants.lightgreycolor)),
                                   child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
-                                        Container(
+                                        SizedBox(
                                           width: 50,
                                           height: 50,
                                           child: CachedNetworkImage(
@@ -706,7 +1349,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                         child: CustomAutoSizeTextMontserrat(
                           text: "Course Narrow Field",
                           // fontWeight: FontWeight.bold,,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w600,
                           //       // fontWeight: FontWeight.bold,,
                           fontSize: 16,
                         ),
@@ -730,7 +1373,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                       callbackFunction: callbackCoursenarrowField,
                     ),
                     const SizedBox(
-                      height: 15,
+                      height:25,
                     ),
                   ] else ...[
                     Align(
@@ -740,7 +1383,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                         child: CustomAutoSizeTextMontserrat(
                           text: "Select Profession",
                           // fontWeight: FontWeight.bold,,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w600,
                           //       // fontWeight: FontWeight.bold,,
                           fontSize: 16,
                         ),
@@ -773,7 +1416,7 @@ class _CourseSearch2State extends State<CourseSearch2> {
                         child: CustomAutoSizeTextMontserrat(
                           text: "Career Outcomes",
                           // fontWeight: FontWeight.bold,,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w600,
                           //       // fontWeight: FontWeight.bold,,
                           fontSize: 16,
                         ),
@@ -828,217 +1471,247 @@ class _CourseSearch2State extends State<CourseSearch2> {
                   //   choosefieldtype: false,
                   //   callbackFunction: callbackCourseBroadField,
                   // ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: SizedBox(
-                      width: width,
-                      child: Row(
-                        children: [
-                          const Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 10),
-                            child: SizedBox(
-                              width: 100,
-                              child: ElevatedButton(
-                                  style: ButtonStyle(
-                                      elevation:
-                                          MaterialStateProperty.all<double>(0),
-                                      foregroundColor:
-                                          MaterialStateProperty.all<Color>(
-                                              Colors.white),
-                                      backgroundColor:
-                                          MaterialStateProperty.all<Color>(
-                                              Colors.white),
-                                      shape: MaterialStateProperty.all<
-                                              RoundedRectangleBorder>(
-                                          RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(5.0),
-                                              side: BorderSide(
-                                                  color: ThemeConstants.TextColor)))),
-                                  onPressed: () {
-                                    Get.delete<CourseSearchController>();
-                                    Get.back();
-                                    Get.to(const CourseSearch2());
 
-                                    // controller.clearAll();
-                                  },
-                                  child: CustomAutoSizeTextMontserrat(
-                                    text: "Clear",
-                                    textColor: ThemeConstants.TextColor,
-                                  )),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 20),
-                            child: SizedBox(
-                              width: 100,
-                              child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    elevation: 0.0,
-                                    primary:
-                                        ThemeConstants.bluecolor, // background
-                                    onPrimary:
-                                        ThemeConstants.bluecolor, // foreground
-                                  ),
-                                  onPressed: () async {
-                                    if (controller.selectedCountry.id == null) {
-                                      getToast(
-                                          SnackBarConstants.courseSearchPart1!);
-                                    } else if (controller.courseLevelSelector ==
-                                        200) {
-                                      getToast(
-                                          SnackBarConstants.courseSearchPart6!);
-                                    } else if ((controller.selectedCountry.id ==
-                                                9998 ||
-                                            controller.selectedCountry.id ==
-                                                9999) &&
-                                        controller
-                                                .selectedCountryCodeFromContinent ==
-                                            null) {
-                                      getToast(
-                                          SnackBarConstants.courseSearchPart1!);
-                                    } else if (controller.courseSearchType ==
-                                            1 &&
-                                        controller.selectedIndustryName ==
-                                            'Select Profession') {
-                                      getToast(
-                                          SnackBarConstants.courseSearchPart4!);
-                                    } else {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder:
-                                                  (context) => CourseSearchList(
-                                                        university_code: controller
-                                                                    .selectedUniversityID ==
-                                                                null
-                                                            ? ""
-                                                            : controller
-                                                                .selectedUniversityID,
-                                                        showJobIndustry:
-                                                            controller.courseSearchType ==
-                                                                    0
-                                                                ? false
-                                                                : true,
-                                                        profession: controller
-                                                            .selectedIndustryCode,
-                                                        career_outcome: controller
-                                                            .selectedcareerOutcomeDropDownID,
-                                                        filterRedirect: false,
-                                                        stateCode: controller
-                                                                    .selectStateCode ==
-                                                                null
-                                                            ? ""
-                                                            : controller
-                                                                .selectStateCode
-                                                                .toString(),
-                                                        cityCode: controller
-                                                                    .selectCityCode ==
-                                                                null
-                                                            ? ""
-                                                            : controller
-                                                                .selectCityCode
-                                                                .toString(),
-                                                        boardFieldCode: controller
-                                                                    .selectCourseBoardFieldCode ==
-                                                                null
-                                                            ? ""
-                                                            : controller
-                                                                .selectCourseBoardFieldCode
-                                                                .toString(),
-                                                        countryId: controller
-                                                                    .selectedCountry
-                                                                    .id ==
-                                                                null
-                                                            ? ""
-                                                            : controller.selectedCountry.id ==
-                                                                        9998 ||
-                                                                    controller
-                                                                            .selectedCountry
-                                                                            .id ==
-                                                                        9999
-                                                                ? controller
-                                                                    .selectedCountryCodeFromContinent
-                                                                    .toString()
-                                                                : controller
-                                                                    .selectedCountry
-                                                                    .id
-                                                                    .toString(),
-                                                        narrowField: controller
-                                                                    .selectCourseNarrowFieldCode ==
-                                                                null
-                                                            ? ""
-                                                            : controller
-                                                                .selectCourseNarrowFieldCode
-                                                                .toString(),
-                                                        courseLevel: controller
-                                                                    .courseLevelSelector ==
-                                                                null
-                                                            ? ""
-                                                            : controller
-                                                                .courseLevelSelector
-                                                                .toString(),
-                                                        enq_id: Get.find<
-                                                                BaseController>()
-                                                            .model1
-                                                            .id
-                                                            .toString(),
-                                                      )));
-                                      // Get.to(CourseSearchList(
-                                      //   filterRedirect: false,
-                                      //   stateCode:
-                                      //       _.selectStateCode == null
-                                      //           ? ""
-                                      //           : _.selectStateCode
-                                      //               .toString(),
-                                      //   cityCode:
-                                      //       _.selectCityCode == null
-                                      //           ? ""
-                                      //           : _.selectCityCode
-                                      //               .toString(),
-                                      //   boardFieldCode:
-                                      //       _.selectCourseBoardFieldCode ==
-                                      //               null
-                                      //           ? ""
-                                      //            : _.selectCourseBoardFieldCode
-                                      //               .toString(),
-                                      //   countryId:
-                                      //       _.selectCountryCode ==
-                                      //               null
-                                      //           ? ""
-                                      //           : _.selectCountryCode
-                                      //               .toString(),
-                                      //   narrowField:
-                                      //       _.selectCourseNarrowFieldCode ==
-                                      //               null
-                                      //           ? ""
-                                      //           : _.selectCourseNarrowFieldCode
-                                      //               .toString(),
-                                      //   courseLevel:
-                                      //       _.selectCourseLevelCode ==
-                                      //               null
-                                      //           ? ""
-                                      //           : _.selectCourseLevelCode
-                                      //               .toString(),
-                                      //   enq_id:
-                                      //       Get.find<BaseController>()
-                                      //           .model1
-                                      //           .id
-                                      //           .toString(),
-                                      // ));
-                                    }
-                                  },
-                                  child: CustomAutoSizeTextMontserrat(
-                                    text: "Search",
-                                    textColor: ThemeConstants.whitecolor,
-                                  )),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  // buttons are from here!!
+                  // Padding(
+                  //   padding: const EdgeInsets.only(top: 20),
+                  //   child: SizedBox(
+                  //     width: width,
+                  //     child: Row(
+                  //       children: [
+                  //         const Spacer(),
+                  //         Padding(
+                  //           padding: const EdgeInsets.only(right: 10),
+                  //           child: SizedBox(
+                  //             width: 100,
+                  //             child: ElevatedButton(
+                  //                 style: ButtonStyle(
+                  //                     elevation:
+                  //                         MaterialStateProperty.all<double>(0),
+                  //                     foregroundColor:
+                  //                         MaterialStateProperty.all<Color>(
+                  //                             Colors.white),
+                  //                     backgroundColor:
+                  //                         MaterialStateProperty.all<Color>(
+                  //                             Colors.white),
+                  //                     shape: MaterialStateProperty.all<
+                  //                             RoundedRectangleBorder>(
+                  //                         RoundedRectangleBorder(
+                  //                             borderRadius:
+                  //                                 BorderRadius.circular(5.0),
+                  //                             side: BorderSide(
+                  //                                 color: ThemeConstants.TextColor)))),
+                  //                 onPressed: () {
+                  //                   Get.delete<CourseSearchController>();
+                  //                   Get.back();
+                  //                   Get.to(const CourseSearch2());
+                  //
+                  //                   // controller.clearAll();
+                  //                 },
+                  //                 child: CustomAutoSizeTextMontserrat(
+                  //                   text: "Clear",
+                  //                   textColor: ThemeConstants.TextColor,
+                  //                 )),
+                  //           ),
+                  //         ),
+                  //         Padding(
+                  //           padding: const EdgeInsets.only(right: 20),
+                  //           child: SizedBox(
+                  //             width: 100,
+                  //             child: ElevatedButton(
+                  //                 style: ElevatedButton.styleFrom(
+                  //                   elevation: 0.0,
+                  //                   primary:
+                  //                       ThemeConstants.bluecolor, // background
+                  //                   onPrimary:
+                  //                       ThemeConstants.bluecolor, // foreground
+                  //                 ),
+                  //                 onPressed: () async {
+                  //                   if (controller.selectedCountry.id == null) {
+                  //                     showTopSnackBar(
+                  //                       context,
+                  //                       CustomSnackBar.info(message: SnackBarConstants.courseSearchPart1!),
+                  //                       showOutAnimationDuration: const Duration(milliseconds: 800),
+                  //                       hideOutAnimationDuration: const Duration(milliseconds: 800),
+                  //                       displayDuration: const Duration(milliseconds: 1500),
+                  //                     );
+                  //                     // getToast(
+                  //                     //     SnackBarConstants.courseSearchPart1!);
+                  //                   } else if (controller.courseLevelSelector ==
+                  //                       200) {
+                  //                     showTopSnackBar(
+                  //                       context,
+                  //                       CustomSnackBar.info(message: SnackBarConstants.courseSearchPart6!),
+                  //                       showOutAnimationDuration: const Duration(milliseconds: 800),
+                  //                       hideOutAnimationDuration: const Duration(milliseconds: 800),
+                  //                       displayDuration: const Duration(milliseconds: 1500),
+                  //                     );
+                  //                     // getToast(
+                  //                     //     SnackBarConstants.courseSearchPart6!);
+                  //                   } else if ((controller.selectedCountry.id ==
+                  //                               9998 ||
+                  //                           controller.selectedCountry.id ==
+                  //                               9999) &&
+                  //                       controller
+                  //                               .selectedCountryCodeFromContinent ==
+                  //                           null) {
+                  //                     showTopSnackBar(
+                  //                       context,
+                  //                       CustomSnackBar.info(message: SnackBarConstants.courseSearchPart1!),
+                  //                       showOutAnimationDuration: const Duration(milliseconds: 800),
+                  //                       hideOutAnimationDuration: const Duration(milliseconds: 800),
+                  //                       displayDuration: const Duration(milliseconds: 1500),
+                  //                     );
+                  //                     // getToast(
+                  //                     //     SnackBarConstants.courseSearchPart1!);
+                  //                   } else if (controller.courseSearchType ==
+                  //                           1 &&
+                  //                       controller.selectedIndustryName ==
+                  //                           'Select Profession') {
+                  //                     showTopSnackBar(
+                  //                       context,
+                  //                       CustomSnackBar.info(message: SnackBarConstants.courseSearchPart4!),
+                  //                       showOutAnimationDuration: const Duration(milliseconds: 800),
+                  //                       hideOutAnimationDuration: const Duration(milliseconds: 800),
+                  //                       displayDuration: const Duration(milliseconds: 1500),
+                  //                     );
+                  //                     // getToast(
+                  //                     //     SnackBarConstants.courseSearchPart4!);
+                  //                   } else {
+                  //                     Navigator.push(
+                  //                         context,
+                  //                         MaterialPageRoute(
+                  //                             builder:
+                  //                                 (context) => CourseSearchList(
+                  //                                       university_code: controller
+                  //                                                   .selectedUniversityID ==
+                  //                                               null
+                  //                                           ? ""
+                  //                                           : controller
+                  //                                               .selectedUniversityID,
+                  //                                       showJobIndustry:
+                  //                                           controller.courseSearchType ==
+                  //                                                   0
+                  //                                               ? false
+                  //                                               : true,
+                  //                                       profession: controller
+                  //                                           .selectedIndustryCode,
+                  //                                       career_outcome: controller
+                  //                                           .selectedcareerOutcomeDropDownID,
+                  //                                       filterRedirect: false,
+                  //                                       stateCode: controller
+                  //                                                   .selectStateCode ==
+                  //                                               null
+                  //                                           ? ""
+                  //                                           : controller
+                  //                                               .selectStateCode
+                  //                                               .toString(),
+                  //                                       cityCode: controller
+                  //                                                   .selectCityCode ==
+                  //                                               null
+                  //                                           ? ""
+                  //                                           : controller
+                  //                                               .selectCityCode
+                  //                                               .toString(),
+                  //                                       boardFieldCode: controller
+                  //                                                   .selectCourseBoardFieldCode ==
+                  //                                               null
+                  //                                           ? ""
+                  //                                           : controller
+                  //                                               .selectCourseBoardFieldCode
+                  //                                               .toString(),
+                  //                                       countryId: controller
+                  //                                                   .selectedCountry
+                  //                                                   .id ==
+                  //                                               null
+                  //                                           ? ""
+                  //                                           : controller.selectedCountry.id ==
+                  //                                                       9998 ||
+                  //                                                   controller
+                  //                                                           .selectedCountry
+                  //                                                           .id ==
+                  //                                                       9999
+                  //                                               ? controller
+                  //                                                   .selectedCountryCodeFromContinent
+                  //                                                   .toString()
+                  //                                               : controller
+                  //                                                   .selectedCountry
+                  //                                                   .id
+                  //                                                   .toString(),
+                  //                                       narrowField: controller
+                  //                                                   .selectCourseNarrowFieldCode ==
+                  //                                               null
+                  //                                           ? ""
+                  //                                           : controller
+                  //                                               .selectCourseNarrowFieldCode
+                  //                                               .toString(),
+                  //                                       courseLevel: controller
+                  //                                                   .courseLevelSelector ==
+                  //                                               null
+                  //                                           ? ""
+                  //                                           : controller
+                  //                                               .courseLevelSelector
+                  //                                               .toString(),
+                  //                                       enq_id: Get.find<
+                  //                                               BaseController>()
+                  //                                           .model1
+                  //                                           .id
+                  //                                           .toString(),
+                  //                                     )));
+                  //                     // Get.to(CourseSearchList(
+                  //                     //   filterRedirect: false,
+                  //                     //   stateCode:
+                  //                     //       _.selectStateCode == null
+                  //                     //           ? ""
+                  //                     //           : _.selectStateCode
+                  //                     //               .toString(),
+                  //                     //   cityCode:
+                  //                     //       _.selectCityCode == null
+                  //                     //           ? ""
+                  //                     //           : _.selectCityCode
+                  //                     //               .toString(),
+                  //                     //   boardFieldCode:
+                  //                     //       _.selectCourseBoardFieldCode ==
+                  //                     //               null
+                  //                     //           ? ""
+                  //                     //            : _.selectCourseBoardFieldCode
+                  //                     //               .toString(),
+                  //                     //   countryId:
+                  //                     //       _.selectCountryCode ==
+                  //                     //               null
+                  //                     //           ? ""
+                  //                     //           : _.selectCountryCode
+                  //                     //               .toString(),
+                  //                     //   narrowField:
+                  //                     //       _.selectCourseNarrowFieldCode ==
+                  //                     //               null
+                  //                     //           ? ""
+                  //                     //           : _.selectCourseNarrowFieldCode
+                  //                     //               .toString(),
+                  //                     //   courseLevel:
+                  //                     //       _.selectCourseLevelCode ==
+                  //                     //               null
+                  //                     //           ? ""
+                  //                     //           : _.selectCourseLevelCode
+                  //                     //               .toString(),
+                  //                     //   enq_id:
+                  //                     //       Get.find<BaseController>()
+                  //                     //           .model1
+                  //                     //           .id
+                  //                     //           .toString(),
+                  //                     // ));
+                  //                   }
+                  //                 },
+                  //                 child: CustomAutoSizeTextMontserrat(
+                  //                   text: "Search",
+                  //                   textColor: ThemeConstants.whitecolor,
+                  //                 )),
+                  //           ),
+                  //         ),
+                  //       ],
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             ),

@@ -20,6 +20,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as path;
 import 'package:device_info_plus/device_info_plus.dart';
 
+import '../../../../widgets/TopSnackBar/top_snack_bar.dart';
+
 class FundPlannerController extends GetxController with StateMixin {
   ApiServices apiServices = ApiServices();
   fundPlanner fundplanner = fundPlanner();
@@ -187,23 +189,79 @@ class FundPlannerController extends GetxController with StateMixin {
     update();
   }
 
-  uploadDocumentment() async {
+  uploadDocumentment(BuildContext context) async {
     if (selectedRelationship == null) {
-      getToast('Kindly select the relationship');
+      // getToast('Kindly select the relationship');
+      showTopSnackBar(
+        context,
+        const CustomSnackBar.info(message:"Kindly select the relationship"),
+        showOutAnimationDuration: const Duration(milliseconds: 800),
+        hideOutAnimationDuration: const Duration(milliseconds: 800),
+        displayDuration: const Duration(milliseconds: 1500),
+      );
     } else if (nameOfThePerson.text.isEmpty) {
-      getToast('Kindly specify sponsor name');
+      // getToast('Kindly specify sponsor name');
+      showTopSnackBar(
+        context,
+        const CustomSnackBar.info(message:"Kindly specify the sponsor name"),
+        showOutAnimationDuration: const Duration(milliseconds: 800),
+        hideOutAnimationDuration: const Duration(milliseconds: 800),
+        displayDuration: const Duration(milliseconds: 1500),
+      );
     } else if (occupationNameSelect == null) {
-      getToast('Kindly select sponsor occupation');
+      // getToast('Kindly select sponsor occupation');
+      showTopSnackBar(
+        context,
+        const CustomSnackBar.info(message:"Kindly select sponsor occupation"),
+        showOutAnimationDuration: const Duration(milliseconds: 800),
+        hideOutAnimationDuration: const Duration(milliseconds: 800),
+        displayDuration: const Duration(milliseconds: 1500),
+      );
     } else if (selectedSourceID == null) {
-      getToast('Kindly select sponsor source of income');
+      // getToast('Kindly select sponsor source of income');
+      showTopSnackBar(
+        context,
+        const CustomSnackBar.info(message:"Kindly select sponsor's source of income"),
+        showOutAnimationDuration: const Duration(milliseconds: 800),
+        hideOutAnimationDuration: const Duration(milliseconds: 800),
+        displayDuration: const Duration(milliseconds: 1500),
+      );
     } else if (countryId == null) {
-      getToast('Kindly select country of financial institution');
+      // getToast('Kindly select country of financial institution');
+      showTopSnackBar(
+        context,
+        const CustomSnackBar.info(message:"Kindly select country of financial institution"),
+        showOutAnimationDuration: const Duration(milliseconds: 800),
+        hideOutAnimationDuration: const Duration(milliseconds: 800),
+        displayDuration: const Duration(milliseconds: 1500),
+      );
     } else if (selectedBankCode == null || selectedBankCode == "") {
-      getToast('Kindly select name of financial institution');
+      // getToast('Kindly select name of financial institution');
+      showTopSnackBar(
+        context,
+        const CustomSnackBar.info(message:"Kindly select name of financial institution"),
+        showOutAnimationDuration: const Duration(milliseconds: 800),
+        hideOutAnimationDuration: const Duration(milliseconds: 800),
+        displayDuration: const Duration(milliseconds: 1500),
+      );
     } else if (selectedFundTypeId.isEmpty) {
-      getToast('Kindly select type of funds');
+      // getToast('Kindly select type of funds');
+      showTopSnackBar(
+        context,
+        const CustomSnackBar.info(message:"Kindly select type of funds"),
+        showOutAnimationDuration: const Duration(milliseconds: 800),
+        hideOutAnimationDuration: const Duration(milliseconds: 800),
+        displayDuration: const Duration(milliseconds: 1500),
+      );
     } else if (amountData.text.isEmpty) {
-      getToast('Kindly specify amount');
+      // getToast('Kindly specify amount');
+      showTopSnackBar(
+        context,
+        const CustomSnackBar.info(message:"Kindly specify amount"),
+        showOutAnimationDuration: const Duration(milliseconds: 800),
+        hideOutAnimationDuration: const Duration(milliseconds: 800),
+        displayDuration: const Duration(milliseconds: 1500),
+      );
     } else {
       change(null, status: RxStatus.loading());
       String endpoint = getFundPlannersave(
@@ -230,23 +288,71 @@ class FundPlannerController extends GetxController with StateMixin {
     }
   }
 
-  submitFundPlannerData() async {
+  submitFundPlannerData(BuildContext context) async {
     if (selectedRelationship == null) {
-      getToast('Kindly select the relationship');
+      showTopSnackBar(
+        context,
+        const CustomSnackBar.info(message:"Kindly select the relationship"),
+        showOutAnimationDuration: const Duration(milliseconds: 800),
+        hideOutAnimationDuration: const Duration(milliseconds: 800),
+        displayDuration: const Duration(milliseconds: 1500),
+      );
     } else if (nameOfThePerson.text.isEmpty) {
-      getToast('Kindly specify sponsor name');
+      showTopSnackBar(
+        context,
+        const CustomSnackBar.info(message:"Kindly specify the sponsor name"),
+        showOutAnimationDuration: const Duration(milliseconds: 800),
+        hideOutAnimationDuration: const Duration(milliseconds: 800),
+        displayDuration: const Duration(milliseconds: 1500),
+      );
     } else if (occupationNameSelect == null) {
-      getToast('Kindly select sponsor occupation');
+      showTopSnackBar(
+        context,
+        const CustomSnackBar.info(message:"Kindly select sponsor occupation"),
+        showOutAnimationDuration: const Duration(milliseconds: 800),
+        hideOutAnimationDuration: const Duration(milliseconds: 800),
+        displayDuration: const Duration(milliseconds: 1500),
+      );
     } else if (selectedSourceID == null) {
-      getToast('Kindly select sponsor source of income');
+      showTopSnackBar(
+        context,
+        const CustomSnackBar.info(message:"Select sponsor's source of income"),
+        showOutAnimationDuration: const Duration(milliseconds: 800),
+        hideOutAnimationDuration: const Duration(milliseconds: 800),
+        displayDuration: const Duration(milliseconds: 1500),
+      );
     } else if (countryId == null) {
-      getToast('Kindly select country of financial institution');
+      showTopSnackBar(
+        context,
+        const CustomSnackBar.info(message:"Select country of financial institution"),
+        showOutAnimationDuration: const Duration(milliseconds: 800),
+        hideOutAnimationDuration: const Duration(milliseconds: 800),
+        displayDuration: const Duration(milliseconds: 1500),
+      );
     } else if (selectedBankCode == null || selectedBankCode == "") {
-      getToast('Kindly select name of financial institution');
+      showTopSnackBar(
+        context,
+        const CustomSnackBar.info(message:"Select name of financial institution"),
+        showOutAnimationDuration: const Duration(milliseconds: 800),
+        hideOutAnimationDuration: const Duration(milliseconds: 800),
+        displayDuration: const Duration(milliseconds: 1500),
+      );
     } else if (selectedFundTypeId.isEmpty) {
-      getToast('Kindly select type of funds');
+      showTopSnackBar(
+        context,
+        const CustomSnackBar.info(message:"Kindly select type of funds"),
+        showOutAnimationDuration: const Duration(milliseconds: 800),
+        hideOutAnimationDuration: const Duration(milliseconds: 800),
+        displayDuration: const Duration(milliseconds: 1500),
+      );
     } else if (amountData.text.isEmpty) {
-      getToast('Kindly specify amount');
+      showTopSnackBar(
+        context,
+        const CustomSnackBar.info(message:"Kindly specify amount"),
+        showOutAnimationDuration: const Duration(milliseconds: 800),
+        hideOutAnimationDuration: const Duration(milliseconds: 800),
+        displayDuration: const Duration(milliseconds: 1500),
+      );
     } else {
       try {
         change(null, status: RxStatus.loading());

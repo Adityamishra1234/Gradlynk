@@ -21,123 +21,133 @@ class WelcomeView extends StatelessWidget {
     return Scaffold(
         body: controller.obx(
       (state) => SafeArea(
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          alignment: Alignment.center,
-          padding: const EdgeInsets.all(10),
-          child: ListView(
+        child: Center(
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            alignment: Alignment.center,
+            padding: const EdgeInsets.symmetric(vertical: 2),
+            child: Column(
+                // crossAxisAlignment: CrossAxisAlignment.center,
 
-              // crossAxisAlignment: CrossAxisAlignment.center,
-
-              children: [
-                SizedBox(
-                    height: 40,
-                    child: Image.asset(
-                      "assets/images/logo.png",
-                    )),
-                SizedBox(
-                  height: 20,
-                ),
-                Column(
-                  children: [
-                    SizedBox(
-                        child: CustomAutoSizeTextMontserrat(
-                      text: 'Welcome to Gradlynk',
-                      fontSize: 24,
-                    )),
-                    SizedBox(
-                        child: CustomAutoSizeTextMontserrat(
-                      text: 'Your international Study Partner',
-                      fontSize: 15,
-                      fontWeight: FontWeight.w300,
-                    )),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Data(
-                          icon: "Explore the world",
-                          text:
-                              'Discover courses from top universities across Australia, Canada, USA, UK, Europe, New Zealand and Asia.',
-                          title: 'Explore the Globe',
-                          context: context),
-                      //     Spacer(),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Data(
-                          icon: "Expert",
-                          text:
-                              'Get assistance from experts in the industry and build your dream career.',
-                          title: 'Excel with the Experts',
-                          context: context),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Data(
-                          icon: "Track Issue",
-                          text:
-                              'Stay live updated on your application and offer status.',
-                          title: 'Track your Journey',
-                          context: context),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 50),
-                  child: InkWell(
-                    onTap: () async {
-                      Get.offNamed(LoginCopy.routeNamed);
-                    },
-                    child: Container(
-                        alignment: Alignment.center,
-                        height: 50,
-                        width: MediaQuery.of(context).size.width * 0.4,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 1.0,
-                            color: ThemeConstants.whitecolor,
-                          ),
-                          color: ThemeConstants.bluecolor,
-
-                          borderRadius:
-                              BorderRadius.circular(120), // <-- Radius
-                        ),
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "Start the Journey",
-                          textColor: Colors.white,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20.0),
+                    child: SizedBox(
+                        height: 40,
+                        child: Image.asset(
+                          "assets/images/logo.png",
                         )),
                   ),
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                SizedBox(
-                  width: 300,
-                  child: CustomAutoSizeTextMontserrat(
-                    textColor: Colors.grey[700],
-                    text: 'Register your story amongst 50K+ success stories',
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                    textalingCentre: true,
+                  // const SizedBox(
+                  //   height: 10,
+                  // ),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Column(
+                          children: [
+                            SizedBox(
+                                child: CustomAutoSizeTextMontserrat(
+                              text: 'Welcome to Gradlynk',
+                              fontSize: 24,
+                            )),
+                            SizedBox(
+                                child: CustomAutoSizeTextMontserrat(
+                              text: 'Your international Study Partner',
+                              fontSize: 15,
+                              fontWeight: FontWeight.w300,
+                            )),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Data(
+                                icon: "Explore the world",
+                                text:
+                                    'Discover courses from top universities across Australia, Canada, USA, UK, Europe, New Zealand and Asia.',
+                                title: 'Explore the Globe',
+                                context: context),
+                            //     Spacer(),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Data(
+                                icon: "Expert",
+                                text:
+                                    'Get assistance from experts in the industry and build your dream career.',
+                                title: 'Excel with the Experts',
+                                context: context),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Data(
+                                icon: "Track Issue",
+                                text:
+                                    'Stay live updated on your application and offer status.',
+                                title: 'Track your Journey',
+                                context: context),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 50),
+                          child: InkWell(
+                            onTap: () async {
+                              Get.offNamed(LoginCopy.routeNamed);
+                            },
+                            child: Container(
+                                alignment: Alignment.center,
+                                height: 50,
+                                width: MediaQuery.of(context).size.width * 0.4,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    width: 1.0,
+                                    color: ThemeConstants.whitecolor,
+                                  ),
+                                  color: ThemeConstants.bluecolor,
+                    
+                                  borderRadius:
+                                      BorderRadius.circular(120), // <-- Radius
+                                ),
+                                child: CustomAutoSizeTextMontserrat(
+                                  text: "Start the Journey",
+                                  textColor: Colors.white,
+                                )),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        SizedBox(
+                          width: 300,
+                          child: CustomAutoSizeTextMontserrat(
+                            textColor: Colors.grey[700],
+                            text: 'Register your story amongst 50K+ success stories',
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            textalingCentre: true,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ]),
+                ]),
+          ),
         ),
       ),
     ));

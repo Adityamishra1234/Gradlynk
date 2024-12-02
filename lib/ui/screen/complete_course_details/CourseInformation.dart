@@ -53,13 +53,11 @@ class CourseInformation extends StatelessWidget {
                             child: Align(
                               alignment: AlignmentDirectional.centerStart,
                               child: Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 8, bottom: 8),
+                                padding: const EdgeInsets.only(right: 5),
                                 child: CustomAutoSizeTextMontserrat(
                                   text: completeCourseDetail[0].courseName,
                                   fontSize: 14,
                                   textColor: ThemeConstants.blackcolor,
-                                  fontWeight: FontWeight.w600,
                                   maxLines: 5,
                                 ),
                               ),
@@ -109,7 +107,6 @@ class CourseInformation extends StatelessWidget {
                                 text: completeCourseDetail[0].courseLevel,
                                 fontSize: 14,
                                 textColor: ThemeConstants.blackcolor,
-                                fontWeight: FontWeight.w600,
                                 maxLines: 2,
                               ),
                             ),
@@ -203,6 +200,7 @@ class CourseInformation extends StatelessWidget {
                               ),
                             ),
                           Container(
+                            padding: const EdgeInsets.only(right: 10, top: 10, bottom: 10),
                             constraints: const BoxConstraints(minHeight: 50),
                             child: Align(
                                 alignment: AlignmentDirectional.centerStart,
@@ -211,7 +209,6 @@ class CourseInformation extends StatelessWidget {
                                           .specialEntryRequirement ??
                                       "",
                                   textStyle: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.w600,
                                     color: ThemeConstants.blackcolor,
                                     fontSize: 14.0,
                                   ),

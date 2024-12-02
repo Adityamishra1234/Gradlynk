@@ -140,9 +140,7 @@ class Fundrequirement extends StatelessWidget {
             ),
             ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  elevation: 0.0,
-                  primary: ThemeConstants.bluecolor, // background
-                  onPrimary: ThemeConstants.bluecolor, // foreground
+                  foregroundColor: ThemeConstants.bluecolor, backgroundColor: ThemeConstants.bluecolor, elevation: 0.0, // foreground
                 ),
                 onPressed: () {},
                 child: CustomAutoSizeTextMontserrat(

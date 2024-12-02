@@ -109,6 +109,7 @@ class CustomProfileDialogue extends StatelessWidget {
                           // color: ThemeConstants.bluecolor,
                           decoration: BoxDecoration(
                               color: ThemeConstants.bluecolor,
+
                               borderRadius: BorderRadius.circular(10)),
                           padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 8),

@@ -5,6 +5,7 @@ import 'package:camera/camera.dart';
 import 'package:configurable_expansion_tile_null_safety/configurable_expansion_tile_null_safety.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 // import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -23,6 +24,10 @@ import 'package:path_provider/path_provider.dart';
 import 'package:flutter_share/flutter_share.dart';
 import 'package:studentpanel/widgets/file_download.dart';
 
+import '../../../widgets/drawerfilter.dart';
+import '../../controllers/basecontroller.dart';
+import '../mark_attendance/qrCodeScreen.dart';
+
 class ApplicationCompleteDetails extends StatefulWidget {
   static const routeNamed = '/ApplicationCompleteDetails';
   const ApplicationCompleteDetails({
@@ -40,6 +45,8 @@ class _ApplicationCompleteDetailsState
   bool loading = false;
   double progress = 0;
   bool downloadloading = false;
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   final rowSpacer2 = const TableRow(children: [
     SizedBox(
@@ -131,7 +138,107 @@ class _ApplicationCompleteDetailsState
       width = MediaQuery.of(context).size.width - 240;
     }
     return Scaffold(
-        appBar: const CustomAppBar("title"),
+      key: _scaffoldKey,
+        appBar:  AppBar(
+          elevation: 2.5,
+          automaticallyImplyLeading: false,
+          actions: [
+            if (displayMobileLayout == true)
+              IconButton(
+                icon: const Icon(Icons.arrow_back,
+                    color: Colors.black),
+                onPressed: () => Get.back(),
+              ),
+            if (displayMobileLayout == false)
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child:  IconButton(
+                  // icon: Image.asset("assets/images/gradlynk lense.png"),
+                  icon: const Icon(Icons.arrow_back, color: Colors.black,),
+                  // icon: const Icon(Icons.menu,color: Colors.black,),
+                  onPressed: () {
+                    // Get.find<BaseController>().profileDataValidator();
+                    Get.deleteAll();
+                    Get.back();
+
+                    DrawerFilter();
+                  },
+                ),
+              ),
+            // svgImage("work", Colors.transparent, 32, 32),
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Image.network(
+                "https://sieceducation.in/assets/assets/images/logo.png",
+                width: 130,
+                height: 30,
+              ),
+            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(top: 10),
+            //   child: Row(
+            //     children: [
+            //     Text("Hi, ", style: GoogleFonts.abhayaLibre(textStyle: const TextStyle(
+            //                         fontSize: 24,
+            //                         fontWeight: FontWeight.w700,
+            //                         color: Colors.black,
+            //                       ),)),
+            //       Text(
+            //             style: GoogleFonts.abhayaLibre(textStyle: const TextStyle(
+            //               fontSize: 24,
+            //               fontWeight: FontWeight.w700,
+            //               color: Colors.black,
+            //             ),),
+            //           "${firstLetterChaptial(controller.personalModal.enquiryName) ?? firstLetterChaptial(controller.model1.enquiryName)}"
+            //         ),
+            //     ],
+            //   ),
+            // ),
+            const Spacer(),
+            if (Get.find<BaseController>()
+                .meetingZoneStatus
+                .qrCodeGenerated ==
+                true)
+              IconButton(
+                icon: svgImage(
+                    "qr code", ThemeConstants.IconColor, 25, 25),
+                onPressed: () {
+                  showAnimatedDialog(
+                      animationType: DialogTransitionType.slideFromBottomFade,
+                      curve: Curves.easeInOutQuart,
+                      context: context,
+                      builder: (_) => QRScreen(
+                          Url: Get.find<BaseController>()
+                              .meetingZoneStatus
+                              .qrCodeView!,
+                          code: Get.find<BaseController>()
+                              .meetingZoneStatus
+                              .student_code!));
+                },
+              ),
+
+            // IconButton(
+            //   icon: SvgPicture.asset(
+            //     "assets/icons/profile.svg",
+            //     height: 30,
+            //     color: const Color.fromARGB(255, 99, 99, 99),
+            //   ),
+            //   onPressed: () {
+            //     Get.toNamed(ProfilePage.routeNamed);
+            //   },
+            // ),
+
+            const SizedBox(
+              width: 5,
+            )
+          ],
+          // title: Text(
+          //   title,
+          //   style: const TextStyle(color: Colors.black),
+          // ),
+          backgroundColor: Colors.white,
+        ),
         drawer: displayMobileLayout == false
             ? CustomDrawer(
                 index: 2,
@@ -153,7 +260,7 @@ class _ApplicationCompleteDetailsState
                           controller: ScrollController(),
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(left: 10, top: 10),
+                              padding: const EdgeInsets.only(left:10, top: 50),
                               child: CustomAutoSizeTextMontserrat(
                                 text: "My Application",
                                 textColor: ThemeConstants.bluecolor,
@@ -169,124 +276,137 @@ class _ApplicationCompleteDetailsState
                                 _.model.stageID == 99)
                               Padding(
                                 padding: const EdgeInsets.only(left: 10),
-                                child: Card(
-                                  elevation: 0,
-                                  child: ConfigurableExpansionTile(
-                                    header:
-                                        (isExpanded, iconTurns, heightFactor) {
-                                      return SizedBox(
-                                        width: width - 20,
-                                        height: 40,
-                                        child: Row(
-                                          children: [
-                                            CustomAutoSizeTextMontserrat(
-                                              text:
-                                                  "Application Submission Details",
-                                              textColor:
-                                                  ThemeConstants.blackcolor,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                            const Spacer(),
-                                            const Icon(
-                                                Icons.keyboard_arrow_down),
-                                          ],
-                                        ),
-                                      );
-                                    },
-                                    childrenBody: Column(
-                                      children: [
-                                        getTable(
-                                            firstField: "Offer Status",
-                                            secondField:
-                                                "Acknowledgement Number",
-                                            firstFiledName:
-                                                ConstantsWithId.getOfferStatus(_
-                                                    .model.offerStatus
-                                                    .toString()),
-                                            secondFieldName:
-                                                _.model.acknowledgementNumber),
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional.topStart,
-                                          child: CustomAutoSizeTextMontserrat(
-                                            text: "Acknowledgement Doc",
-                                            textColor: ThemeConstants.bluecolor,
+                                child: ConfigurableExpansionTile(
+                                  header:
+                                      (isExpanded, iconTurns, heightFactor) {
+                                    return SizedBox(
+                                      width: width-20,
+                                      height: 60,
+                                      child: Row(
+                                        children: [
+                                          CustomAutoSizeTextMontserrat(
+                                            text: "Application Submission Details",
+                                            textColor:
+                                                ThemeConstants.blackcolor,
                                             fontWeight: FontWeight.bold,
                                           ),
+                                          const Spacer(),
+                                          Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(8),
+                                                color: Colors.white,
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.grey.withOpacity(0.5),
+                                                    spreadRadius: -2, // Negative value to contain the shadow within the border
+                                                    blurRadius: 9,
+                                                    offset: const Offset(0, 5),
+                                                  )
+                                                ]
+                                            ),
+                                            child: const Padding(
+                                              padding: EdgeInsets.all(5.0),
+                                              child: Icon(
+                                                  Icons.keyboard_arrow_down),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                  childrenBody: Column(
+                                    children: [
+                                      getTable(
+                                          firstField: "Offer Status",
+                                          secondField:
+                                              "Acknowledgement Number",
+                                          firstFiledName:
+                                              ConstantsWithId.getOfferStatus(_
+                                                  .model.offerStatus
+                                                  .toString()),
+                                          secondFieldName:
+                                              _.model.acknowledgementNumber),
+                                      Align(
+                                        alignment:
+                                            AlignmentDirectional.topStart,
+                                        child: CustomAutoSizeTextMontserrat(
+                                          text: "Acknowledgement Doc",
+                                          textColor: ThemeConstants.bluecolor,
+                                          fontWeight: FontWeight.bold,
                                         ),
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 10),
-                                          child: Row(
-                                            children: [
-                                              SizedBox(
-                                                width: 50,
-                                                child: FileDownload(
-                                                    url: _.model
-                                                        .acknowledgementFile),
-                                              ),
-                                              const SizedBox(
-                                                width: 20,
-                                              ),
-                                              InkWell(
-                                                onTap: () {
-                                                  getViewDocument(_.model
-                                                      .acknowledgementFile);
-                                                },
-                                                child: Container(
-                                                  height: 35,
-                                                  width: 55,
-                                                  decoration: BoxDecoration(
-                                                      border: Border.all(
-                                                          color: ThemeConstants
-                                                              .bluecolor),
-                                                      borderRadius:
-                                                          const BorderRadius
-                                                              .all(
-                                                              Radius.circular(
-                                                                  20))),
-                                                  child: Center(
-                                                    child: Icon(
-                                                      Icons.remove_red_eye,
-                                                      size: 18,
-                                                      color: ThemeConstants
-                                                          .bluecolor,
-                                                    ),
-                                                    // child: CustomAutoSizeTextMontserrat(
-                                                    //   text: "View",
-                                                    //   fontSize: 10,
-                                                    //   fontWeight: FontWeight.w500,
-                                                    //   textColor: ThemeConstants.orangeColor,
-                                                    // ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 10),
+                                        child: Row(
+                                          children: [
+                                            SizedBox(
+                                              width: 50,
+                                              child: FileDownload(
+                                                  url: _.model
+                                                      .acknowledgementFile),
+                                            ),
+                                            const SizedBox(
+                                              width: 20,
+                                            ),
+                                            InkWell(
+                                              onTap: () {
+                                                getViewDocument(_.model
+                                                    .acknowledgementFile);
+                                              },
+                                              child: Container(
+                                                height: 35,
+                                                width: 55,
+                                                decoration: BoxDecoration(
+                                                    border: Border.all(
+                                                        color: ThemeConstants
+                                                            .bluecolor),
+                                                    borderRadius:
+                                                        const BorderRadius
+                                                            .all(
+                                                            Radius.circular(
+                                                                20))),
+                                                child: Center(
+                                                  child: Icon(
+                                                    Icons.remove_red_eye,
+                                                    size: 18,
+                                                    color: ThemeConstants
+                                                        .bluecolor,
                                                   ),
+                                                  // child: CustomAutoSizeTextMontserrat(
+                                                  //   text: "View",
+                                                  //   fontSize: 10,
+                                                  //   fontWeight: FontWeight.w500,
+                                                  //   textColor: ThemeConstants.orangeColor,
+                                                  // ),
                                                 ),
                                               ),
-                                              // ElevatedButton(
-                                              //   style: ElevatedButton.styleFrom(
-                                              //     foregroundColor:
-                                              //         ThemeConstants.whitecolor,
-                                              //     side: BorderSide(
-                                              //         color: ThemeConstants
-                                              //             .orangeColor),
-                                              //     backgroundColor: ThemeConstants
-                                              //         .whitecolor, // foreground
-                                              //   ),
-                                              //   onPressed: () {
-                                              //     getViewDocument(_
-                                              //         .model.acknowledgementFile);
-                                              //   },
-                                              //   child:
-                                              //       CustomAutoSizeTextMontserrat(
-                                              //     text: "View",
-                                              //     textColor:
-                                              //         ThemeConstants.orangeColor,
-                                              //   ),
-                                              // ),
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    ),
+                                            ),
+                                            // ElevatedButton(
+                                            //   style: ElevatedButton.styleFrom(
+                                            //     foregroundColor:
+                                            //         ThemeConstants.whitecolor,
+                                            //     side: BorderSide(
+                                            //         color: ThemeConstants
+                                            //             .orangeColor),
+                                            //     backgroundColor: ThemeConstants
+                                            //         .whitecolor, // foreground
+                                            //   ),
+                                            //   onPressed: () {
+                                            //     getViewDocument(_
+                                            //         .model.acknowledgementFile);
+                                            //   },
+                                            //   child:
+                                            //       CustomAutoSizeTextMontserrat(
+                                            //     text: "View",
+                                            //     textColor:
+                                            //         ThemeConstants.orangeColor,
+                                            //   ),
+                                            // ),
+                                          ],
+                                        ),
+                                      )
+                                    ],
                                   ),
                                 ),
                               ),
@@ -309,8 +429,8 @@ class _ApplicationCompleteDetailsState
                                   header:
                                       (isExpanded, iconTurns, heightFactor) {
                                     return SizedBox(
-                                      width: width - 10,
-                                      height: 40,
+                                      width: width - 20,
+                                      height: 60,
                                       child: Row(
                                         children: [
                                           CustomAutoSizeTextMontserrat(
@@ -320,240 +440,273 @@ class _ApplicationCompleteDetailsState
                                             fontWeight: FontWeight.bold,
                                           ),
                                           const Spacer(),
-                                          const Icon(Icons.keyboard_arrow_down),
+                                          Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(8),
+                                                color: Colors.white,
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.grey.withOpacity(0.5),
+                                                    spreadRadius: -2, // Negative value to contain the shadow within the border
+                                                    blurRadius: 9,
+                                                    offset: const Offset(0, 5),
+                                                  )
+                                                ]
+                                            ),
+                                            child: const Padding(
+                                              padding: EdgeInsets.all(5.0),
+                                              child: Icon(
+                                                  Icons.keyboard_arrow_down),
+                                            ),
+                                          ),
                                         ],
                                       ),
                                     );
                                   },
-                                  childrenBody: Column(
-                                    children: [
-                                      getTable(
-                                          firstField:
-                                              "Application Submission Date",
-                                          secondField: "Offer Date",
-                                          firstFiledName:
-                                              _.model.submissionDate,
-                                          secondFieldName: _.model.offerDate),
-                                      getTable(
-                                          firstField: "Offer lapse Date",
-                                          secondField: "Conditional offer date",
-                                          firstFiledName:
-                                              _.model.offerLapseDate,
-                                          secondFieldName:
-                                              _.model.conditionalOfferDate),
-                                      getTable(
-                                          firstField: "Fee Payment \nDeadline",
-                                          secondField: "Course Start date",
-                                          firstFiledName: _.model.feeDeadline,
-                                          secondFieldName:
-                                              _.model.courseStartDate),
-                                      getTable(
-                                          firstField:
-                                              "Estimated Course Completion date",
-                                          secondField: "Course Fees Currency",
-                                          firstFiledName:
-                                              _.model.completionDate,
-                                          secondFieldName:
-                                              _.model.currencyCode),
-                                      getTable(
-                                          firstField:
-                                              "Course Fees in ${_.model.currencyCode}",
-                                          secondField: "Course Fees in INR",
-                                          firstFiledName:
-                                              _.model.annualTutionFees,
-                                          secondFieldName:
-                                              _.model.annualTutionFeesInr),
-                                      getTable(
-                                          firstField: "OSHC Fees",
-                                          secondField:
-                                              "Total Fees in ${_.model.currencyCode}",
-                                          firstFiledName: _.model.oSHCFees,
-                                          secondFieldName: _.model.totalfees),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      getTable(
-                                        firstField: "Total Fees in INR",
-                                        secondField: "Reason of Rejected",
-                                        firstFiledName: _.model.totalfeesInr,
-                                        secondFieldName:
-                                            _.model.offerRejectReason,
-                                      ),
+                                  childrenBody: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      children: [
+                                        getTable(
+                                            firstField:
+                                                "Submission Date",
+                                            secondField: "Offer Date",
+                                            firstFiledName:
+                                                _.model.submissionDate,
+                                            secondFieldName: _.model.offerDate),
+                                        const SizedBox(height: 10,),
+                                        getTable(
+                                            firstField: "Offer lapse Date",
+                                            secondField: "Conditional offer date",
+                                            firstFiledName:
+                                                _.model.offerLapseDate,
+                                            secondFieldName:
+                                                _.model.conditionalOfferDate),
+                                        const SizedBox(height: 10,),
+                                        getTable(
+                                            firstField: "Fee Payment \nDeadline",
+                                            secondField: "Course Start date",
+                                            firstFiledName: _.model.feeDeadline,
+                                            secondFieldName:
+                                                _.model.courseStartDate),
+                                        const SizedBox(height: 10,),
+                                        getTable(
+                                            firstField:
+                                                "Course Completion date",
+                                            secondField: "Course Fees Currency",
+                                            firstFiledName:
+                                                _.model.completionDate,
+                                            secondFieldName:
+                                                _.model.currencyCode),
+                                        const SizedBox(height: 10,),
+                                        getTable(
+                                            firstField:
+                                                "Course Fees in ${_.model.currencyCode}",
+                                            secondField: "Course Fees in INR",
+                                            firstFiledName:
+                                                _.model.annualTutionFees,
+                                            secondFieldName:
+                                                _.model.annualTutionFeesInr),
+                                        const SizedBox(height: 10,),
+                                        getTable(
+                                            firstField: "OSHC Fees",
+                                            secondField:
+                                                "Total Fees in ${_.model.currencyCode}",
+                                            firstFiledName: _.model.oSHCFees,
+                                            secondFieldName: _.model.totalfees),
 
-                                      if (getNUllChecker(_.model
-                                              .SpecifyConditionsForConditionalOffer) ==
-                                          false)
                                         const SizedBox(
-                                          height: 5,
+                                          height: 10,
                                         ),
-                                      if (getNUllChecker(_.model
-                                              .SpecifyConditionsForConditionalOffer) ==
-                                          false)
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional.topStart,
-                                          child: CustomAutoSizeTextMontserrat(
-                                            text:
-                                                "Specify conditionals for conditional offer",
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
+                                        getTable(
+                                          firstField: "Total Fees in INR",
+                                          secondField: "Reason for Rejection",
+                                          firstFiledName: _.model.totalfeesInr,
+                                          secondFieldName:
+                                              _.model.offerRejectReason,
+                                        ),
+
+                                        if (getNUllChecker(_.model
+                                                .SpecifyConditionsForConditionalOffer) ==
+                                            false)
+                                          const SizedBox(
+                                            height: 5,
                                           ),
-                                        ),
-                                      if (getNUllChecker(_.model
-                                              .SpecifyConditionsForConditionalOffer) ==
-                                          false)
-                                        Align(
+                                        if (getNUllChecker(_.model
+                                                .SpecifyConditionsForConditionalOffer) ==
+                                            false)
+                                          Align(
                                             alignment:
                                                 AlignmentDirectional.topStart,
                                             child: CustomAutoSizeTextMontserrat(
-                                              text: _.model
-                                                  .SpecifyConditionsForConditionalOffer,
-                                              textColor:
-                                                  ThemeConstants.TextColor,
-                                              fontSize: 12,
-                                            )),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                      if (getNUllChecker(
-                                              _.model.fullOfferDoc) ==
-                                          false)
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional.topStart,
-                                          child: CustomAutoSizeTextMontserrat(
-                                            text: "FUll Offer Letter Documnet",
-                                            textColor: ThemeConstants.bluecolor,
-                                            fontWeight: FontWeight.bold,
+                                              text:
+                                                  "Requirements", //"Specify conditionals for conditional offer"
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 14,
+                                            ),
                                           ),
-                                        ),
-                                      if (getNUllChecker(
-                                              _.model.fullOfferDoc) ==
-                                          false)
-                                        Row(
-                                          children: [
-                                            FileDownload(
-                                                url: _.model.fullOfferDoc),
-                                            const SizedBox(
-                                              width: 20,
-                                            ),
-                                            ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .orangeColor),
-                                                backgroundColor: ThemeConstants
-                                                    .whitecolor, // foreground
-                                              ),
-                                              onPressed: () {
-                                                getViewDocument(
-                                                    _.model.fullOfferDoc);
-                                              },
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "View",
+                                        if (getNUllChecker(_.model
+                                                .SpecifyConditionsForConditionalOffer) ==
+                                            false)
+                                          Align(
+                                              alignment:
+                                                  AlignmentDirectional.topStart,
+                                              child: CustomAutoSizeTextMontserrat(
+                                                text: _.model
+                                                    .SpecifyConditionsForConditionalOffer,
                                                 textColor:
-                                                    ThemeConstants.orangeColor,
-                                              ),
-                                            ),
-                                          ],
+                                                    ThemeConstants.TextColor,
+                                                fontSize: 12,
+                                              )),
+                                        const SizedBox(
+                                          height: 10,
                                         ),
-                                      if (getNUllChecker(
-                                              _.model.reasonOfWithdraw) ==
-                                          false)
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional.topStart,
-                                          child: CustomAutoSizeTextMontserrat(
-                                            text: "Rejection Document",
-                                            textColor: ThemeConstants.bluecolor,
-                                            fontWeight: FontWeight.bold,
+                                        if (getNUllChecker(_.model.fullOfferDoc) == false)
+                                          const SizedBox(height: 10,),
+                                          Align(
+                                            alignment:
+                                                AlignmentDirectional.topStart,
+                                            child: CustomAutoSizeTextMontserrat(
+                                              text: "Offer Letter Document",
+                                              textColor: ThemeConstants.bluecolor,
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                           ),
-                                        ),
-                                      if (getNUllChecker(
-                                              _.model.reasonOfWithdraw) ==
-                                          false)
-                                        Row(
-                                          children: [
-                                            FileDownload(
-                                                url: _.model.rejectionDoc),
-                                            const SizedBox(
-                                              width: 20,
-                                            ),
-                                            ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .orangeColor),
-                                                backgroundColor: ThemeConstants
-                                                    .whitecolor, // foreground
+                                        if (getNUllChecker(_.model.fullOfferDoc) == false)
+                                          Row(
+                                            children: [
+                                              FileDownload(
+                                                  url: _.model.fullOfferDoc),
+                                              const SizedBox(
+                                                width: 20,
                                               ),
-                                              onPressed: () {
-                                                getViewDocument(
-                                                    _.model.rejectionDoc);
-                                              },
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "View",
-                                                textColor:
-                                                    ThemeConstants.orangeColor,
+                                              ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  elevation: 5,
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .GreenColor),
+                                                  backgroundColor: ThemeConstants
+                                                      .whitecolor, // foreground
+                                                ),
+                                                onPressed: () {
+                                                  getViewDocument(
+                                                      _.model.fullOfferDoc);
+                                                },
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "View",
+                                                  textColor:
+                                                      ThemeConstants.GreenColor,
+                                                ),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                      if (getNUllChecker(
-                                              _.model.conditionalOfferDoc) ==
-                                          false)
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional.topStart,
-                                          child: CustomAutoSizeTextMontserrat(
-                                            text: "Conditional offer Document",
-                                            textColor: ThemeConstants.bluecolor,
-                                            fontWeight: FontWeight.bold,
+                                            ],
                                           ),
-                                        ),
-                                      if (getNUllChecker(
-                                              _.model.conditionalOfferDoc) ==
-                                          false)
-                                        Row(
-                                          children: [
-                                            FileDownload(
-                                                url: _
-                                                    .model.conditionalOfferDoc),
-                                            const SizedBox(
-                                              width: 20,
+                                        if (getNUllChecker(
+                                                _.model.reasonOfWithdraw) ==
+                                            false)
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          Align(
+                                            alignment:
+                                                AlignmentDirectional.topStart,
+                                            child: CustomAutoSizeTextMontserrat(
+                                              text: "Rejection Document",
+                                              textColor: ThemeConstants.bluecolor,
+                                              fontWeight: FontWeight.bold,
                                             ),
-                                            ElevatedButton(
-                                              style: ElevatedButton.styleFrom(
-                                                foregroundColor:
-                                                    ThemeConstants.whitecolor,
-                                                side: BorderSide(
-                                                    color: ThemeConstants
-                                                        .orangeColor),
-                                                backgroundColor: ThemeConstants
-                                                    .whitecolor, // foreground
+                                          ),
+                                        if (getNUllChecker(
+                                                _.model.reasonOfWithdraw) ==
+                                            false)
+                                          Row(
+                                            children: [
+                                              FileDownload(
+                                                  url: _.model.rejectionDoc),
+                                              const SizedBox(
+                                                width: 20,
                                               ),
-                                              onPressed: () {
-                                                getViewDocument(_
-                                                    .model.conditionalOfferDoc);
-                                              },
-                                              child:
-                                                  CustomAutoSizeTextMontserrat(
-                                                text: "View",
-                                                textColor:
-                                                    ThemeConstants.orangeColor,
+                                              ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  elevation: 4,
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .GreenColor),
+                                                  backgroundColor: ThemeConstants
+                                                      .whitecolor, // foreground
+                                                ),
+                                                onPressed: () {
+                                                  getViewDocument(
+                                                      _.model.rejectionDoc);
+                                                },
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "View",
+                                                  textColor:
+                                                      ThemeConstants.GreenColor,
+                                                ),
                                               ),
+                                            ],
+                                          ),
+                                        if (getNUllChecker(
+                                                _.model.conditionalOfferDoc) ==
+                                            false)
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          Align(
+                                            alignment:
+                                                AlignmentDirectional.topStart,
+                                            child: CustomAutoSizeTextMontserrat(
+                                              text: "Conditional offer Document",
+                                              textColor: ThemeConstants.bluecolor,
+                                              fontWeight: FontWeight.bold,
                                             ),
-                                          ],
-                                        ),
+                                          ),
+                                        if (getNUllChecker(
+                                                _.model.conditionalOfferDoc) ==
+                                            false)
+                                          Row(
+                                            children: [
+                                              FileDownload(
+                                                  url: _
+                                                      .model.conditionalOfferDoc),
+                                              const SizedBox(
+                                                width: 20,
+                                              ),
+                                              ElevatedButton(
+                                                style: ElevatedButton.styleFrom(
+                                                  elevation: 4,
+                                                  foregroundColor:
+                                                      ThemeConstants.whitecolor,
+                                                  side: BorderSide(
+                                                      color: ThemeConstants
+                                                          .GreenColor),
+                                                  backgroundColor: ThemeConstants
+                                                      .whitecolor, // foreground
+                                                ),
+                                                onPressed: () {
+                                                  getViewDocument(_
+                                                      .model.conditionalOfferDoc);
+                                                },
+                                                child:
+                                                    CustomAutoSizeTextMontserrat(
+                                                  text: "View",
+                                                  textColor:
+                                                      ThemeConstants.GreenColor,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
 
-                                      //
-                                    ],
+                                        //
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -570,8 +723,8 @@ class _ApplicationCompleteDetailsState
                                   header:
                                       (isExpanded, iconTurns, heightFactor) {
                                     return SizedBox(
-                                      width: width - 10,
-                                      height: 40,
+                                      width: width - 20,
+                                      height: 60,
                                       child: Row(
                                         children: [
                                           CustomAutoSizeTextMontserrat(
@@ -581,7 +734,25 @@ class _ApplicationCompleteDetailsState
                                             fontWeight: FontWeight.bold,
                                           ),
                                           const Spacer(),
-                                          const Icon(Icons.keyboard_arrow_down),
+                                          Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(8),
+                                                color: Colors.white,
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.grey.withOpacity(0.5),
+                                                    spreadRadius: -2, // Negative value to contain the shadow within the border
+                                                    blurRadius: 9,
+                                                    offset: const Offset(0, 5),
+                                                  )
+                                                ]
+                                            ),
+                                            child: const Padding(
+                                              padding: EdgeInsets.all(5.0),
+                                              child: Icon(
+                                                  Icons.keyboard_arrow_down),
+                                            ),
+                                          ),
                                         ],
                                       ),
                                     );
@@ -765,8 +936,8 @@ class _ApplicationCompleteDetailsState
                                   header:
                                       (isExpanded, iconTurns, heightFactor) {
                                     return SizedBox(
-                                      width: width - 10,
-                                      height: 40,
+                                      width: width - 20,
+                                      height: 60,
                                       child: Row(
                                         children: [
                                           CustomAutoSizeTextMontserrat(
@@ -776,7 +947,25 @@ class _ApplicationCompleteDetailsState
                                             fontWeight: FontWeight.bold,
                                           ),
                                           const Spacer(),
-                                          const Icon(Icons.keyboard_arrow_down),
+                                          Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(8),
+                                                color: Colors.white,
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.grey.withOpacity(0.5),
+                                                    spreadRadius: -2, // Negative value to contain the shadow within the border
+                                                    blurRadius: 9,
+                                                    offset: const Offset(0, 5),
+                                                  )
+                                                ]
+                                            ),
+                                            child: const Padding(
+                                              padding: EdgeInsets.all(5.0),
+                                              child: Icon(
+                                                  Icons.keyboard_arrow_down),
+                                            ),
+                                          ),
                                         ],
                                       ),
                                     );
@@ -831,8 +1020,8 @@ class _ApplicationCompleteDetailsState
                                   header:
                                       (isExpanded, iconTurns, heightFactor) {
                                     return SizedBox(
-                                      width: width - 10,
-                                      height: 40,
+                                      width: width - 20,
+                                      height: 60,
                                       child: Row(
                                         children: [
                                           CustomAutoSizeTextMontserrat(
@@ -842,7 +1031,25 @@ class _ApplicationCompleteDetailsState
                                             fontWeight: FontWeight.bold,
                                           ),
                                           const Spacer(),
-                                          const Icon(Icons.keyboard_arrow_down),
+                                          Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(8),
+                                                color: Colors.white,
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.grey.withOpacity(0.5),
+                                                    spreadRadius: -2, // Negative value to contain the shadow within the border
+                                                    blurRadius: 9,
+                                                    offset: const Offset(0, 5),
+                                                  )
+                                                ]
+                                            ),
+                                            child: const Padding(
+                                              padding: EdgeInsets.all(5.0),
+                                              child: Icon(
+                                                  Icons.keyboard_arrow_down),
+                                            ),
+                                          ),
                                         ],
                                       ),
                                     );
@@ -856,6 +1063,7 @@ class _ApplicationCompleteDetailsState
                                             _.model.reasonOfWithdraw,
                                         secondFieldName: _.model.withdrawStatus,
                                       ),
+
                                       getTable(
                                         firstField:
                                             "Applied for other University",
@@ -865,12 +1073,14 @@ class _ApplicationCompleteDetailsState
                                             .model.applied_for_other_university,
                                         secondFieldName: "",
                                       ),
+                                      const SizedBox(height: 10,),
                                       getTable(
                                         firstField: "Country Name",
                                         secondField: "University Name",
                                         firstFiledName: _.model.countryName,
                                         secondFieldName: _.model.universityname,
                                       ),
+                                      const SizedBox(height: 10,),
                                     ],
                                   ),
                                 ),
@@ -887,19 +1097,41 @@ class _ApplicationCompleteDetailsState
                                   header:
                                       (isExpanded, iconTurns, heightFactor) {
                                     return SizedBox(
-                                      width: width - 15,
-                                      height: 40,
-                                      child: Row(
-                                        children: [
-                                          CustomAutoSizeTextMontserrat(
-                                            text: "Document",
-                                            textColor:
-                                                ThemeConstants.blackcolor,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                          const Spacer(),
-                                          const Icon(Icons.keyboard_arrow_down),
-                                        ],
+                                      width: width-10,
+                                      height: 60,
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            CustomAutoSizeTextMontserrat(
+                                              text: "Document",
+                                              textColor:
+                                                  ThemeConstants.blackcolor,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(8),
+                                                  color: Colors.white,
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                      color: Colors.grey.withOpacity(0.5),
+                                                      spreadRadius: -2,
+                                                      blurRadius: 9,
+                                                      offset: const Offset(0, 5),
+                                                    )
+                                                  ]
+                                              ),
+                                              child: const Padding(
+                                                padding: EdgeInsets.all(5.0),
+                                                child: Icon(
+                                                    Icons.keyboard_arrow_down),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     );
                                   },
@@ -927,7 +1159,7 @@ class _ApplicationCompleteDetailsState
   }
 
   // Function
-  //create list of documetn
+  //create list of document
   List<Widget> documentList(
       ApplicationDetailModel model, BuildContext context) {
     List<Widget> documentlist = [];
@@ -945,178 +1177,194 @@ class _ApplicationCompleteDetailsState
       for (var j = 0; j < list.length; j++) {
         if (list[j].entries.first.key ==
             model.documents![i].documentParentCategory) {
-          list[j].entries.first.value.add(Card(
-                elevation: 5,
-                shadowColor: ThemeConstants.whitecolor,
-                shape: RoundedRectangleBorder(
-                  side: BorderSide(
-                      color: ThemeConstants.lightgreycolor, width: 2.0),
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      left: 10, top: 5, bottom: 5, right: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      CustomAutoSizeTextMontserrat(
-                        text: model.documents![i].documentName,
-                        textColor: ThemeConstants.bluecolor,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      Table(
-                        children: [
-                          TableRow(children: [
-                            CustomAutoSizeTextMontserrat(
-                              text: "Mandatory/Non-Mandatory: ",
-                              fontSize: 14,
-                              maxLines: 2,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            CustomAutoSizeTextMontserrat(
-                              text: "Required By",
-                              fontSize: 14,
-                              maxLines: 2,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ]),
-                          rowSpacer2,
-                          TableRow(children: [
-                            CustomAutoSizeTextMontserrat(
-                              text: model.documents![i].mandatoryStatus,
-                              textColor: ThemeConstants.TextColor,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              maxLines: 2,
-                            ),
-                            CustomAutoSizeTextMontserrat(
-                              text: model.documents![i].requiredBy,
-                              textColor: ThemeConstants.TextColor,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              maxLines: 2,
-                            ),
-                          ]),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      CustomAutoSizeTextMontserrat(text: "Uploaded By:"),
-                      CustomAutoSizeTextMontserrat(
-                        text: model.documents![i].uploadedBy,
-                        textColor: ThemeConstants.TextColor,
-                      ),
-                      if (model.documents![i].viewLink != "test")
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              //Upload
-                              if (getNUllChecker(
-                                      model.documents![i].viewLink) ==
-                                  true)
-                                ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    foregroundColor: ThemeConstants.whitecolor,
-                                    side: BorderSide(
-                                        color: ThemeConstants.GreenColor),
-                                    backgroundColor:
-                                        ThemeConstants.whitecolor, // foreground
-                                  ),
-                                  onPressed: () {
-                                    controller.model.documents![i].viewLink =
-                                        "test";
-                                    getSourceSelected(
-                                        callbackSelectedSource1,
-                                        model.documents![i].id.toString(),
-                                        i,
-                                        Get.arguments);
-                                    controller.update();
-                                  },
-                                  child: CustomAutoSizeTextMontserrat(
-                                    text: "Upload",
-                                    textColor: ThemeConstants.GreenColor,
-                                  ),
-                                ),
-                              if (getNUllChecker(
-                                      model.documents![i].viewLink) ==
-                                  true)
-                                const SizedBox(
-                                  width: 20,
-                                ),
-                              //Download
-                              if (getNUllChecker(
-                                      model.documents![i].viewLink) ==
-                                  false)
-                                SizedBox(
-                                  width: 50,
-                                  child: FileDownload(
-                                      url: model.documents![i].viewLink),
-                                ),
-
-                              if (getNUllChecker(
-                                      model.documents![i].viewLink) ==
-                                  false)
-                                const SizedBox(
-                                  width: 20,
-                                ),
-                              //View
-                              if (getNUllChecker(
-                                      model.documents![i].viewLink) ==
-                                  false)
-                                InkWell(
-                                  onTap: () {
-                                    getViewDocument(
-                                        model.documents![i].viewLink);
-                                  },
-                                  child: Container(
-                                    height: 35,
-                                    width: 55,
-                                    decoration: BoxDecoration(
-                                        border: Border.all(
-                                            color: ThemeConstants.bluecolor),
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(20))),
-                                    child: Center(
-                                      child: Icon(
-                                        Icons.remove_red_eye,
-                                        size: 18,
-                                        color: ThemeConstants.bluecolor,
-                                      ),
-                                      // child: CustomAutoSizeTextMontserrat(
-                                      //   text: "View",
-                                      //   fontSize: 10,
-                                      //   fontWeight: FontWeight.w500,
-                                      //   textColor: ThemeConstants.orangeColor,
-                                      // ),
+          list[j].entries.first.value.add(
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Card(
+                  elevation: 8,
+                  shadowColor: Colors.blue.withAlpha(500),
+                  shape: RoundedRectangleBorder(
+                    // side: BorderSide(
+                    //     color: ThemeConstants.lightgreycolor, width: 2.0),
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        CustomAutoSizeTextMontserrat(
+                          text: model.documents![i].documentName,
+                          textColor: ThemeConstants.bluecolor,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        const SizedBox(height: 25,),
+                        Table(
+                          children: [
+                            TableRow(children: [
+                              CustomAutoSizeTextMontserrat(
+                                text: "Mandatory/Non-Mandatory: ",
+                                fontSize: 10,
+                                maxLines: 2,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              CustomAutoSizeTextMontserrat(
+                                text: "Required By:",
+                                fontSize: 10,
+                                maxLines: 2,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ]),
+                            rowSpacer2,
+                            rowSpacer2,
+                            rowSpacer2,
+                            TableRow(children: [
+                              CustomAutoSizeTextMontserrat(
+                                text: model.documents![i].mandatoryStatus,
+                                textColor: ThemeConstants.TextColor,
+                                fontSize: 13,
+                                fontWeight: FontWeight.w600,
+                                maxLines: 2,
+                              ),
+                              CustomAutoSizeTextMontserrat(
+                                text: model.documents![i].requiredBy,
+                                textColor: ThemeConstants.TextColor,
+                                fontSize: 13,
+                                fontWeight: FontWeight.w600,
+                                maxLines: 2,
+                              ),
+                            ]),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        CustomAutoSizeTextMontserrat(text: "Uploaded By:", fontSize: 8, fontWeight: FontWeight.w500,),
+                        CustomAutoSizeTextMontserrat(
+                          text: model.documents![i].uploadedBy,
+                          textColor: ThemeConstants.TextColor,
+                        ),
+                        if (model.documents![i].viewLink != "test")
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                //Upload
+                                if (getNUllChecker(
+                                        model.documents![i].viewLink) ==
+                                    true)
+                                  ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      elevation: 4,
+                                      foregroundColor: ThemeConstants.whitecolor,
+                                      side: BorderSide(
+                                          color: ThemeConstants.GreenColor),
+                                      backgroundColor:
+                                          ThemeConstants.whitecolor, // foreground
+                                    ),
+                                    onPressed: () {
+                                      controller.model.documents![i].viewLink =
+                                          "test";
+                                      getSourceSelected(
+                                          callbackSelectedSource1,
+                                          model.documents![i].id.toString(),
+                                          i,
+                                          Get.arguments);
+                                      controller.update();
+                                    },
+                                    child: CustomAutoSizeTextMontserrat(
+                                      text: "Upload",
+                                      textColor: ThemeConstants.GreenColor,
                                     ),
                                   ),
-                                ),
-                              // ElevatedButton(
-                              //   style: ElevatedButton.styleFrom(
-                              //     foregroundColor: ThemeConstants.whitecolor,
-                              //     side: BorderSide(
-                              //         color: ThemeConstants.orangeColor),
-                              //     backgroundColor:
-                              //         ThemeConstants.whitecolor, // foreground
-                              //   ),
-                              //   onPressed: () {
-                              //     getViewDocument(model.documents![i].viewLink);
-                              //   },
-                              //   child: CustomAutoSizeTextMontserrat(
-                              //     text: "View",
-                              //     textColor: ThemeConstants.orangeColor,
-                              //   ),
-                              // ),
-                            ],
+                                if (getNUllChecker(
+                                        model.documents![i].viewLink) ==
+                                    true)
+                                  const SizedBox(
+                                    width: 20,
+                                  ),
+                                //Download
+                                if (getNUllChecker(
+                                        model.documents![i].viewLink) ==
+                                    false)
+                                  SizedBox(
+                                    width: 50,
+                                    child: FileDownload(
+                                        url: model.documents![i].viewLink),
+                                  ),
+
+                                if (getNUllChecker(
+                                        model.documents![i].viewLink) ==
+                                    false)
+                                  const SizedBox(
+                                    width: 20,
+                                  ),
+                                //View
+                                if (getNUllChecker(
+                                        model.documents![i].viewLink) ==
+                                    false)
+                                  InkWell(
+                                    onTap: () {
+                                      getViewDocument(
+                                          model.documents![i].viewLink);
+                                    },
+                                    child: Container(
+                                      height: 35,
+                                      width: 65,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.grey.withOpacity(0.5),
+                                              spreadRadius: 1,
+                                              blurRadius: 5,
+                                              offset: const Offset(0, 4.5),
+                                            )
+                                          ],
+                                          // border: Border.all(
+                                          //     color: ThemeConstants.bluecolor),
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(20))),
+                                      child: Center(
+                                        child: Icon(
+                                          Icons.remove_red_eye,
+                                          size: 18,
+                                          color: ThemeConstants.bluecolor,
+                                        ),
+                                        // child: CustomAutoSizeTextMontserrat(
+                                        //   text: "View",
+                                        //   fontSize: 10,
+                                        //   fontWeight: FontWeight.w500,
+                                        //   textColor: ThemeConstants.orangeColor,
+                                        // ),
+                                      ),
+                                    ),
+                                  ),
+                                // ElevatedButton(
+                                //   style: ElevatedButton.styleFrom(
+                                //     foregroundColor: ThemeConstants.whitecolor,
+                                //     side: BorderSide(
+                                //         color: ThemeConstants.orangeColor),
+                                //     backgroundColor:
+                                //         ThemeConstants.whitecolor, // foreground
+                                //   ),
+                                //   onPressed: () {
+                                //     getViewDocument(model.documents![i].viewLink);
+                                //   },
+                                //   child: CustomAutoSizeTextMontserrat(
+                                //     text: "View",
+                                //     textColor: ThemeConstants.orangeColor,
+                                //   ),
+                                // ),
+                              ],
+                            ),
                           ),
-                        ),
-                      if (model.documents![i].viewLink == "test")
-                        const Center(child: CircularProgressIndicator())
-                    ],
+                        if (model.documents![i].viewLink == "test")
+                          const Center(child: CircularProgressIndicator())
+                      ],
+                    ),
                   ),
                 ),
               ));
@@ -1130,8 +1378,8 @@ class _ApplicationCompleteDetailsState
           alignment: AlignmentDirectional.topStart,
           child: CustomAutoSizeTextMontserrat(
             text: list[i].entries.first.key,
-            textColor: ThemeConstants.bluecolor,
-            fontSize: 18,
+            textColor: ThemeConstants.bluecolor.withOpacity(0.8),
+            fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
         ),

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class DatePickerCustom extends FormField<int> {
   DatePickerCustom(
-      {required FormFieldSetter onSaved,
+      {super.key,
+      required FormFieldSetter onSaved,
       required FormFieldValidator validator,
       int initialValue = 0,
       AutovalidateMode? autovalidate})
@@ -16,14 +17,14 @@ class DatePickerCustom extends FormField<int> {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   IconButton(
-                    icon: Icon(Icons.remove),
+                    icon: const Icon(Icons.remove),
                     onPressed: () {
                       // state.didChange(state.value - 1);
                     },
                   ),
                   Text(state.value.toString()),
                   IconButton(
-                    icon: Icon(Icons.add),
+                    icon: const Icon(Icons.add),
                     onPressed: () {
                       // state.didChange(state.value + 1);
                     },

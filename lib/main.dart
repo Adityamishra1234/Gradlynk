@@ -1,15 +1,7 @@
-import 'dart:convert';
 import 'dart:io';
-// import 'package:another_flutter_splash_screen/another_flutter_splash_screen.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_downloader/flutter_downloader.dart';
-// import 'package:flutter_downloader/flutter_downloader.dart';
-import 'package:gif_view/gif_view.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:studentpanel/Test/testScreen.dart';
-import 'package:studentpanel/binding/app_bindings.dart';
 import 'package:studentpanel/binding/applicationdetails.dart';
 import 'package:studentpanel/binding/applicationsummary.dart';
 import 'package:studentpanel/binding/coursesearch.dart';
@@ -21,18 +13,14 @@ import 'package:studentpanel/binding/reviewshortlist.dart';
 import 'package:studentpanel/binding/trackapplication.dart';
 import 'package:studentpanel/binding/uploaddocument.dart';
 import 'package:studentpanel/binding/visasummary.dart';
-import 'package:studentpanel/fcm/firebase_options.dart';
 import 'package:studentpanel/fcm/notification_service.dart';
-import 'package:studentpanel/middlewares/welcomeViewMiddleWare.dart';
 import 'package:studentpanel/presentation/features/event_history/event_history_view.dart';
-import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
-import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:studentpanel/ui/screen/Delete/assigneeinformation.dart';
-import 'package:studentpanel/ui/screen/Login_Module/LoginScreen.dart';
 import 'package:studentpanel/ui/screen/Profile_module_2/profile_view.dart';
 import 'package:studentpanel/ui/screen/course_search/coursesearch2.dart';
 import 'package:studentpanel/ui/screen/dashboard/bookanappointment.dart';
+import 'package:studentpanel/ui/screen/dashboard/notification.dart';
 import 'package:studentpanel/ui/screen/fund/fund_parameter.dart';
 import 'package:studentpanel/ui/screen/fund/fund_requiremen.dart';
 import 'package:studentpanel/ui/screen/fund/plan_fund.dart';
@@ -48,17 +36,14 @@ import 'package:studentpanel/ui/screen/Visa/visasummary.dart';
 import 'package:studentpanel/ui/screen/Profile_Module/profilepage.dart';
 import 'package:studentpanel/ui/screen/track_application/applicationdetail.dart';
 import 'package:studentpanel/ui/screen/My_Application/applicationsummary.dart';
-import 'package:studentpanel/ui/screen/course_search/coursesearch.dart';
 import 'package:studentpanel/ui/screen/course_search/finalshortlist.dart';
 import 'package:studentpanel/ui/screen/course_search/reviewshortlist.dart';
 import 'package:studentpanel/ui/screen/imageviewerscreen.dart';
 import 'package:studentpanel/ui/screen/login%20copy.dart';
-import 'package:studentpanel/ui/screen/lunchingpage.dart';
 import 'package:studentpanel/ui/screen/Delete/mydocument.dart';
 import 'package:studentpanel/ui/screen/otpscreen.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/Delete/detail.dart';
-import 'package:studentpanel/ui/screen/login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/Delete/sortcopy.dart';
@@ -69,7 +54,6 @@ import 'package:studentpanel/ui/screen/track_application/testautoscrolllistview.
 import 'package:studentpanel/ui/screen/track_application/trackapllication.dart';
 import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
 import 'package:studentpanel/ui/screen/welcomeScreen/welcome_view.dart';
-import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/phonepelikeanimation.dart';
 import 'package:studentpanel/widgets/scrolltabbar.dart';
@@ -83,171 +67,9 @@ import 'ui/screen/test/test.dart';
 import 'package:flutter_splash_screen/flutter_splash_screen.dart';
 
 // import files from firebase
-import 'fcm/firebase_options.dart';
-import 'fcm/message.dart';
-import 'package:http/http.dart' as http;
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-// @pragma('vm:entry-point')
-// Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-//   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-//   await setupFlutterNotifications();
-//   await flutterLocalNotificationsPlugin.initialize(
-//     initializationSetting,
-//     onDidReceiveNotificationResponse: (payload) {
-//       // handle interaction when app is active for android
-//       handleMessage(message);
-//     },
-//     onDidReceiveBackgroundNotificationResponse: (details) {
-//       print(details);
-//     },
-//   );
-//   showFlutterNotification(message);
-//   print('Handling a background message ${message.messageId}');
-// }
-
-// late AndroidNotificationChannel channel;
-
-// bool isFlutterLocalNotificationsInitialized = false;
-
-// Future<void> setupFlutterNotifications() async {
-//   if (isFlutterLocalNotificationsInitialized) {
-//     return;
-//   }
-//   channel = const AndroidNotificationChannel(
-//     'high_importance_channel', // id
-//     'High Importance Notifications', // title
-//     description:
-//         'This channel is used for important notifications.', // description
-//     importance: Importance.high,
-//   );
-
-//   flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
-
-//   await flutterLocalNotificationsPlugin
-//       .resolvePlatformSpecificImplementation<
-//           AndroidFlutterLocalNotificationsPlugin>()
-//       ?.createNotificationChannel(channel);
-
-//   await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
-//     alert: true,
-//     badge: true,
-//     sound: true,
-//   );
-//   isFlutterLocalNotificationsInitialized = true;
-// }
-
-// //Android Notiifcation on tap
-// void onTapNotification(Notification notification) async {
-//   // Get the data payload from the notification.
-//   print("object");
-//   print(notification);
-//   // final Map<String, String> data = notification;
-
-//   // Navigate to the specific screen in your app.
-//   // Navigator.of(context).pushNamed('/my-screen', arguments: data);
-// }
-
-// Future<void> showFlutterNotification(RemoteMessage message) async {
-//   RemoteNotification? notification = message.notification;
-//   AndroidNotification? android = message.notification?.android;
-//   final NotificationDetails notificationDetails = NotificationDetails(
-//     android: AndroidNotificationDetails(
-//       channel.id,
-//       channel.name,
-//       channelDescription: channel.description,
-//       icon: message.notification?.android?.smallIcon,
-//     ),
-//   );
-//   if (notification != null && android != null && !kIsWeb) {
-//     flutterLocalNotificationsPlugin.show(notification.hashCode,
-//         notification.title, notification.body, notificationDetails);
-//   }
-//   // await flutterLocalNotificationsPlugin.initialize(
-//   //   initializationSetting,
-//   //   onDidReceiveNotificationResponse: (payload) {
-//   //     // handle interaction when app is active for android
-//   //     handleMessage(message);
-//   //   },
-//   //   onDidReceiveBackgroundNotificationResponse: (details) {
-//   //     print(details);
-//   //   },
-//   // );
-//   // flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
-// }
-
-// late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
-
-// createtoken() async {
-//   SharedPreferences prefs = await SharedPreferences.getInstance();
-//   // var id = await prefs.getInt('id')!;
-
-//   var token = await FirebaseMessaging.instance.getToken(
-//       vapidKey:
-//           'BNKkaUWxyP_yC_lki1kYazgca0TNhuzt2drsOrL6WrgGbqnMnr8ZMLzg_rSPDm6HKphABS0KzjPfSqCXHXEd06Y');
-
-//   print("token");
-//   print(token);
-//   await prefs.setString('token', '$token');
-// }
-
-// // FCM send Notification using Token
-// sendPushMessage(String token) async {
-//   if (token == null) {
-//     print('Unable to send FCM message, no token exists.');
-//     return;
-//   }
-
-//   try {
-//     await http.post(
-//       Uri.parse('https://api.rnfirebase.io/messaging/send'),
-//       headers: <String, String>{
-//         'Content-Type': 'application/json; charset=UTF-8',
-//       },
-//       body: constructFCMPayload(token),
-//     );
-//     print('FCM request for device sent!');
-//   } catch (e) {
-//     print(e);
-//   }
-// }
-
-// int _messageCount = 0;
-// String constructFCMPayload(String? token) {
-//   print(token);
-//   _messageCount++;
-//   return jsonEncode({
-//     'token': token,
-//     'data': {
-//       'via': 'FlutterFire Cloud Messaging!!!',
-//       'count': _messageCount.toString(),
-//     },
-//     'notification': {
-//       'title': 'Hello FlutterFire!',
-//       'body': 'This notification (#$_messageCount) was created via FCM!',
-//     },
-//   });
-// }
-
-// var androidInitializationSettings =
-//     const AndroidInitializationSettings('@mipmap/ic_launcher');
-// var iosInitializationSettings = const DarwinInitializationSettings();
-// var initializationSetting = InitializationSettings(
-//     android: androidInitializationSettings, iOS: iosInitializationSettings);
-
-// void handleMessage(RemoteMessage message) {
-//   if (message.data['type'] == 'msj') {
-//     // Navigator.push(
-//     //     context,
-//     //     MaterialPageRoute(
-//     //         builder: (context) => MessageScreen(
-//     //               id: message.data['id'],
-//     //             )));
-//   }
-// }
 
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -262,67 +84,19 @@ class DownloadClass {
 }
 
 Future<void> main() async {
-//   String? initialMessage;
-//   bool _resolved = false;
-//   WidgetsFlutterBinding.ensureInitialized();
-
-//   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-//   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-
-//   if (!kIsWeb) {
-//     await setupFlutterNotifications();
-//   }
-//   FirebaseMessaging.instance.getInitialMessage().then((value) {
-//     print(value);
-//     _resolved = true;
-//     initialMessage = value?.data.toString();
-//   });
-
-//   FirebaseMessaging.onMessage.listen(showFlutterNotification);
-
-// //Notification on tap process
-
-// //IOS Notification on tap process
-//   FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-//     print("object");
-//     final temp = message.data;
-//     temp.forEach((key, value) {
-//       print(key);
-//       print(value);
-
-//       if (key == "test") {
-//         if (value == "value") {
-//           Get.to(const TestScreen());
-//         }
-//       }
-//     });
-//   });
-
-//IOS Notification on tap process
 
   WidgetsFlutterBinding.ensureInitialized();
 
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
-  SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(systemStatusBarContrastEnforced: true));
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    systemNavigationBarColor: ThemeConstants.whitecolor,
+    systemStatusBarContrastEnforced: false,
+    statusBarColor: ThemeConstants.bluecolor,
+    statusBarIconBrightness: Brightness.light,
+    systemNavigationBarIconBrightness: Brightness.light,
+  ));
 
-  // Plugin must be initialized before using
-  // await FlutterDownloader.initialize(
-  //   debug:
-  //       true, // optional: set to false to disable printing logs to console (default: true)
-  //   // ignoreSsl:
-  //   //     true // option: set to false to disable working with http links (default: false)
-  // );
-  // FlutterDownloader.registerCallback(DownloadClass.callback);
-  // SystemChrome.setEnabledSystemUIOverlays([]);
-  // SystemChrome.setPreferredOrientations([
-  //   DeviceOrientation.portraitUp,
-  //   DeviceOrientation.portraitDown,
-  // ]);
-  // await Future.delayed(Duration(seconds: 1));
-  // await onActionSelected;
-  // await createtoken();
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   runApp(const MyApp());
@@ -337,7 +111,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   UserModel? userModel;
-  // late final GifController controller;
 
   bool dashboardscreen = false;
   NotificationServices notificationServices = NotificationServices();
@@ -361,11 +134,6 @@ class _MyAppState extends State<MyApp> {
   }
 
   Future<void> hideScreen() async {
-    // SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    // String phonenumber = sharedPreferences.getString("phonenumber").toString();
-    // if (getNUllChecker(phonenumber) == false) {
-    //   var controller = Get.put(BaseController(), permanent: true);
-    // }
 
     if (Platform.isIOS) {
       Future.delayed(const Duration(milliseconds: 2000), () {
@@ -382,7 +150,16 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       theme: ThemeData(
+        visualDensity: VisualDensity.adaptivePlatformDensity,
         useMaterial3: false,
+        primaryColor: const Color(0xff1a84b8),
+        // primarySwatch: Colors.blue,
+        pageTransitionsTheme: const PageTransitionsTheme(
+          builders: {
+            TargetPlatform.android: OpenUpwardsPageTransitionsBuilder(),
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+          }
+        ),
       ),
       title: "S2C_studentpanel",
       debugShowCheckedModeBanner: false,
@@ -412,7 +189,7 @@ class _MyAppState extends State<MyApp> {
 
         GetPage(
           name: EventHistoryView.routeName,
-          page: () => EventHistoryView(),
+          page: () => const EventHistoryView(),
         ),
         GetPage(
           name: Fundrequirement.routenamed,
@@ -426,7 +203,7 @@ class _MyAppState extends State<MyApp> {
         GetPage(
           name: LoginCopy.routeNamed,
           page: () => const LoginCopy(),
-          transition: Transition.fade,
+            transition: Transition.downToUp
         ),
         // GetPage(
         //   name: LoginScreen.routeNamed,
@@ -441,18 +218,20 @@ class _MyAppState extends State<MyApp> {
         GetPage(
           name: RegisterationMainView.routeNmaed,
           page: () => const RegisterationMainView(),
-          transition: Transition.fade,
+            transition: Transition.downToUp
         ),
         GetPage(
           name: MyDocument.routeNamed,
           page: () => const MyDocument(),
-          transition: Transition.fade,
+            transition: Transition.downToUp
         ),
         GetPage(
           name: DashBoard.routeNamed,
-          transition: Transition.cupertino,
+          // transition: Transition.cupertino,
           binding: DashBoardBinding(),
           page: () => const DashBoard(),
+          transition: Transition.upToDown,
+            transitionDuration: const Duration(milliseconds: 100),
         ),
         // GetPage(
         //     name: ProfilePageCopy1.routeNamed,
@@ -461,25 +240,28 @@ class _MyAppState extends State<MyApp> {
         //     binding: ProfilePageBinding()),
         GetPage(
             name: ProfilePageCopy.routeNamed,
-            transition: Transition.zoom,
+            // transition: Transition.zoom,
             page: () => ProfilePageCopy(),
+            transition: Transition.downToUp,
             binding: ProfilePageBinding()),
         GetPage(
             name: DetialScreen.routeNamed,
             page: () => const DetialScreen(),
-            transition: Transition.fade,
+            transition: Transition.downToUp,
+            // transition: Transition.fade,
             binding: DetailBinding()),
 
         //AnimationaPhonepe
         GetPage(
           name: AnimationaPhonepe.routeNamed,
-          transition: Transition.fade,
+          transition: Transition.downToUp,
           page: () => const AnimationaPhonepe(),
         ),
         GetPage(
           name: OTPScreen.routeNamed,
-          transition: Transition.fade,
+          // transition: Transition.fade,
           page: () => OTPScreen(),
+          transition: Transition.downToUp,
         ),
         // GetPage(
         //     name: UploadDocument.routeNamed,
@@ -488,35 +270,41 @@ class _MyAppState extends State<MyApp> {
         //     binding: UploadDocumentBinding()),
         GetPage(
           name: ImageViewerScreen.routeNamed,
-          transition: Transition.fade,
+          // transition: Transition.fade,
           page: () => const ImageViewerScreen(),
+          transition: Transition.downToUp,
         ),
         GetPage(
           name: CourseSearch2.routeNamed,
-          transition: Transition.fade,
+          // transition: Transition.fade,
+          transition: Transition.downToUp,
           binding: CourseSearchBinding(),
           page: () => const CourseSearch2(),
         ),
 
         GetPage(
           name: Test1.routeNamed,
-          transition: Transition.fade,
+          // transition: Transition.fade,
+          transition: Transition.downToUp,
           page: () => const Test1(),
         ),
 
         GetPage(
           name: TestAutoScrollListView.routeNamed,
-          transition: Transition.fade,
+          // transition: Transition.fade,
           page: () => const TestAutoScrollListView(),
+          transition: Transition.downToUp,
         ),
         GetPage(
             name: TrackApplication.routeNamed,
-            transition: Transition.fade,
+            // transition: Transition.fade,
             page: () => const TrackApplication(),
+            transition: Transition.downToUp,
             binding: TrackApplicationBinding()),
         GetPage(
             name: TrackApplicationCopy.routeNamed,
-            transition: Transition.fade,
+            // transition: Transition.fade,
+            transition: Transition.downToUp,
             page: () => const TrackApplicationCopy(),
             binding: TrackApplicationBinding()),
         // GetPage(
@@ -526,123 +314,148 @@ class _MyAppState extends State<MyApp> {
         // ),
         GetPage(
           name: AnimationTest.routeNamed,
-          transition: Transition.cupertino,
+          // transition: Transition.cupertino,
+          transition: Transition.downToUp,
           page: () => const AnimationTest(),
         ),
 
         GetPage(
           name: ScrollTabBar.routeNamed,
-          transition: Transition.cupertino,
+          // transition: Transition.cupertino,
+          transition: Transition.downToUp,
           page: () => ScrollTabBar(),
         ),
         GetPage(
             name: ApplicationSummary.routeNamed,
-            transition: Transition.cupertino,
+            // transition: Transition.cupertino,
+            transition: Transition.downToUp,
             page: () => ApplicationSummary(),
             binding: ApplicationSummaryBinding()),
         GetPage(
             name: ApplicationDetail.routeNamed,
-            transition: Transition.cupertino,
+            // transition: Transition.cupertino,
+            transition: Transition.downToUp,
             page: () => const ApplicationDetail(),
             binding: ApplicationDetailBinding()),
         GetPage(
             name: FinalShortList.routeNamed,
-            transition: Transition.cupertino,
+            // transition: Transition.cupertino,
+            transition: Transition.downToUp,
             page: () => FinalShortList(),
             binding: FinalShortListBinding()),
         GetPage(
           name: ReviewShortList.routeNamed,
           page: () => ReviewShortList(),
-          transition: Transition.fade,
+          // transition: Transition.fade,
+          transition: Transition.downToUp,
           binding: ReviewShortListBinding(),
         ),
 
         GetPage(
           name: AssigneeInformationCopy.routeNamed,
           page: () => const AssigneeInformationCopy(),
-          transition: Transition.fade,
+          transition: Transition.downToUp,
+          // transition: Transition.fade,
         ),
 
         GetPage(
             name: VisaSummary.routeNamed,
             page: () => VisaSummary(),
-            transition: Transition.fade,
+            // transition: Transition.fade,
+            transition: Transition.downToUp,
             binding: VisaSummaryBinding()),
         GetPage(
             name: UploadDocument.routeNamed,
             page: () => UploadDocument(),
-            transition: Transition.fade,
+            // transition: Transition.fade,
+            transition: Transition.downToUp,
             binding: UploadDocumentBinding()),
         GetPage(
           name: DocumentTest.routeNamed,
           page: () => const DocumentTest(),
-          transition: Transition.fade,
+          // transition: Transition.fade,
+          transition: Transition.downToUp,
         ),
         GetPage(
           name: TimepickerDemo.routeNamed,
           page: () => const TimepickerDemo(),
-          transition: Transition.fade,
+          // transition: Transition.fade,
+          transition: Transition.downToUp,
         ),
         GetPage(
           name: StageProgress.routeNamed,
           page: () => const StageProgress(),
-          transition: Transition.fade,
+          // transition: Transition.fade,
+          transition: Transition.downToUp,
         ),
         GetPage(
           name: ApplicationCompleteDetails.routeNamed,
           page: () => const ApplicationCompleteDetails(),
-          transition: Transition.fade,
+          // transition: Transition.fade,
         ),
         GetPage(
           name: InternetConnectionStatusScreen.routeNamed,
           page: () => InternetConnectionStatusScreen(),
-          transition: Transition.fade,
+          // transition: Transition.fade,
         ),
         GetPage(
           name: ScheduleExpertCall.routeNamed,
           page: () => ScheduleExpertCall(),
-          transition: Transition.fade,
+          // transition: Transition.fade,
         ),
         GetPage(
           name: BookAnAppointment.routeNamed,
           page: () => BookAnAppointment(),
-          transition: Transition.fade,
+          // transition: Transition.fade,
         ),
         GetPage(
           name: CountryGuide.routeNamed,
           page: () => CountryGuide(),
-          transition: Transition.fade,
+          // transition: Transition.fade,
         ),
         GetPage(
           name: TestWidget.routeNamed,
           page: () => const TestWidget(),
-          transition: Transition.fade,
+          // transition: Transition.fade,
         ),
         GetPage(
           name: TrackyourTickets.routeNamed,
           page: () => TrackyourTickets(),
-          transition: Transition.fade,
+          transition: Transition.downToUp,
+          // transition: Transition.fade,
         ),
         GetPage(
           name: Suggestedimprovisation.routeNamed,
           page: () => Suggestedimprovisation(),
-          transition: Transition.fade,
+          // transition: Transition.fade,
         ),
         GetPage(
           name: RaiseYourTicket.routeNamed,
           page: () => RaiseYourTicket(),
-          transition: Transition.fade,
+          transition: Transition.downToUp,
+          // transition: Transition.fade,
         ),
         GetPage(
             name: ProfileView.routeNamed,
-            transition: Transition.fade,
+            // transition: Transition.fade,
             // page: () => ProfilePageCopy1(),
             page: () => const ProfileView(),
+            transitionDuration: const Duration(milliseconds: 100),
+            transition: Transition.upToDown,
+
             binding: ProfilePageBinding()),
         GetPage(
           name: EventDocumentUpload.routeNamed,
-          transition: Transition.fade,
+          // transition: Transition.fade,
           page: () => EventDocumentUpload(),
+          transition: Transition.upToDown,
+        ),
+        GetPage(
+          name: NotificationScreen.routeNamed,
+          // transition: Transition.fade,
+          page: () => NotificationScreen(),
+          transition: Transition.upToDown,
+          transitionDuration: const Duration(milliseconds: 100),
         ),
       ],
     );

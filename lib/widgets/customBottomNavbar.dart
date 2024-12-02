@@ -1,14 +1,16 @@
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
+import 'package:studentpanel/ui/screen/Profile_Module/profilepage.dart';
 import 'package:studentpanel/ui/screen/Profile_module_2/profile_view.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/dashboard/notification.dart';
 import 'package:studentpanel/utils/theme.dart';
-import 'package:studentpanel/widgets/custom_dialog_box.dart';
 
-class CustomButtomNavbar extends StatelessWidget {
+class CustomButtomNavbar extends StatefulWidget {
+  static const routeNamed = '/mainScreen';
   BuildContext context2;
   CustomButtomNavbar(
       {super.key, required this.currentIndex, required this.context2});
@@ -16,76 +18,159 @@ class CustomButtomNavbar extends StatelessWidget {
   final int currentIndex;
 
   @override
+  State<CustomButtomNavbar> createState() => _CustomButtomNavbarState();
+}
+
+class _CustomButtomNavbarState extends State<CustomButtomNavbar> {
+  late int _currentIndex= widget.currentIndex;
+  var controller = Get.put(BaseController(), permanent: true);
+  late List<Widget> _pages;
+
+  @override
+  void initState() {
+    _pages = [
+      PageOne(),
+      PageTwo(),
+      PageThree(),
+      PageFour(),
+    ];
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
-    return SalomonBottomBar(
-      currentIndex: currentIndex,
-      onTap: (i) {
-        if (i == 0) {
-          Get.deleteAll();
-
-          Get.toNamed(DashBoard.routeNamed);
-        } else if (i == 1) {
-          Get.deleteAll();
-
-          // Get.toNamed(ProfilePageCopy1.routeNamed);
-          Get.toNamed(ProfileView.routeNamed);
-        } else if (i == 2) {
-          Get.to(const NotificationScreen());
-        } else if (i == 3) {
-          supportDialog(context2);
-        }
-        // else if (i == 4) {
-        //   Get.toNamed(ProfilePageCopy.routeNamed);
-        // }
+    return WillPopScope(
+      onWillPop: () async {
+        showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: const Text("Exit"),
+                content: const Text("Are you sure you want to Exit?"),
+                actions: [
+                  TextButton(
+                    onPressed: () => SystemChannels.platform
+                        .invokeMethod('SystemNavigator.pop'),
+                    child: const Text(
+                      "Yes",
+                      style: TextStyle(
+                          color: Colors.blueAccent,
+                          fontWeight: FontWeight.bold
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop(false);
+                    },
+                    child: const Text(
+                      "No",
+                      style: TextStyle(
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            });
+        return false;
       },
-      // setState(() => _currentIndex = i),
-      items: [
-        /// Home
-        SalomonBottomBarItem(
-          icon: const Icon(Icons.home),
-          title: const Text("Home"),
-          selectedColor: ThemeConstants.bluecolor,
-        ),
+      child:
 
-        SalomonBottomBarItem(
-          icon: const Icon(Icons.person),
-          title: const Text("Profile"),
-          selectedColor: ThemeConstants.bluecolor,
-        ),
 
-        /// Likes
-        SalomonBottomBarItem(
-          icon: const Icon(Icons.notifications),
-          title: const Text("Notifications"),
-          selectedColor: ThemeConstants.bluecolor,
-        ),
-        //SVO
-        // SalomonBottomBarItem(
-        //   icon: const Icon(Icons.video_call),
-        //   title: const Text("Join SVO"),
-        //   selectedColor: ThemeConstants.bluecolor,
-        // ),
+      Container(
+        color: Colors.transparent,
+        child: SafeArea(
+          top: false,
+          child: CurvedNavigationBar(
+              backgroundColor: Colors.transparent,
 
-        /// Search
-        if (Get.find<BaseController>().loadingStudentPanelData1.value == true)
-          SalomonBottomBarItem(
-            icon: const Icon(
-              Icons.help_outline_sharp,
+              // color: const Color(0xff1065c0),
+              color: ThemeConstants.bluecolor,
+              height: 55,
+              index: _currentIndex,
+              onTap: (index){
+                setState(() {
+                  _currentIndex = index;
+                });
+                if(_currentIndex == 0){
+                  Get.toNamed(DashBoard.routeNamed);
+                }
+                else if(_currentIndex == 1){
+                  Get.toNamed(ProfileView.routeNamed);
+                }
+                else if(_currentIndex == 2){
+                  Get.toNamed(NotificationScreen.routeNamed);
+                }
+                else if(_currentIndex == 3){
+                  // Get.toNamed(FinalShortList.routeNamed);
+                }
+
+                // switch(index){
+                //   case 0: Get.toNamed(DashBoard.routeNamed);
+                //   break;
+                //
+                //   case 1:Get.to(const ProfileView());
+                //   break;
+                //
+                //   case 2: Get.to(const NotificationScreen());
+                //   break;
+                //
+                //   case 3: Get.toNamed(DashBoard.routeNamed);
+                //   break;
+                //
+                //
+                // }
+              },
+
+              items: const [
+                Icon(Icons.home, color: Colors.white),
+                Icon(Icons.person, color: Colors.white),
+                Icon(Icons.notifications, color: Colors.white),
+                Icon(Icons.menu, color: Colors.white),
+              ],
+
             ),
-            //   child: svgImage(
-            //       "track",
-            //       currentIndex == 3
-            //           ? ThemeConstants.bluecolor
-            //           : ThemeConstants.blackcolor,
-            //       25,
-            //       25),
-            // ),
-            title: const Text("Gradlynk Support"),
-            selectedColor: ThemeConstants.bluecolor,
           ),
 
-        /// Profile
-      ],
-    );
+
+        ),
+      );
+  }
+}
+
+class PageOne extends StatefulWidget {
+  final String? name;
+  PageOne({Key? key, this.name}) : super(key: key);
+  @override
+  State<PageOne> createState() => _PageOneState();
+}
+
+class _PageOneState extends State<PageOne> {
+
+
+  @override
+  Widget build(BuildContext context) {
+    return const DashBoard();
+  }
+}
+
+class PageTwo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return const ProfileView();
+  }
+}
+
+class PageThree extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return  NotificationScreen();
+  }
+}
+
+class PageFour extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ProfilePageCopy();
   }
 }

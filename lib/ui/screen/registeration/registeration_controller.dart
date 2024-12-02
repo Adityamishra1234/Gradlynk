@@ -242,7 +242,7 @@ class RegisterationCopntroller extends GetxController with StateMixin {
     resendOTP = 2;
 
     for (var i = 0; i < 120; i++) {
-      await Future.delayed(Duration(seconds: 1));
+      await Future.delayed(const Duration(seconds: 1));
 
       if (timer.value != 0) {
         timer.value = timer.value - 1;

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:get/get.dart';
 import 'package:studentpanel/services/api.dart';
 import 'package:studentpanel/services/api_services.dart';
@@ -153,6 +155,15 @@ class ApplicationSummaryController extends GetxController {
                   .toLowerCase()
                   .contains(query.toLowerCase()))
           .toList();
+
+      if(searchedList.isEmpty){
+        searchedList = [
+          ApplicationSummaryModel(
+            universityName: "University Not Found ",
+            countryName: "Country Not Found "
+          )
+        ];
+      }
 
       update();
     }

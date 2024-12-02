@@ -58,7 +58,9 @@ class LoginController extends GetxController with StateMixin {
       prefs.setString("userid", model!.user!.id.toString());
       prefs.setString("userToken", model!.token.toString());
       prefs.setString("enq_id", model!.user!.enqId.toString());
-      Get.offAllNamed(DashBoard.routeNamed, arguments: true);
+      Get.offAllNamed(DashBoard.routeNamed, arguments: true);   // it should go to the
+
+        // custom bottom nav bar instead of dashboard.routenamed
       change(null, status: RxStatus.success());
 
       return model;

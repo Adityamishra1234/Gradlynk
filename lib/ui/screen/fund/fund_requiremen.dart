@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/screen/fund/controller/fundrequirementcontroller.dart';
@@ -13,6 +14,9 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
 import 'package:studentpanel/widgets/customtextfield.dart';
 
+import '../../controllers/basecontroller.dart';
+import '../mark_attendance/qrCodeScreen.dart';
+
 class Fundrequirement extends StatelessWidget {
   Fundrequirement({super.key});
 
@@ -23,7 +27,96 @@ class Fundrequirement extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar("title"),
+      appBar:  AppBar(
+        elevation: 2.5,
+        automaticallyImplyLeading: false,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child:  IconButton(
+              // icon: Image.asset("assets/images/gradlynk lense.png"),
+              icon: const Icon(Icons.arrow_back, color: Colors.black,),
+              // icon: const Icon(Icons.menu,color: Colors.black,),
+              onPressed: () {
+                // Get.find<BaseController>().profileDataValidator();
+                Get.back();
+              },
+            ),
+          ),
+          // svgImage("work", Colors.transparent, 32, 32),
+          const Spacer(),
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Image.network(
+              "https://sieceducation.in/assets/assets/images/logo.png",
+              width: 130,
+              height: 30,
+            ),
+          ),
+          // Padding(
+          //   padding: const EdgeInsets.only(top: 10),
+          //   child: Row(
+          //     children: [
+          //     Text("Hi, ", style: GoogleFonts.abhayaLibre(textStyle: const TextStyle(
+          //                         fontSize: 24,
+          //                         fontWeight: FontWeight.w700,
+          //                         color: Colors.black,
+          //                       ),)),
+          //       Text(
+          //             style: GoogleFonts.abhayaLibre(textStyle: const TextStyle(
+          //               fontSize: 24,
+          //               fontWeight: FontWeight.w700,
+          //               color: Colors.black,
+          //             ),),
+          //           "${firstLetterChaptial(controller.personalModal.enquiryName) ?? firstLetterChaptial(controller.model1.enquiryName)}"
+          //         ),
+          //     ],
+          //   ),
+          // ),
+          const Spacer(),
+          if (Get.find<BaseController>()
+              .meetingZoneStatus
+              .qrCodeGenerated ==
+              true)
+            IconButton(
+              icon: svgImage(
+                  "qr code", ThemeConstants.IconColor, 25, 25),
+              onPressed: () {
+                showAnimatedDialog(
+                    animationType: DialogTransitionType.slideFromBottomFade,
+                    curve: Curves.easeInOutQuart,
+                    context: context,
+                    builder: (_) => QRScreen(
+                        Url: Get.find<BaseController>()
+                            .meetingZoneStatus
+                            .qrCodeView!,
+                        code: Get.find<BaseController>()
+                            .meetingZoneStatus
+                            .student_code!));
+              },
+            ),
+
+          // IconButton(
+          //   icon: SvgPicture.asset(
+          //     "assets/icons/profile.svg",
+          //     height: 30,
+          //     color: const Color.fromARGB(255, 99, 99, 99),
+          //   ),
+          //   onPressed: () {
+          //     Get.toNamed(ProfilePage.routeNamed);
+          //   },
+          // ),
+
+          const SizedBox(
+            width: 5,
+          )
+        ],
+        // title: Text(
+        //   title,
+        //   style: const TextStyle(color: Colors.black),
+        // ),
+        backgroundColor: Colors.white,
+      ),
       drawer: CustomDrawer(),
       body: SafeArea(
         child: controller.obx(
@@ -34,10 +127,11 @@ class Fundrequirement extends StatelessWidget {
                 Align(
                     alignment: Alignment.topLeft,
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 10, top: 10),
+                      padding: const EdgeInsets.symmetric(horizontal: 15,vertical:15 ),
                       child: CustomAutoSizeTextMontserrat(
                         text: "Calculate Funds Requirement",
-                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
                         textColor: ThemeConstants.bluecolor,
                         // fontWeight: FontWeight.bold,
                       ),
@@ -46,6 +140,14 @@ class Fundrequirement extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
                     decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: ThemeConstants.yellow.withOpacity(0.4),
+                            spreadRadius: -3.9,
+                            blurRadius: 10,
+                            offset: const Offset(0, 6),
+                          )
+                        ],
                         color: ThemeConstants.ultraLightYellow,
                         border: Border.all(color: ThemeConstants.yellow),
                         borderRadius:
@@ -53,7 +155,7 @@ class Fundrequirement extends StatelessWidget {
                     child: Column(
                       children: [
                         const SizedBox(
-                          height: 10,
+                          height: 20,
                         ),
                         FundRequirementWidget(
                           iconData: Padding(
@@ -136,7 +238,7 @@ class Fundrequirement extends StatelessWidget {
                           text2: controller.model.ttf ?? "",
                         ),
                         const SizedBox(
-                          height: 10,
+                          height: 20,
                         )
                       ],
                     ),
@@ -144,7 +246,7 @@ class Fundrequirement extends StatelessWidget {
                 ),
                 if (controller.model.maritalStatus != null)
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(15.0),
                     child: Row(
                       children: [
                         CustomAutoSizeTextMontserrat(text: "Marital Status"),
@@ -157,7 +259,7 @@ class Fundrequirement extends StatelessWidget {
                   ),
                 if (controller.model.maritalStatus == 'Married') ...[
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(15.0),
                     child: Row(
                       children: [
                         CustomAutoSizeTextMontserrat(
@@ -195,7 +297,7 @@ class Fundrequirement extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(15.0),
                     child: Row(
                       children: [
                         CustomAutoSizeTextMontserrat(
@@ -232,59 +334,76 @@ class Fundrequirement extends StatelessWidget {
                   ),
                   if (controller.kids == true)
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(15.0),
                       child: Row(
                         children: [
                           CustomAutoSizeTextMontserrat(
-                              text: "how many kids \nwould accompany?"),
+                              text: "How many kids \nwould accompany?"),
                           const Spacer(),
-                          InkWell(
-                            onTap: () {
-                              if (controller.manay_kids != 0) {
-                                controller.manay_kids =
-                                    controller.manay_kids! - 1;
-                                controller.update();
-                              } else {
-                                getToast(SnackBarConstants.minChildCount);
-                              }
-                            },
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "-",
-                              fontSize: 40,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
                           Container(
-                            width: 40.0,
-                            height: 40.0,
                             decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(width: 2),
+                              // border: Border.all(
+                              //     color: ThemeConstants.bluecolor.withOpacity(0.3)),
+                              borderRadius: BorderRadius.circular(10),
+                              color: ThemeConstants.whitecolor,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.blue.withOpacity(0.5),
+                                  spreadRadius: -3.9,
+                                  blurRadius: 10,
+                                  offset: const Offset(0, 6),
+                                )
+                              ],
                             ),
-                            child: Center(
-                              child: Text(controller.manay_kids.toString()),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          InkWell(
-                            onTap: () {
-                              if (controller.manay_kids != 4) {
-                                controller.manay_kids =
-                                    controller.manay_kids! + 1;
-                                controller.update();
-                              } else {
-                                getToast(SnackBarConstants.maxChildCount);
-                              }
-                            },
-                            child: CustomAutoSizeTextMontserrat(
-                              text: "+",
-                              fontSize: 40,
-                              fontWeight: FontWeight.w500,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 15),
+                              child: Row(
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      if (controller.manay_kids != 0) {
+                                        controller.manay_kids =
+                                            controller.manay_kids! - 1;
+                                        controller.update();
+                                      } else {
+                                        getToast(SnackBarConstants.minChildCount);
+                                      }
+                                    },
+                                    child: CustomAutoSizeTextMontserrat(
+                                      text: "-",
+                                      fontSize: 35,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 25,
+                                  ),
+                                  Center(
+                                    child: Text(controller.manay_kids.toString(), style: const TextStyle(
+                                      fontSize: 16
+                                    ),),
+                                  ),
+                                  const SizedBox(
+                                    width: 20,
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      if (controller.manay_kids != 4) {
+                                        controller.manay_kids =
+                                            controller.manay_kids! + 1;
+                                        controller.update();
+                                      } else {
+                                        getToast(SnackBarConstants.maxChildCount);
+                                      }
+                                    },
+                                    child: CustomAutoSizeTextMontserrat(
+                                      text: "+",
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ],
@@ -295,7 +414,7 @@ class Fundrequirement extends StatelessWidget {
                       Row(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 10),
+                            padding: const EdgeInsets.all(15.0),
                             child: CustomAutoSizeTextMontserrat(
                                 text: "Child 1 age"),
                           ),
@@ -304,7 +423,8 @@ class Fundrequirement extends StatelessWidget {
                             width: 150,
                             child: CustomTextField(
                                 keybord: TextInputType.number,
-                                hint: "enter the age",
+                                hint: "Enter the age",
+                                hintFontWeight: FontWeight.w300,
                                 controller: controller.child1),
                           ),
                           const SizedBox(
@@ -319,7 +439,7 @@ class Fundrequirement extends StatelessWidget {
                         child: Row(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(left: 10),
+                              padding: const EdgeInsets.all(15.0),
                               child: CustomAutoSizeTextMontserrat(
                                   text: "Child 2 age"),
                             ),
@@ -328,7 +448,7 @@ class Fundrequirement extends StatelessWidget {
                               width: 150,
                               child: CustomTextField(
                                   keybord: TextInputType.number,
-                                  hint: "enter the age",
+                                  hint: "Enter the age",
                                   controller: controller.child2),
                             ),
                             const SizedBox(
@@ -344,7 +464,7 @@ class Fundrequirement extends StatelessWidget {
                         child: Row(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(left: 10),
+                              padding: const EdgeInsets.all(15.0),
                               child: CustomAutoSizeTextMontserrat(
                                   text: "Child 3 age"),
                             ),
@@ -353,7 +473,7 @@ class Fundrequirement extends StatelessWidget {
                               width: 150,
                               child: CustomTextField(
                                   keybord: TextInputType.number,
-                                  hint: "enter the age",
+                                  hint: "Enter the age",
                                   controller: controller.child3),
                             ),
                             const SizedBox(
@@ -369,7 +489,7 @@ class Fundrequirement extends StatelessWidget {
                         child: Row(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(left: 10),
+                              padding: const EdgeInsets.all(15.0),
                               child: CustomAutoSizeTextMontserrat(
                                   text: "Child 4 age"),
                             ),
@@ -378,7 +498,7 @@ class Fundrequirement extends StatelessWidget {
                               width: 150,
                               child: CustomTextField(
                                   keybord: TextInputType.number,
-                                  hint: "enter the age",
+                                  hint: "Enter the age",
                                   controller: controller.child4),
                             ),
                             const SizedBox(
@@ -394,17 +514,18 @@ class Fundrequirement extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 25, right: 15),
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          elevation: 0.0,
-                          primary: ThemeConstants.bluecolor, // background
-                          onPrimary: ThemeConstants.bluecolor, // foreground
+                          foregroundColor: ThemeConstants.bluecolor, backgroundColor: ThemeConstants.bluecolor, elevation: 0.0, // foreground
                         ),
                         onPressed: () {
                           controller
                               .getCalculated(controller.previousInstCourse!);
                         },
-                        child: CustomAutoSizeTextMontserrat(
-                          text: "Calculate",
-                          textColor: ThemeConstants.whitecolor,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: CustomAutoSizeTextMontserrat(
+                            text: "Calculate",
+                            textColor: ThemeConstants.whitecolor,
+                          ),
                         )),
                   ),
                 ),

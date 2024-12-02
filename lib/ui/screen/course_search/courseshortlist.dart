@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/courseshortlist.dart';
@@ -15,6 +16,9 @@ import 'package:studentpanel/widgets/appbar.dart';
 import 'package:studentpanel/widgets/collagelistexpandedwidget.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
+
+import '../../../widgets/drawerfilter.dart';
+import '../mark_attendance/qrCodeScreen.dart';
 
 class CourseSearchList extends StatefulWidget {
   static const routeNamed = '/CourseSearchList';
@@ -127,7 +131,105 @@ class _CourseSearchListState extends State<CourseSearchList> {
       width = MediaQuery.of(context).size.width + 240.00;
     }
     return Scaffold(
-        appBar: const CustomAppBar("title"),
+        appBar:  AppBar(
+          elevation: 2.5,
+          automaticallyImplyLeading: false,
+          actions: [
+            if (displayMobileLayout == true)
+              IconButton(
+                icon: const Icon(Icons.arrow_back,
+                    color: Colors.black),
+                onPressed: () => Get.back(),
+              ),
+            if (displayMobileLayout == false)
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child:  IconButton(
+                  // icon: Image.asset("assets/images/gradlynk lense.png"),
+                  icon: const Icon(Icons.arrow_back, color: Colors.black,),
+                  // icon: const Icon(Icons.menu,color: Colors.black,),
+                  onPressed: () {
+                    // Get.find<BaseController>().profileDataValidator();
+                   Get.back();
+
+                    DrawerFilter();
+                  },
+                ),
+              ),
+            // svgImage("work", Colors.transparent, 32, 32),
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Image.network(
+                "https://sieceducation.in/assets/assets/images/logo.png",
+                width: 130,
+                height: 30,
+              ),
+            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(top: 10),
+            //   child: Row(
+            //     children: [
+            //     Text("Hi, ", style: GoogleFonts.abhayaLibre(textStyle: const TextStyle(
+            //                         fontSize: 24,
+            //                         fontWeight: FontWeight.w700,
+            //                         color: Colors.black,
+            //                       ),)),
+            //       Text(
+            //             style: GoogleFonts.abhayaLibre(textStyle: const TextStyle(
+            //               fontSize: 24,
+            //               fontWeight: FontWeight.w700,
+            //               color: Colors.black,
+            //             ),),
+            //           "${firstLetterChaptial(controller.personalModal.enquiryName) ?? firstLetterChaptial(controller.model1.enquiryName)}"
+            //         ),
+            //     ],
+            //   ),
+            // ),
+            const Spacer(),
+            if (Get.find<BaseController>()
+                .meetingZoneStatus
+                .qrCodeGenerated ==
+                true)
+              IconButton(
+                icon: svgImage(
+                    "qr code", ThemeConstants.IconColor, 25, 25),
+                onPressed: () {
+                  showAnimatedDialog(
+                      animationType: DialogTransitionType.slideFromBottomFade,
+                      curve: Curves.easeInOutQuart,
+                      context: context,
+                      builder: (_) => QRScreen(
+                          Url: Get.find<BaseController>()
+                              .meetingZoneStatus
+                              .qrCodeView!,
+                          code: Get.find<BaseController>()
+                              .meetingZoneStatus
+                              .student_code!));
+                },
+              ),
+
+            // IconButton(
+            //   icon: SvgPicture.asset(
+            //     "assets/icons/profile.svg",
+            //     height: 30,
+            //     color: const Color.fromARGB(255, 99, 99, 99),
+            //   ),
+            //   onPressed: () {
+            //     Get.toNamed(ProfilePage.routeNamed);
+            //   },
+            // ),
+
+            const SizedBox(
+              width: 5,
+            )
+          ],
+          // title: Text(
+          //   title,
+          //   style: const TextStyle(color: Colors.black),
+          // ),
+          backgroundColor: Colors.white,
+        ),
         drawer: displayMobileLayout == false
             ? CustomDrawer(
                 index: 3,
@@ -156,11 +258,11 @@ class _CourseSearchListState extends State<CourseSearchList> {
                   child: Column(
                     children: [
                       const SizedBox(
-                        height: 5,
+                        height: 25,
                       ),
                       Row(
                         children: [
-                          const Spacer(),
+                          const SizedBox(width: 15),
                           InkWell(
                             onTap: () {
                               if (controller1.courseModelFilter
@@ -191,56 +293,77 @@ class _CourseSearchListState extends State<CourseSearchList> {
                               // ));
                             },
                             child: Container(
-                              height: 30,
-                              width: 60,
+                              height: 36,
+                              width: 100,
                               decoration: BoxDecoration(
                                   color: ThemeConstants.lightorangeColor,
                                   border: Border.all(
                                     color: ThemeConstants.orangeColor,
                                   ),
                                   borderRadius:
-                                      BorderRadiusDirectional.circular(5.0)),
-                              child: Center(
-                                child: CustomAutoSizeTextMontserrat(
-                                    text: "Filter",
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w700,
-                                    textColor: ThemeConstants.orangeColor),
-                              ),
-                            ),
-                          ),
-                          const Spacer(),
-                          InkWell(
-                            onTap: () {
-                              if (controller1.compareApply.value == false) {
-                                controller1.setCompare(true.obs);
-                              } else {
-                                controller1.setCompare(false.obs);
-                              }
-                            },
-                            child: Container(
-                              height: 30,
-                              decoration: BoxDecoration(
-                                  color: ThemeConstants.lightgreentColor,
-                                  border: Border.all(
-                                    color: ThemeConstants.GreenColor,
-                                  ),
-                                  borderRadius:
-                                      BorderRadiusDirectional.circular(5.0)),
+                                  BorderRadiusDirectional.circular(
+                                      5.0)),
                               child: Center(
                                 child: Padding(
                                   padding: const EdgeInsets.only(
                                       left: 10, right: 10),
-                                  child: CustomAutoSizeTextMontserrat(
-                                      text: "Compare",
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w700,
-                                      textColor: ThemeConstants.GreenColor),
+                                  child: Row(
+                                    children: [
+                                      svgImage(
+                                          "filter", ThemeConstants.orangeColor, 14, 14),
+                                      const SizedBox(width: 5,),
+                                      CustomAutoSizeTextMontserrat(
+                                          text: "Filter",
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600,
+                                          textColor:
+                                          ThemeConstants.orangeColor),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                          const Spacer(),
+                          // const Spacer(),
+                          const SizedBox(width: 10,),
+                          // InkWell(
+                          //   onTap: () {
+                          //     if (controller1.compareApply.value == false) {
+                          //       controller1.setCompare(true.obs);
+                          //     } else {
+                          //       controller1.setCompare(false.obs);
+                          //     }
+                          //   },
+                          //   child:  Container(
+                          //     height: 30,
+                          //     decoration: BoxDecoration(
+                          //         color: controller1.compareApply == true? ThemeConstants.GreenColor: ThemeConstants.lightgreentColor,
+                          //         border: Border.all(
+                          //           color: ThemeConstants.GreenColor,
+                          //         ),
+                          //         borderRadius:
+                          //         BorderRadiusDirectional.circular(
+                          //             5.0)),
+                          //     child: Center(
+                          //       child: Padding(
+                          //         padding: const EdgeInsets.only(
+                          //             left: 10, right: 10),
+                          //         child: Row(
+                          //           children: [
+                          //             Icon(Icons.compare_arrows, color: controller1.compareApply == true? ThemeConstants.whitecolor: ThemeConstants.GreenColor,),
+                          //             const SizedBox(width: 5,),
+                          //             CustomAutoSizeTextMontserrat(
+                          //                 text: "Compare",
+                          //                 fontSize: 14,
+                          //                 fontWeight: FontWeight.w600,
+                          //                 textColor: controller1.compareApply == true? ThemeConstants.whitecolor: ThemeConstants.GreenColor),
+                          //           ],
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
+                          // const Spacer(),
                           InkWell(
                             onTap: () {
                               controller1.courseSearch(
@@ -278,7 +401,7 @@ class _CourseSearchListState extends State<CourseSearchList> {
                                   ]);
                             },
                             child: Container(
-                              height: 30,
+                              height: 35,
                               decoration: BoxDecoration(
                                   color: ThemeConstants.lightVioletColor,
                                   border: Border.all(
@@ -292,11 +415,17 @@ class _CourseSearchListState extends State<CourseSearchList> {
                                     left: 10,
                                     right: 10,
                                   ),
-                                  child: CustomAutoSizeTextMontserrat(
-                                      text: "Review Course",
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w700,
-                                      textColor: ThemeConstants.VioletColor),
+                                  child: Row(
+                                    children: [
+                                      Icon(Icons.book,color: ThemeConstants.VioletColor,),
+                                      const SizedBox(width: 5),
+                                      CustomAutoSizeTextMontserrat(
+                                          text: "Review Course",
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w700,
+                                          textColor: ThemeConstants.VioletColor),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -309,11 +438,11 @@ class _CourseSearchListState extends State<CourseSearchList> {
                       ),
                       Expanded(
                         child: Scrollbar(
-                          thumbVisibility: true,
-                          trackVisibility: true,
-                          radius: const Radius.circular(12.0),
+                          thumbVisibility: false,
+                          trackVisibility: false,
+                          radius: const Radius.circular(2.0),
                           // isAlwaysShown: true,
-                          thickness: 10,
+                          thickness: 3,
                           controller: yourScrollController,
                           child: ListView.builder(
                               controller: yourScrollController,

@@ -12,91 +12,166 @@ class QRScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: CustomAppBar("title"),
-      body: Stack(
-        children: [
-          Positioned(
-              right: 5,
-              top: 45,
-              child: CircleContainerWithIcon(
-                icon: Icons.close,
-                color: ThemeConstants.lightgreycolor,
-                size: 50,
-                onPress: () {
-                  Get.back();
-                },
-              )),
-          Column(
-            children: [
-              Container(
-                height: MediaQuery.sizeOf(context).height / 2,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 100),
-                  child: SizedBox(
-                      width: 280,
-                      child: Align(
-                          alignment: Alignment.topCenter,
-                          child:
-                              Image.asset("assets/images/profile-code.png"))),
-                ),
-              ),
-              Stack(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.vertical(
-                          top: Radius.circular(
-                              MediaQuery.sizeOf(context).width.toDouble() * 2),
-                        ),
-                        color: ThemeConstants.bluecolor),
-                    height: MediaQuery.sizeOf(context).height / 2,
-                    width: MediaQuery.sizeOf(context).width,
+    return AlertDialog(
+      backgroundColor: const Color(0xff0041C2),
+      contentPadding: const EdgeInsets.all(15),
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(20.0))),
+      insetPadding: const EdgeInsets.symmetric(horizontal: 25),
+      content: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/map.png",),
+          )
+        ),
+        height: MediaQuery.of(context).size.height * 0.6,
+        width: MediaQuery.of(context).size.width*0.8,
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  width: 90,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.9),
+                        spreadRadius: -8.9, // Negative value to contain the shadow within the border
+                        blurRadius: 10,
+                        offset: const Offset(0, 10),
+                      )
+                    ],
                   ),
-                  SizedBox(
-                      height: MediaQuery.of(context).size.height / 2,
-                      width: MediaQuery.of(context).size.width,
-                      // color: ThemeConstants.GreenColor,
-                      child: Image.asset("assets/images/map.png")),
-                  Positioned(
-                    top: MediaQuery.of(context).size.height * 0.2,
-                    child: Opacity(
-                      opacity: 0.8,
-                      child: SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height * 0.25,
-                          child: Image.asset("assets/images/monumet.png")),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CircleContainerWithIcon(
+                          icon: Icons.download,
+                          color: ThemeConstants.lightgreycolor,
+                          size: 15,
+                          onPress: ()
+                          {
+                            print("cross pressed");
+                            Get.back();
+                          },
+                        ),
+                        const SizedBox(width: 1.2,),
+                        CustomAutoSizeTextMontserrat(
+                          textColor: Colors.black,
+                          text: "Download",
+                          fontWeight: FontWeight.w400, fontSize: 5,)
+
+                      ],
                     ),
                   ),
-                ],
-              ),
-            ],
-          ),
-          Center(
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                      decoration: BoxDecoration(
-                          border: Border.all(
-                              width: 8, color: ThemeConstants.whitecolor)),
-                      child: Image.network(Url)),
-                  const SizedBox(
-                    height: 20,
+                ),
+                GestureDetector(
+                  onTap: (){
+                    print("cross pressed1");
+                    Get.back();},
+                  child: CircleContainerWithIcon(
+                    icon: Icons.close,
+                    color: ThemeConstants.whitecolor,
+                    size: 30,
+                    onPress: ()
+                    {
+                      Get.back();
+                    },
                   ),
-                  CustomAutoSizeTextMontserrat(
-                    text: code,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 28,
-                    textColor: ThemeConstants.whitecolor,
-                  )
-                ],
+                ),
+              ],
+            ),
+            Image.asset("assets/images/profile-code.png", scale: 18, color: Colors.white,),
+            const SizedBox(height: 30,),
+            Center(
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height * 0.6/1.9,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InkWell(
+                      onTap:(){
+                        const AlertDialog(
+                          backgroundColor: Colors.white,
+                          content: SizedBox(
+                            width: 100,
+                            height: 100,
+                          ),
+                        );
+                      },
+                      splashColor: Colors.white,
+                      child: Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  width: 10, color: ThemeConstants.whitecolor)),
+                          child: Image.network(Url, scale: 1,)),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    CustomAutoSizeTextMontserrat(
+                      text: code,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      textColor: ThemeConstants.whitecolor,
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
-      ),
+            Expanded(child: Image.asset("assets/images/monumet.png", scale: 5,))
+
+          ],
+        ),
+
+            // Align(
+            //   alignment: Alignment.center,
+            //   child: Center(
+            //     child: SizedBox(
+            //       child: Column(
+            //         mainAxisAlignment: MainAxisAlignment.center,
+            //         children: [
+            //           InkWell(
+            //             onTap:(){
+            //               const AlertDialog(
+            //                 backgroundColor: Colors.white,
+            //                 content: SizedBox(
+            //                   width: 100,
+            //                   height: 100,
+            //                 ),
+            //               );
+            //             },
+            //             splashColor: Colors.white,
+            //             child: Container(
+            //                 decoration: BoxDecoration(
+            //                     border: Border.all(
+            //                         width: 10, color: ThemeConstants.whitecolor)),
+            //                 child: Image.network(Url, scale: 1,)),
+            //           ),
+            //           const SizedBox(
+            //             height: 20,
+            //           ),
+            //           CustomAutoSizeTextMontserrat(
+            //             text: code,
+            //             fontWeight: FontWeight.bold,
+            //             fontSize: 20,
+            //             textColor: ThemeConstants.whitecolor,
+            //           )
+            //         ],
+            //       ),
+            //     ),
+            //   ),
+            // ),
+
+        ),
+
     );
   }
 }
+
+

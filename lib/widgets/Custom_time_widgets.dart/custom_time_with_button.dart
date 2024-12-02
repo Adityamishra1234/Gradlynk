@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:studentpanel/utils/theme.dart';
 
-typedef void StringCallback(String val);
+typedef StringCallback = void Function(String val);
 
 class CustomTimerWidget2withButton extends StatefulWidget {
   final StringCallback callback;
@@ -103,7 +103,7 @@ class _CustomTimerWidget2withButtonState
         });
       },
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
         width: double.infinity,
         height: 50,
         decoration: BoxDecoration(
@@ -113,7 +113,7 @@ class _CustomTimerWidget2withButtonState
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('${dateToShow}', style: TextStyle(fontSize: 20)),
+            Text(dateToShow, style: const TextStyle(fontSize: 20)),
             const Icon(Icons.access_time)
           ],
         ),

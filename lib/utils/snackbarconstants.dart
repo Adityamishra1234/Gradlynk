@@ -192,7 +192,7 @@ class SnackBarConstants {
   static String? SAT_Overall = "Kindly fill score between 400 & 1600";
 
   //Course Search.dart Toast
-  static String? courseSearchPart1 = "Kindly select Country of Interest";
+  static String? courseSearchPart1 = "Kindly select country of interest";
   static String? courseSearchPart2 = "Kindly select Course Level";
   static String? coursesearchPart3 = "Oops! No course found";
   static String? courseSearchPart4 = "Kindly select profession";

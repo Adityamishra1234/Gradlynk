@@ -56,7 +56,6 @@ class AboutCourse extends StatelessWidget {
                                     .academicRequirementCountry,
                                 textColor: ThemeConstants.blackcolor,
                                 fontSize: 14,
-                                fontWeight: FontWeight.w600,
                                 maxLines: 5,
                               ),
                             ),
@@ -108,7 +107,6 @@ class AboutCourse extends StatelessWidget {
                                       .countryCurrencyCode,
                                   textColor: ThemeConstants.blackcolor,
                                   fontSize: 14,
-                                  fontWeight: FontWeight.w600,
                                   maxLines: 2,
                                 ),
                               ),
@@ -158,7 +156,6 @@ class AboutCourse extends StatelessWidget {
                                 text: completeCourseDetail[0].countryCapital,
                                 textColor: ThemeConstants.blackcolor,
                                 fontSize: 14,
-                                fontWeight: FontWeight.w600,
                                 maxLines: 2,
                               ),
                             ),
@@ -215,7 +212,6 @@ class AboutCourse extends StatelessWidget {
                                           .toStringAsFixed(2)
                                       : "",
                                   textStyle: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.w600,
                                     color: ThemeConstants.blackcolor,
                                     fontSize: 14.0,
                                   ),
@@ -264,7 +260,6 @@ class AboutCourse extends StatelessWidget {
                                 child: HtmlWidget(
                                   completeCourseDetail[0].countryLanguage!,
                                   textStyle: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.w600,
                                     color: ThemeConstants.blackcolor,
                                     fontSize: 14.0,
                                   ),

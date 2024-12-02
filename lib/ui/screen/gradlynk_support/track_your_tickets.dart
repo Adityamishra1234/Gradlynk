@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/trackyourticketscontroller.dart';
 import 'package:studentpanel/ui/models/ticketdatamodel.dart';
@@ -11,16 +12,120 @@ import 'package:rounded_background_text/rounded_background_text.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
 import 'package:studentpanel/widgets/empty_widget.dart';
 
+import '../../../widgets/drawerfilter.dart';
+import '../../controllers/basecontroller.dart';
+import '../mark_attendance/qrCodeScreen.dart';
+
 class TrackyourTickets extends GetView<TrackYourTicketsController> {
   TrackyourTickets({super.key});
   @override
   var controller = Get.put(TrackYourTicketsController());
   static const routeNamed = '/TrackyourTickets';
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
+    final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
     return Scaffold(
-      appBar: const CustomAppBar('title'),
+      key: _scaffoldKey,
+      appBar: AppBar(
+        elevation: 2.5,
+        automaticallyImplyLeading: false,
+        actions: [
+          if (displayMobileLayout == true)
+            IconButton(
+              icon: const Icon(Icons.arrow_back, color: Colors.black),
+              onPressed: () => Get.back(),
+            ),
+          if (displayMobileLayout == false)
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: IconButton(
+                // icon: Image.asset("assets/images/gradlynk lense.png"),
+                icon: const Icon(
+                  Icons.menu,
+                  color: Colors.black,
+                ),
+                // icon: const Icon(Icons.menu,color: Colors.black,),
+                onPressed: () {
+                  // Get.find<BaseController>().profileDataValidator();
+                  _scaffoldKey.currentState!.openDrawer();
+
+                  DrawerFilter();
+                },
+              ),
+            ),
+          // svgImage("work", Colors.transparent, 32, 32),
+          const Spacer(),
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Image.network(
+              "https://sieceducation.in/assets/assets/images/logo.png",
+              width: 130,
+              height: 30,
+            ),
+          ),
+          // Padding(
+          //   padding: const EdgeInsets.only(top: 10),
+          //   child: Row(
+          //     children: [
+          //     Text("Hi, ", style: GoogleFonts.abhayaLibre(textStyle: const TextStyle(
+          //                         fontSize: 24,
+          //                         fontWeight: FontWeight.w700,
+          //                         color: Colors.black,
+          //                       ),)),
+          //       Text(
+          //             style: GoogleFonts.abhayaLibre(textStyle: const TextStyle(
+          //               fontSize: 24,
+          //               fontWeight: FontWeight.w700,
+          //               color: Colors.black,
+          //             ),),
+          //           "${firstLetterChaptial(controller.personalModal.enquiryName) ?? firstLetterChaptial(controller.model1.enquiryName)}"
+          //         ),
+          //     ],
+          //   ),
+          // ),
+          const Spacer(),
+          if (Get.find<BaseController>().meetingZoneStatus.qrCodeGenerated ==
+              true)
+            IconButton(
+              icon: svgImage("qr code", ThemeConstants.IconColor, 25, 25),
+              onPressed: () {
+                showAnimatedDialog(
+                    animationType: DialogTransitionType.slideFromBottomFade,
+                    curve: Curves.easeInOutQuart,
+                    context: context,
+                    builder: (_) => QRScreen(
+                        Url: Get.find<BaseController>()
+                            .meetingZoneStatus
+                            .qrCodeView!,
+                        code: Get.find<BaseController>()
+                            .meetingZoneStatus
+                            .student_code!));
+              },
+            ),
+
+          // IconButton(
+          //   icon: SvgPicture.asset(
+          //     "assets/icons/profile.svg",
+          //     height: 30,
+          //     color: const Color.fromARGB(255, 99, 99, 99),
+          //   ),
+          //   onPressed: () {
+          //     Get.toNamed(ProfilePage.routeNamed);
+          //   },
+          // ),
+
+          const SizedBox(
+            width: 5,
+          )
+        ],
+        // title: Text(
+        //   title,
+        //   style: const TextStyle(color: Colors.black),
+        // ),
+        backgroundColor: Colors.white,
+      ),
       drawer: CustomDrawer(
         index: 10,
       ),
@@ -31,10 +136,11 @@ class TrackyourTickets extends GetView<TrackYourTicketsController> {
             Align(
               alignment: AlignmentDirectional.topStart,
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(15.0),
                 child: CustomAutoSizeTextMontserrat(
                   text: "Track Your Tickets",
                   fontSize: 22,
+                  fontWeight: FontWeight.w600,
                   textColor: ThemeConstants.bluecolor,
                 ),
               ),
@@ -138,9 +244,10 @@ class TrackyourTickets extends GetView<TrackYourTicketsController> {
             ),
 
             if (controller.chooseOption.value == 1)
-              if (controller.model.value!.data!.length != 0)
+              if (controller.model.value!.data!.isNotEmpty)
                 Expanded(
                   child: ListView.builder(
+                    physics: const BouncingScrollPhysics(),
                       itemCount: controller.model.value != null
                           ? controller.model.value!.data!.length
                           : 0,
@@ -151,10 +258,18 @@ class TrackyourTickets extends GetView<TrackYourTicketsController> {
                                 null) {
                           return Padding(
                             padding: const EdgeInsets.only(
-                                top: 5, bottom: 5, right: 5, left: 5),
+                                top: 10, bottom: 10, right: 10, left: 10),
                             child: Container(
                               decoration: BoxDecoration(
-                                  border: Border.all(width: 0.5),
+                                color: Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: -0.2,
+                                      blurRadius: 5,
+                                      offset: const Offset(0, 4),
+                                    )],
+                                  // border: Border.all(width: 0.5),
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(10.0))),
                               child: Padding(
@@ -200,9 +315,10 @@ class TrackyourTickets extends GetView<TrackYourTicketsController> {
                 ),
             //Resolving
             if (controller.chooseOption.value == 2)
-              if (controller.model.value!.data!.length != 0)
+              if (controller.model.value!.data!.isNotEmpty)
                 Expanded(
                   child: ListView.builder(
+                    physics:const BouncingScrollPhysics(),
                       itemCount: controller.model.value != null
                           ? controller.model.value!.data!.length
                           : 0,
@@ -211,10 +327,18 @@ class TrackyourTickets extends GetView<TrackYourTicketsController> {
                             2) {
                           return Padding(
                             padding: const EdgeInsets.only(
-                                top: 5, bottom: 5, right: 5, left: 5),
+                                top: 10, bottom: 10, right: 10, left: 10),
                             child: Container(
                               decoration: BoxDecoration(
-                                  border: Border.all(width: 0.5),
+                                color: Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.withOpacity(0.5),
+                                      spreadRadius: -0.2,
+                                      blurRadius: 5,
+                                      offset: const Offset(0, 4),
+                                    )],
+                                  // border: Border.all(width: 0.5),
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(10.0))),
                               child: Padding(
@@ -320,9 +444,10 @@ class TrackyourTickets extends GetView<TrackYourTicketsController> {
                       }),
                 ),
             if (controller.chooseOption.value == 3)
-              if (controller.model.value!.data!.length != 0)
+              if (controller.model.value!.data!.isNotEmpty)
                 Expanded(
                   child: ListView.builder(
+                    physics: const BouncingScrollPhysics(),
                       itemCount: controller.model.value != null
                           ? controller.model.value!.data!.length
                           : 0,
@@ -337,7 +462,15 @@ class TrackyourTickets extends GetView<TrackYourTicketsController> {
                                   top: 5, bottom: 5, right: 5, left: 5),
                               child: Container(
                                 decoration: BoxDecoration(
-                                    border: Border.all(width: 0.5),
+                                    color: Colors.white,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.5),
+                                        spreadRadius: -0.2,
+                                        blurRadius: 5,
+                                        offset: const Offset(0, 4),
+                                      )],
+                                    // border: Border.all(width: 0.5),
                                     borderRadius: const BorderRadius.all(
                                         Radius.circular(10.0))),
                                 child: Padding(
@@ -503,7 +636,7 @@ class TrackyourTickets extends GetView<TrackYourTicketsController> {
                       }),
                 ),
 
-            if (controller.model.value!.data!.length == 0) Empty_details()
+            if (controller.model.value!.data!.isEmpty) const Emptydetails()
           ],
         ),
       ),

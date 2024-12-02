@@ -34,16 +34,16 @@ class CustomIconTextTogether extends StatelessWidget {
           vertical: verticalPadding ?? 5, horizontal: horizontelPadding ?? 5),
       decoration: BoxDecoration(
           boxShadow: [
-            BoxShadow(blurRadius: 0.5, color: ThemeConstants.blackcolor),
+            BoxShadow(blurRadius: 0.2, color: ThemeConstants.blackcolor),
           ],
           color: Bgcolor,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(10),
           border: Border.all(
-              width: 1, color: borderColor ?? ThemeConstants.bluecolor)),
+              width: 1, color: borderColor ?? ThemeConstants.bluecolor.withOpacity(0.1))),
       child: Row(
         children: [
-          showICOn == true ? iconData ?? SizedBox.shrink() : SizedBox.shrink(),
-          SizedBox(
+          showICOn == true ? iconData ?? const SizedBox.shrink() : const SizedBox.shrink(),
+          const SizedBox(
             width: 5,
           ),
           CustomAutoSizeTextMontserrat(

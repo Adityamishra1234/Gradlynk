@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pinput/pinput.dart';
 
 import 'package:studentpanel/ui/controllers/logincontroller.dart';
@@ -41,11 +42,12 @@ class _LoginCopyState extends State<LoginCopy> {
     width: 58,
     height: 70,
     textStyle: const TextStyle(
+      fontWeight: FontWeight.bold,
       fontSize: 22,
-      color: Color.fromRGBO(0, 0, 0, 0.827),
+      color: Colors.white,
     ),
     decoration: BoxDecoration(
-      color: Color.fromRGBO(255, 255, 255, 0.349),
+      color: const Color.fromRGBO(255, 255, 255, 0.349),
       borderRadius: BorderRadius.circular(19),
       border: Border.all(color: ThemeConstants.whitecolor),
     ),
@@ -65,13 +67,50 @@ class _LoginCopyState extends State<LoginCopy> {
   }
 
   showRegisterDialgoue() async {
-    await Future.delayed(Duration(milliseconds: 500));
+    await Future.delayed(const Duration(milliseconds: 500));
+
 
     showAnimatedDialog(
-        animationType: DialogTransitionType.slideFromBottomFade,
-        curve: Curves.easeInOutQuart,
+        duration: const Duration(milliseconds: 350),
+        animationType:
+        DialogTransitionType.slideFromBottomFade,
         context: context,
-        builder: (_) => RegistrationDialogue());
+        builder: (_) => Stack(children: [
+          const Center(
+              child: RegistrationDialogue()),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding:
+              const EdgeInsets.only(bottom: 20),
+              child: GestureDetector(
+                onTap: () {
+                 Get.back();
+                  // Get.back();
+                },
+                child: Container(
+                  width: 50,
+                  height: 50,
+                  decoration: BoxDecoration(
+                      color: ThemeConstants.bluecolor,
+                      borderRadius:
+                      BorderRadius.circular(
+                          200)),
+                  child: Icon(
+                    Icons.close_rounded,
+                    color:
+                    ThemeConstants.whitecolor,
+                  ),
+                ),
+              ),
+            ),
+          )
+        ]));
+    // showAnimatedDialog(
+    //     animationType: DialogTransitionType.slideFromBottomFade,
+    //     curve: Curves.easeInOutQuart,
+    //     context: context,
+    //     builder: (_) => const RegistrationDialogue());
   }
 
   signature() async {
@@ -184,9 +223,9 @@ class _LoginCopyState extends State<LoginCopy> {
                   ],
                 ),
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               Padding(
-                padding: const EdgeInsets.only(top: 0),
+                padding: const EdgeInsets.only(top: 0, left: 10),
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width - 20,
                   child: CustomAutoSizeTextMontserrat(
@@ -221,9 +260,9 @@ class _LoginCopyState extends State<LoginCopy> {
                   ],
                 ),
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               Padding(
-                padding: const EdgeInsets.only(top: 0),
+                padding: const EdgeInsets.only(top: 0, left: 10),
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width - 20,
                   child: CustomAutoSizeTextMontserrat(
@@ -258,9 +297,9 @@ class _LoginCopyState extends State<LoginCopy> {
                   ],
                 ),
               ),
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               Padding(
-                padding: const EdgeInsets.only(top: 0),
+                padding: const EdgeInsets.only(top: 0, left: 10),
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width - 20,
                   child: CustomAutoSizeTextMontserrat(
@@ -310,7 +349,7 @@ class _LoginCopyState extends State<LoginCopy> {
                     ),
 
                     //Icon And Text
-                    Container(
+                    SizedBox(
                       height: MediaQuery.of(context).size.height,
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -324,7 +363,7 @@ class _LoginCopyState extends State<LoginCopy> {
                                 child: Image.asset(
                                   "assets/images/logo.png",
                                 )),
-                            Spacer(),
+                            const Spacer(),
                             controller.otpEnable.value == false
                                 ? setTextposistion(
                                     controller.currentindex.value)
@@ -404,8 +443,12 @@ class _LoginCopyState extends State<LoginCopy> {
                                               BorderRadius.circular(10.0),
                                         ),
                                         filled: true,
-                                        hintStyle:
-                                            TextStyle(color: Colors.grey[800]),
+                                        hintStyle: GoogleFonts.montserrat(
+                                          textStyle: TextStyle(
+                                              color: Colors.grey[800],
+                                            fontSize: 13.9,
+                                          ),
+                                        ),
                                         hintText: "Enter your phone number",
                                         fillColor: Colors.white,
                                       ),
@@ -748,7 +791,7 @@ class _LoginCopyState extends State<LoginCopy> {
                                         ),
                                       ],
                                     ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 10,
                                   ),
                                   InkWell(
@@ -759,17 +802,15 @@ class _LoginCopyState extends State<LoginCopy> {
                                       Get.toNamed(
                                           RegisterationMainView.routeNmaed);
                                     },
-                                    child: Container(
-                                      child: CustomRichTextWidget(
-                                          fontWeight2: FontWeight.w700,
-                                          fontWeight: FontWeight.w300,
-                                          fontSize: 13,
-                                          textColor: ThemeConstants.whitecolor,
-                                          text1: "Don't have Account?",
-                                          textColor2: ThemeConstants.whitecolor,
-                                          // textColor: ThemeConstants.yellow,
-                                          text: " Register now"),
-                                    ),
+                                    child: CustomRichTextWidget(
+                                        fontWeight2: FontWeight.w700,
+                                        fontWeight: FontWeight.w300,
+                                        fontSize: 13,
+                                        textColor: ThemeConstants.whitecolor,
+                                        text1: "Don't have Account?",
+                                        textColor2: ThemeConstants.whitecolor,
+                                        // textColor: ThemeConstants.yellow,
+                                        text: " Register now"),
                                   ),
                                   const SizedBox(
                                     height: 30,

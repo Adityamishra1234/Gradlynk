@@ -66,6 +66,7 @@ class _CustomTabbarState extends State<CustomTabbar>
           child: CustomAutoSizeTextMontserrat(
             text: element,
             textColor: ThemeConstants.bluegreycolor,
+            fontWeight: FontWeight.w600,
           ),
         ),
       );

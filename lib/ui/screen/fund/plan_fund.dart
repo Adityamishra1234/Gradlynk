@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
@@ -19,6 +20,8 @@ import 'package:studentpanel/widgets/customdrawer.dart';
 import 'package:studentpanel/widgets/customtextfield.dart';
 import 'package:studentpanel/widgets/uploadDocument.dart';
 
+import '../mark_attendance/qrCodeScreen.dart';
+
 class FundPlan extends StatelessWidget {
   FundPlan({super.key});
 
@@ -29,7 +32,97 @@ class FundPlan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar('title'),
+      appBar: AppBar(
+        elevation: 2.5,
+        automaticallyImplyLeading: false,
+        actions: [
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: IconButton(
+                // icon: Image.asset("assets/images/gradlynk lense.png"),
+                icon: const Icon(
+                  Icons.arrow_back,
+                  color: Colors.black,
+                ),
+                // icon: const Icon(Icons.menu,color: Colors.black,),
+                onPressed: () {
+                  // Get.find<BaseController>().profileDataValidator();
+                  Get.back();
+
+                },
+              ),
+            ),
+          // svgImage("work", Colors.transparent, 32, 32),
+          const Spacer(),
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Image.network(
+              "https://sieceducation.in/assets/assets/images/logo.png",
+              width: 130,
+              height: 30,
+            ),
+          ),
+          // Padding(
+          //   padding: const EdgeInsets.only(top: 10),
+          //   child: Row(
+          //     children: [
+          //     Text("Hi, ", style: GoogleFonts.abhayaLibre(textStyle: const TextStyle(
+          //                         fontSize: 24,
+          //                         fontWeight: FontWeight.w700,
+          //                         color: Colors.black,
+          //                       ),)),
+          //       Text(
+          //             style: GoogleFonts.abhayaLibre(textStyle: const TextStyle(
+          //               fontSize: 24,
+          //               fontWeight: FontWeight.w700,
+          //               color: Colors.black,
+          //             ),),
+          //           "${firstLetterChaptial(controller.personalModal.enquiryName) ?? firstLetterChaptial(controller.model1.enquiryName)}"
+          //         ),
+          //     ],
+          //   ),
+          // ),
+          const Spacer(),
+          if (Get.find<BaseController>().meetingZoneStatus.qrCodeGenerated ==
+              true)
+            IconButton(
+              icon: svgImage("qr code", ThemeConstants.IconColor, 25, 25),
+              onPressed: () {
+                showAnimatedDialog(
+                    animationType: DialogTransitionType.slideFromBottomFade,
+                    curve: Curves.easeInOutQuart,
+                    context: context,
+                    builder: (_) => QRScreen(
+                        Url: Get.find<BaseController>()
+                            .meetingZoneStatus
+                            .qrCodeView!,
+                        code: Get.find<BaseController>()
+                            .meetingZoneStatus
+                            .student_code!));
+              },
+            ),
+
+          // IconButton(
+          //   icon: SvgPicture.asset(
+          //     "assets/icons/profile.svg",
+          //     height: 30,
+          //     color: const Color.fromARGB(255, 99, 99, 99),
+          //   ),
+          //   onPressed: () {
+          //     Get.toNamed(ProfilePage.routeNamed);
+          //   },
+          // ),
+
+          const SizedBox(
+            width: 5,
+          )
+        ],
+        // title: Text(
+        //   title,
+        //   style: const TextStyle(color: Colors.black),
+        // ),
+        backgroundColor: Colors.white,
+      ),
       drawer: CustomDrawer(
         index: 7,
       ),
@@ -91,7 +184,7 @@ class FundPlan extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const SizedBox(
-                                height: 10,
+                                height: 15,
                               ),
                               Row(
                                 children: [
@@ -123,7 +216,7 @@ class FundPlan extends StatelessWidget {
                                 ],
                               ),
                               const SizedBox(
-                                height: 15,
+                                height: 20,
                               ),
                               Align(
                                 alignment: Alignment.topLeft,
@@ -132,12 +225,12 @@ class FundPlan extends StatelessWidget {
                                     mandatory: true,
                                     fontSize: 14,
                                     textColor: ThemeConstants.blackcolor,
-                                    fontWeight: FontWeight.w400),
+                                    fontWeight: FontWeight.w500),
                               ),
-                              const SizedBox(height: 10),
+                              const SizedBox(height: 15),
                               SizedBox(
-                                height: 30,
-                                width: MediaQuery.sizeOf(context).width - 20,
+                                height: 35,
+                                width: MediaQuery.sizeOf(context).width-15,
                                 child: customDropDownPlanFund(
                                   model: controller.relationShip,
                                   callback: (value) {
@@ -157,7 +250,7 @@ class FundPlan extends StatelessWidget {
                                   child: CustomAutoSizeTextMontserrat(
                                       fontSize: 14,
                                       textColor: ThemeConstants.blackcolor,
-                                      fontWeight: FontWeight.w400,
+                                      fontWeight: FontWeight.w500,
                                       mandatory: true,
                                       text: "Name of the Sponsor")),
                               const SizedBox(height: 10),
@@ -173,7 +266,7 @@ class FundPlan extends StatelessWidget {
                                   child: CustomAutoSizeTextMontserrat(
                                       fontSize: 14,
                                       textColor: ThemeConstants.blackcolor,
-                                      fontWeight: FontWeight.w400,
+                                      fontWeight: FontWeight.w500,
                                       mandatory: true,
                                       text: "Occupation of Sponsor")),
                               const SizedBox(height: 5),
@@ -185,7 +278,7 @@ class FundPlan extends StatelessWidget {
                                 initialSelectedValue:
                                     controller.occupationNameSelect,
                                 callbackFunction: (value) {
-                                  print(value);
+                                  // print(value);
                                   for (var i = 0;
                                       i < controller.occupationName.length;
                                       i++) {
@@ -208,9 +301,9 @@ class FundPlan extends StatelessWidget {
                                 child: CustomAutoSizeTextMontserrat(
                                   fontSize: 14,
                                   textColor: ThemeConstants.blackcolor,
-                                  fontWeight: FontWeight.w400,
+                                  fontWeight: FontWeight.w500,
                                   mandatory: true,
-                                  text: "Source of Incomes",
+                                  text: "Source of Income",
                                 ),
                               ),
                               const SizedBox(height: 10),
@@ -236,7 +329,7 @@ class FundPlan extends StatelessWidget {
                                 child: CustomAutoSizeTextMontserrat(
                                     fontSize: 14,
                                     textColor: ThemeConstants.blackcolor,
-                                    fontWeight: FontWeight.w400,
+                                    fontWeight: FontWeight.w500,
                                     mandatory: true,
                                     text:
                                         "Country of the Financial institution"),
@@ -273,7 +366,7 @@ class FundPlan extends StatelessWidget {
                               CustomAutoSizeTextMontserrat(
                                   fontSize: 14,
                                   textColor: ThemeConstants.blackcolor,
-                                  fontWeight: FontWeight.w400,
+                                  fontWeight: FontWeight.w500,
                                   mandatory: true,
                                   text: "Name of the Financial Institution"),
                               const SizedBox(height: 10),
@@ -310,7 +403,7 @@ class FundPlan extends StatelessWidget {
                                   child: CustomAutoSizeTextMontserrat(
                                       fontSize: 14,
                                       textColor: ThemeConstants.blackcolor,
-                                      fontWeight: FontWeight.w400,
+                                      fontWeight: FontWeight.w500,
                                       mandatory: true,
                                       text: "Type of Funds")),
                               const SizedBox(
@@ -342,7 +435,7 @@ class FundPlan extends StatelessWidget {
                                     CustomAutoSizeTextMontserrat(
                                         fontSize: 14,
                                         textColor: ThemeConstants.blackcolor,
-                                        fontWeight: FontWeight.w400,
+                                        fontWeight: FontWeight.w500,
                                         mandatory: true,
                                         text: "Are the funds 6 months old?"),
                                     const Spacer(
@@ -384,7 +477,7 @@ class FundPlan extends StatelessWidget {
                               CustomAutoSizeTextMontserrat(
                                   fontSize: 14,
                                   textColor: ThemeConstants.blackcolor,
-                                  fontWeight: FontWeight.w400,
+                                  fontWeight: FontWeight.w600,
                                   mandatory: true,
                                   text: "Amount (INR)"),
                               const SizedBox(
@@ -436,7 +529,7 @@ class FundPlan extends StatelessWidget {
 
                               Padding(
                                 padding:
-                                    const EdgeInsets.only(left: 0, top: 10),
+                                    const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
                                 child: Row(
                                   children: [
                                     InkWell(
@@ -451,8 +544,9 @@ class FundPlan extends StatelessWidget {
                                             0.toString());
                                       },
                                       child: CustomIconTextTogether(
-                                        horizontelPadding: 20,
-                                        textSize: 10,
+                                        horizontelPadding: 15,
+                                        verticalPadding: 7,
+                                        textSize: 13,
                                         showICOn: true,
                                         color: ThemeConstants.whitecolor,
                                         Bgcolor: ThemeConstants.bluecolor,
@@ -481,29 +575,57 @@ class FundPlan extends StatelessWidget {
                                 ),
                               ),
                               const SizedBox(
-                                height: 10,
+                                height: 28,
                               ),
                               Align(
-                                alignment: Alignment.topRight,
-                                child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      elevation: 0.0,
-                                      primary: ThemeConstants
-                                          .bluecolor, // background
-                                      onPrimary: ThemeConstants
-                                          .bluecolor, // foreground
+                                alignment: Alignment.bottomCenter,
+                                child: InkWell(
+                                  onTap: (){
+                                    if(controller.filepath.isNotEmpty){
+                                      controller.uploadDocumentment(context);
+                                    }
+                                    else{
+                                      controller.submitFundPlannerData(context);
+                                    }
+                                  },
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    height: 45,
+                                    decoration: BoxDecoration(
+                                      color: ThemeConstants.bluecolor,
+                                      borderRadius: BorderRadius.circular(10),
+                                      boxShadow: [
+                                        BoxShadow(
+                                        color: Colors.grey.withOpacity(0.9),
+                                        spreadRadius: -8.9, // Negative value to contain the shadow within the border
+                                        blurRadius: 10,
+                                        offset: const Offset(0, 10),
+                                      )
+                                      ],
                                     ),
-                                    onPressed: () {
-                                      if (controller.filepath.isNotEmpty) {
-                                        controller.uploadDocumentment();
-                                      } else {
-                                        controller.submitFundPlannerData();
-                                      }
-                                    },
-                                    child: CustomAutoSizeTextMontserrat(
-                                      text: "Submit",
-                                      textColor: ThemeConstants.whitecolor,
-                                    )),
+                                    child: Center(child: CustomAutoSizeTextMontserrat(textalingCentre: true,text: "Submit", textColor: ThemeConstants.whitecolor,)),
+                                  ),
+                                )
+
+                                // ElevatedButton(
+                                //     style: ElevatedButton.styleFrom(
+                                //       elevation: 4,
+                                //       primary: ThemeConstants
+                                //           .bluecolor, // background
+                                //       onPrimary: ThemeConstants
+                                //           .bluecolor, // foreground
+                                //     ),
+                                //     onPressed: () {
+                                //       if (controller.filepath.isNotEmpty) {
+                                //         controller.uploadDocumentment();
+                                //       } else {
+                                //         controller.submitFundPlannerData();
+                                //       }
+                                //     },
+                                //     child: CustomAutoSizeTextMontserrat(
+                                //       text: "Submit",
+                                //       textColor: ThemeConstants.whitecolor,
+                                //     )),
                               ),
                             ],
                           ),

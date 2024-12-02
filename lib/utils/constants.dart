@@ -216,7 +216,7 @@ getEmptyValidation(String? value) {
   print(value);
   if (value == null) {
     return '* Required';
-  } else if (value.length < 1) {
+  } else if (value.isEmpty) {
     return '* Required';
   } else
     return null;
@@ -226,16 +226,18 @@ getEmptyDropDownValidation(String? value) {
   print(value);
   if (value == null || value == '') {
     return '* Please Select one Field';
-  } else
+  } else {
     return null;
+  }
 }
 
 getOtpvalidation(String? value) {
   if (value != null) {
     if (value.length != 6) {
       return 'OTP must be of 6 digit';
-    } else
+    } else {
       return null;
+    }
   } else {
     return "OTP must be of 6 digit";
   }
@@ -320,6 +322,7 @@ getSourceSelected(Function callbackSelectedSource, String id, int index,
                     text: "Select Source",
                     fontSize: 18,
                     textColor: ThemeConstants.bluecolor,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
                 const SizedBox(
@@ -632,7 +635,7 @@ getBookAnAppointment(
                 borderRadius: BorderRadius.all(Radius.circular(20.0))),
             insetPadding: const EdgeInsets.symmetric(horizontal: 20),
             content: SingleChildScrollView(
-              child: Container(
+              child: SizedBox(
                 width: 400,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -646,7 +649,7 @@ getBookAnAppointment(
                           fontWeight: FontWeight.w700,
                           textColor: ThemeConstants.bluecolor,
                         ),
-                        Spacer(),
+                        const Spacer(),
                         CircleAvatar(
                           radius: 12,
                           backgroundColor: ThemeConstants.lightblueColor,
@@ -750,20 +753,20 @@ getBookAnAppointment(
                         ],
                       ),
                     ),
-                    Container(
+                    SizedBox(
                         height: 80.0,
                         width: 300,
                         child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             itemCount: 20,
                             itemBuilder: (BuildContext context, int index) {
-                              return Container(
+                              return SizedBox(
                                   width: 80.0,
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
-                                      Icon(Icons.abc),
-                                      SizedBox(height: 8.0),
+                                      const Icon(Icons.abc),
+                                      const SizedBox(height: 8.0),
                                       Text('Item $index'),
                                     ],
                                   ));
@@ -777,24 +780,24 @@ getBookAnAppointment(
 
 getPhoneNumber() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  var phoneNumber = await prefs.getString('phonenumber');
+  var phoneNumber = prefs.getString('phonenumber');
   return phoneNumber;
 }
 
 getUserID() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  var phoneNumber = await prefs.getString('userid');
+  var phoneNumber = prefs.getString('userid');
   return phoneNumber;
 }
 
 getUserToken() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  var phoneNumber = await prefs.getString('userToken');
+  var phoneNumber = prefs.getString('userToken');
   return phoneNumber;
 }
 
 getUserEnqID() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  var phoneNumber = await prefs.getString('enq_id');
+  var phoneNumber = prefs.getString('enq_id');
   return phoneNumber;
 }

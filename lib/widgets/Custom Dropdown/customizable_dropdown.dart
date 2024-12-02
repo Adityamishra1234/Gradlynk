@@ -133,16 +133,12 @@ class _CustomizableDropdownState extends State<CustomizableDropdown>
 
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-    print("didChangeDependencies");
     filterSearchResults("");
     super.didChangeDependencies();
   }
 
   @override
   void didUpdateWidget(covariant CustomizableDropdown oldWidget) {
-    // TODO: implement didUpdateWidget
-
     filterSearchResults(editingController.text);
 
     super.didUpdateWidget(oldWidget);

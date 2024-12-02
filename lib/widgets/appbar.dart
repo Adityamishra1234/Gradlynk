@@ -96,7 +96,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     );
   }
 
-  //Funcation
+  //Function
   callbacktest(data) {
     print(data);
   }

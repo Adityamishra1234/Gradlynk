@@ -96,6 +96,7 @@ class ApiServices extends StudentPanelBase implements api {
       var jsondata = json.decode(response);
       return jsondata;
     } catch (e) {
+
       await errorHandle(
         "${Get.find<BaseController>().model1.id.toString()}||$endpoint",
         e.toString().split(":")[1].toString(),
@@ -446,7 +447,7 @@ class ApiServices extends StudentPanelBase implements api {
         e.toString().split(":")[0].toString(),
         StackTrace.current.toString(),
       );
-      Get.back();
+      // Get.back(); //changed here on 15th of April 2024
       getToast(SnackBarConstants.applicationPart1!);
     }
   }

@@ -17,7 +17,12 @@ class EnableButton extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           boxShadow: [
-            BoxShadow(blurRadius: 0.2, color: ThemeConstants.blackcolor),
+            BoxShadow(
+              color: ThemeConstants.lightblueColor2,
+              spreadRadius: -3.9,
+              blurRadius: 10,
+              offset: const Offset(0, 6),
+            )
           ],
           color: enabled == true
               ? ThemeConstants.bluecolor

@@ -41,11 +41,11 @@ class CustomTextField extends StatelessWidget {
         scrollPadding: EdgeInsets.symmetric(
             vertical: MediaQuery.of(context).viewInsets.bottom + 30),
         style: GoogleFonts.montserrat(
-          fontWeight: fieldFontWeight ?? FontWeight.w600,
+          fontWeight: fieldFontWeight ?? FontWeight.w500,
         ),
         readOnly: readOrEdit == null ? false : readOrEdit!,
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+          contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
           hintText: hint,
           hintStyle: TextStyle(fontWeight: hintFontWeight ?? FontWeight.w500),
           filled: true,
@@ -74,7 +74,7 @@ class CustomTextField extends StatelessWidget {
                     ? ThemeConstants.lightgreycolor
                     : Colors.transparent),
             borderRadius: forDropDown!
-                ? BorderRadius.circular(borderRadius ?? 200)
+                ? BorderRadius.circular(borderRadius ?? 10)
                 : BorderRadius.circular(0),
           ),
           focusedBorder: OutlineInputBorder(

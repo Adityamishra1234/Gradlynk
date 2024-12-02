@@ -7,13 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_share/flutter_share.dart';
 import 'package:nice_loading_button/nice_loading_button.dart';
 import 'package:path_provider/path_provider.dart';
-// import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:studentpanel/utils/constants.dart';
-import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/Custom_downloder_notification/custom_download_button.dart';
 import 'package:studentpanel/widgets/Custom_downloder_notification/custom_notification_payload_types.dart';
-import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
 class FileDownload extends StatefulWidget {
   String url;
@@ -29,7 +26,6 @@ class _FileDownloadState extends State<FileDownload> {
   double progress = 0;
 
   final ReceivePort _port = ReceivePort();
-
   @override
   void initState() {
     super.initState();
@@ -74,16 +70,26 @@ class _FileDownloadState extends State<FileDownload> {
         color: Colors.indigo,
         width: 120,
         loader: Container(
-          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 1,
+                blurRadius: 5,
+                offset: const Offset(0, 4.5),
+              )
+            ],
+          ),
+          padding: const EdgeInsets.all(50),
           width: 30,
           height: 30,
           child: const CircularProgressIndicator(
             valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
           ),
         ),
-        child: Icon(
+        child: const Icon(
           Icons.download_rounded,
-          size: 16,
+          size: 14,
         ),
 
         // CustomAutoSizeTextMontserrat(

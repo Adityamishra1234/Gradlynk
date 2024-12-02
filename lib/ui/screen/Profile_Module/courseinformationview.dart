@@ -40,7 +40,7 @@ class CourseInformationView extends StatelessWidget {
               ),
             ),
           ),
-          if (model.length != 0)
+          if (model.isNotEmpty)
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.6,
               child: ListView.builder(
@@ -52,7 +52,7 @@ class CourseInformationView extends StatelessWidget {
                       padding:
                           const EdgeInsets.only(top: 10, left: 10, right: 10),
                       child: Container(
-                        constraints: BoxConstraints(minHeight: 150),
+                        constraints: const BoxConstraints(minHeight: 150),
                         decoration: BoxDecoration(
                             color: ThemeConstants.whitecolor,
                             border: Border.all(),
@@ -163,7 +163,7 @@ class CourseInformationView extends StatelessWidget {
                     );
                   }),
             ),
-          if (model.length == 0) Empty_details()
+          if (model.isEmpty) const Emptydetails()
         ],
       ),
     );

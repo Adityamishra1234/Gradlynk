@@ -85,7 +85,7 @@ contactUsDialog(
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(20.0))),
       insetPadding: const EdgeInsets.all(10),
-      contentPadding: EdgeInsets.all(10),
+      contentPadding: const EdgeInsets.all(10),
       content: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
@@ -1914,7 +1914,7 @@ eventZoneDrawerPopUp(
                             context: Get.context!,
                             builder: ((context) {
                               return AlertDialog(
-                                contentPadding: EdgeInsets.all(5),
+                                contentPadding: const EdgeInsets.all(5),
                                 content: Container(
                                     width: MediaQuery.of(context).size.width,
                                     child: EventDeskListWidget()),
