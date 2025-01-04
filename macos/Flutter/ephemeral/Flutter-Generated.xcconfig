@@ -1,6 +1,6 @@
 // This is a generated file; do not edit or check into version control.
-FLUTTER_ROOT=/opt/homebrew/Caskroom/flutter/3.19.6/flutter
-FLUTTER_APPLICATION_PATH=/Users/siecadmin/Downloads/Company Project/sp_app
+FLUTTER_ROOT=/Users/adityamishra/Downloads/flutter
+FLUTTER_APPLICATION_PATH=/Users/adityamishra/Downloads/Company Project/sp_app 2
 COCOAPODS_PARALLEL_CODE_SIGN=true
 FLUTTER_BUILD_DIR=build
 FLUTTER_BUILD_NAME=2.1.18
