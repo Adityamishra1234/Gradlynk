@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/new_widgets/app_text_field.dart';
+import 'package:studentpanel/new_widgets/custom_button.dart';
 import 'package:studentpanel/widgets/custombutton.dart';
-
 
 import '../../../new_widgets/text_fields.dart';
 import '../../../utils/theme.dart';
@@ -26,7 +26,8 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Form(key: key,
+          child: Form(
+            key: key,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -47,7 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(
-                        height: 25,
+                        height: 50,
                       ),
                       Text('Login',
                           overflow: TextOverflow.ellipsis,
@@ -64,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           style: buttonStyleOpenSans(
                               ThemeConstants.blackcolor, FontWeight.w400, 18)),
                       const SizedBox(
-                        height: 40,
+                        height: 50,
                       ),
                       Text('Mobile number',
                           overflow: TextOverflow.ellipsis,
@@ -78,8 +79,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         controller: mobileController,
                         title: "Mobile Number",
                         showTitle: false,
-                        keyboardType: TextInputType.phone,
-                        hint: "Enter Mobile Number",inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                        keyboardType: TextInputType.phone,borderRadius: 10,
+                        hint: "Enter Mobile Number",
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
                         validator: Validator.phone,
                         icon: Icon(
                           Icons.call,
@@ -87,9 +91,55 @@ class _LoginScreenState extends State<LoginScreen> {
                           size: 25,
                         ),
                       ),
-                      CustomButton(text: "Login", onPressed: () {
+                      const SizedBox(
+                        height: 60,
+                      ),
+                      CustomButton3(
+                          text: "Verify Number",
+                          height: 50,
+                          containerColor: ThemeConstants.greenColor,
+                          buttonTextSize: 16,
+                          fw: FontWeight.w500),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              "Don't have an Account? ",
+                              overflow: TextOverflow.ellipsis,
+                              textScaler:
+                              TextScaler.noScaling,
+                              style: buttonStyleOpenSans(
+                                  ThemeConstants.blackcolor, FontWeight.w400, 16),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              // Navigator.push(context,
+                              //     CupertinoPageRoute(
+                              //       builder: (context) {
+                              //         return const SignUpScreen();
+                              //       },
+                              //     ));
+                            },
+                            child: Text('Register Now',
+                                overflow: TextOverflow.ellipsis,
+                                textScaler: TextScaler.noScaling,
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                    color: ThemeConstants.greenColor,
+                                    decoration:
+                                    TextDecoration.underline,
+                                    decorationColor: ThemeConstants.greenColor,
+                                    decorationThickness: 2)),
+                          ),
 
-                      },)
+                        ],
+                      ),
                     ],
                   ),
                 ),

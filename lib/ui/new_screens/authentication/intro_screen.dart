@@ -45,65 +45,67 @@ class IntroductionScreenState extends State<IntroductionScreen> {
                       borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(50),
                           topRight: Radius.circular(50))),
-                  padding: const EdgeInsets.only(top: 50, left: 30, right: 30),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Welcome to",
-                          overflow: TextOverflow.ellipsis,
-                          textScaler: TextScaler.noScaling,
-                          style: buttonStyleOpenSans(
-                              ThemeConstants.blackcolor, FontWeight.bold, 44)),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Image.asset(
-                        "assets/images/new_icon.png",
-                        fit: BoxFit.fill,
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Text(
-                          "From exploring universities to settling into a new country, GradLynk offers you personalized tools and resources to ensure your success.",
-                          overflow: TextOverflow.ellipsis,
-                          textScaler: TextScaler.noScaling,
-                          maxLines: 5,
-                          style: buttonStyleOpenSans(
-                              ThemeConstants.blackcolor, FontWeight.w400, 16)),
-                      const SizedBox(
-                        height: 22,
-                      ),
-                      ToggleSwitch(
-                        minWidth: 300.0,
-                        cornerRadius: 15.0,
-                        borderWidth: 2,
-                        animate: true,
-                        animationDuration: 100,
-                        customTextStyles: const [
-                          TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 22,
-                          )
-                        ],
-                        curve: Curves.easeIn,
-                        borderColor: [ThemeConstants.TextColor],
-                        activeFgColor: Colors.white,
-                        inactiveBgColor: ThemeConstants.whitecolor,
-                        inactiveFgColor: ThemeConstants.greenColor,
-                        initialLabelIndex: 0,
-                        totalSwitches: 2,
-                        labels: const ['Register', 'Login'],
-                        radiusStyle: true,
-                        activeBgColor: [ThemeConstants.greenColor],
-                        onToggle: (index) {
-                          if (index == 0) {
-                          } else {
-                            Get.toNamed(LoginScreen.routeNamed);
-                          }
-                        },
-                      ),
-                    ],
+                  padding: const EdgeInsets.only(top: 15, left: 25, right: 25),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Welcome to",
+                            overflow: TextOverflow.ellipsis,
+                            textScaler: TextScaler.noScaling,
+                            style: buttonStyleOpenSans(
+                                ThemeConstants.blackcolor, FontWeight.bold, 44)),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        Image.asset(
+                          "assets/images/new_icon.png",
+                          fit: BoxFit.fill,
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                            "From exploring universities to settling into a new country, GradLynk offers you personalized tools and resources to ensure your success.",
+                            overflow: TextOverflow.ellipsis,
+                            textScaler: TextScaler.noScaling,
+                            maxLines: 5,
+                            style: buttonStyleOpenSans(
+                                ThemeConstants.blackcolor, FontWeight.w400, 16)),
+                        const SizedBox(
+                          height: 22,
+                        ),
+                        ToggleSwitch(
+                          minWidth: 300.0,
+                          cornerRadius: 15.0,
+                          borderWidth: 2,
+                          animate: true,
+                          animationDuration: 100,
+                          customTextStyles: const [
+                            TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 22,
+                            )
+                          ],
+                          curve: Curves.easeIn,
+                          borderColor: [ThemeConstants.TextColor],
+                          activeFgColor: Colors.white,
+                          inactiveBgColor: ThemeConstants.whitecolor,
+                          inactiveFgColor: ThemeConstants.greenColor,
+                          initialLabelIndex: 0,
+                          totalSwitches: 2,
+                          labels: const ['Register', 'Login'],
+                          radiusStyle: true,
+                          activeBgColor: [ThemeConstants.greenColor],
+                          onToggle: (index) {
+                            if (index == 0) {
+                            } else {
+                              Get.toNamed(LoginScreen.routeNamed);
+                            }
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

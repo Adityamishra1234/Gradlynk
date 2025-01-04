@@ -96,6 +96,9 @@ class ThemeConstants {
   static Color skinColour = const Color(0xFFF8F8F8);
   static Color shadowColor = const Color(0xFFF8F8F8);
 
+  static LinearGradient backgroundGradient =
+  LinearGradient(colors: [greenColor, const Color(0x60019E6F)]);
+
   static String icons = """<?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 26.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -108,4 +111,7 @@ class ThemeConstants {
 	c2.9,0,5.3,2.4,5.3,5.3V86.1z"/>
 </svg>
  """;
+
+
+
 }

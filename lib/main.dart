@@ -100,8 +100,8 @@ Future<void> main() async {
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     systemNavigationBarColor: ThemeConstants.whitecolor,
-    // statusBarColor: ThemeConstants.greenColor,
-    statusBarColor: ThemeConstants.bluecolor,
+    statusBarColor: ThemeConstants.greenColor,
+    // statusBarColor: ThemeConstants.bluecolor,
     statusBarIconBrightness: Brightness.light,
     systemNavigationBarIconBrightness: Brightness.light,
   ));
@@ -181,8 +181,8 @@ class _MyAppState extends State<MyApp> {
           theme: ThemeData(
             visualDensity: VisualDensity.adaptivePlatformDensity,
             useMaterial3: false,
-            primaryColor: const Color(0xff1a84b8),
-            // primaryColor: ThemeConstants.greenColor,
+            // primaryColor: const Color(0xff1a84b8),
+            primaryColor: ThemeConstants.greenColor,
             primarySwatch: Colors.blue,
             pageTransitionsTheme: const PageTransitionsTheme(
               builders: {
@@ -195,14 +195,14 @@ class _MyAppState extends State<MyApp> {
           debugShowCheckedModeBanner: false,
           initialRoute: "/",
           getPages: [
-            GetPage(
-              name: "/",
-              page: () => WelcomeView(),
-            ),
             // GetPage(
             //   name: "/",
-            //   page: () => const IntroductionScreen(),
+            //   page: () => WelcomeView(),
             // ),
+            GetPage(
+              name: "/",
+              page: () => const IntroductionScreen(),
+            ),
             GetPage(
               name: ReceiveACallBackView.routeNamed,
               page: () => ReceiveACallBackView(),
