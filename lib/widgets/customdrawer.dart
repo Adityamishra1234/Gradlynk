@@ -1,37 +1,51 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nice_loading_button/nice_loading_button.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:studentpanel/presentation/features/event_history/event_history_view.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
-import 'package:studentpanel/ui/controllers/drawerController.dart';
 import 'package:studentpanel/ui/screen/Profile_module_2/profile_view.dart';
 import 'package:studentpanel/ui/screen/My_Application/applicationsummary.dart';
 import 'package:studentpanel/ui/screen/course_search/coursesearch2.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/course_search/finalshortlist.dart';
 import 'package:studentpanel/ui/screen/course_search/reviewshortlist.dart';
-import 'package:studentpanel/ui/screen/fund/controller/fundPlanner.dart';
-import 'package:studentpanel/ui/screen/fund/plan_fund.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/custom_dialog_box.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
-class CustomDrawer extends StatelessWidget {
+import '../BlocData/Bloc/field_bloc.dart';
+import '../main.dart';
+
+class CustomDrawer extends StatefulWidget {
   int? index;
 
   CustomDrawer({Key? key, this.index}) : super(key: key);
 
+  @override
+  State<CustomDrawer> createState() => _CustomDrawerState();
+}
+
+class _CustomDrawerState extends State<CustomDrawer> {
+
   // var controller = Get.put(DrawerGetXController());
   var controller = Get.find<BaseController>();
+ @override
+  void initState() {
+   if(profileValidationModel==null) {
+     bloc.getProfileValidation(bloc.baseController.model1.id);
+   }
+   if (profileDataModel == null) {
+     bloc.getLoginData();
+   }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     VersionUtil.fetchAppVersion();
-    final bool displayMobileLayout = MediaQuery.of(context).size.width > 600;
     return Drawer(
       // elevation: 10,
       backgroundColor: Colors.white,
@@ -60,141 +74,163 @@ class CustomDrawer extends StatelessWidget {
                         const SizedBox(
                           height: 30,
                         ),
-                        Container(
-                          decoration: BoxDecoration(
-                            color: ThemeConstants.lightblueColor,
-                            borderRadius: BorderRadius.circular(15),
-                            // border: Border.all(
-                            //     width: 0.5, color: ThemeConstants.bluecolor),
-                            boxShadow: [
-                              BoxShadow(
-                                color:
-                                    ThemeConstants.bluecolor.withOpacity(0.5),
-                                spreadRadius: -2.5,
-                                blurRadius: 5,
-                                offset: const Offset(0, 4.5),
-                              )
-                            ],
-                          ),
-                          width: double.infinity,
-                          margin: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 10),
-                          padding: const EdgeInsets.all(10),
-                          height: 80,
-                          child: Row(children: [
-                            CircleAvatar(
-                              onBackgroundImageError: (exception, stackTrace) {
-                                print(exception);
-                                print(stackTrace.toString());
-                              },
-                              // onForegroundImageError: (exception, stackTrace) {
-                              //   print(exception);
-                              //   print(stackTrace.toString());
-                              // },
-                              radius: 20.0,
-                              backgroundImage: const NetworkImage(
-                                  "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"),
-                              backgroundColor: Colors.transparent,
-                            ),
-                            const SizedBox(
-                              width: 15,
-                            ),
-                            if (controller.loadinValidatorDataForDashboard ==
-                                false) ...[
-                              SizedBox(
-                                height: 200,
-                                child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Text("Hi, ",
-                                              maxLines: 2,
-                                              style: GoogleFonts.lato(
-                                                textStyle: const TextStyle(
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: Color(0xff414040),
-                                                ),
-                                              )),
-                                          Text(
-                                              "${firstLetterChaptial(Get.find<BaseController>().model1.enquiryName)}",
-                                              maxLines: 2,
-                                              style: GoogleFonts.lato(
-                                                textStyle: const TextStyle(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: Color(0xff414040),
-                                                ),
-                                              )),
-                                        ],
+                        ValueListenableBuilder(
+                          valueListenable: bloc.loadingProfileValidation,
+                          builder: (BuildContext context, bool value, Widget? child) { if(value == false &&
+                              profileValidationModel != null){
+                            return ValueListenableBuilder(
+                              valueListenable: bloc.loginLoading,
+                              builder: (BuildContext context, bool value1,
+                                  Widget? _) {
+                                if (value1 == false &&
+                                    profileDataModel != null) {
+                                  return Container(
+                                    decoration: BoxDecoration(
+                                      color: ThemeConstants.lightblueColor,
+                                      borderRadius: BorderRadius.circular(15),
+                                      // border: Border.all(
+                                      //     width: 0.5, color: ThemeConstants.bluecolor),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color:
+                                          ThemeConstants.bluecolor.withOpacity(0.5),
+                                          spreadRadius: -2.5,
+                                          blurRadius: 5,
+                                          offset: const Offset(0, 4.5),
+                                        )
+                                      ],
+                                    ),
+                                    width: double.infinity,
+                                    margin: const EdgeInsets.symmetric(
+                                        vertical: 10, horizontal: 10),
+                                    padding: const EdgeInsets.all(10),
+                                    height: 80,
+                                    child: Row(children: [
+                                      CircleAvatar(
+                                        onBackgroundImageError: (exception, stackTrace) {
+                                          print(exception);
+                                          print(stackTrace.toString());
+                                        },
+                                        // onForegroundImageError: (exception, stackTrace) {
+                                        //   print(exception);
+                                        //   print(stackTrace.toString());
+                                        // },
+                                        radius: 20.0,
+                                        backgroundImage: const NetworkImage(
+                                            "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"),
+                                        backgroundColor: Colors.transparent,
                                       ),
+                                      const SizedBox(
+                                        width: 15,
+                                      ),
+                                      if (controller.loadinValidatorDataForDashboard ==
+                                          false) ...[
+                                        SizedBox(
+                                          height: 200,
+                                          child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    Text("Hi, ",
+                                                        maxLines: 2,
+                                                        style: GoogleFonts.lato(
+                                                          textStyle: const TextStyle(
+                                                            fontSize: 14,
+                                                            fontWeight: FontWeight.w500,
+                                                            color: Color(0xff414040),
+                                                          ),
+                                                        )),
+                                                    Text(
+                                                        "${firstLetterChaptial(profileDataModel?.enquiryName)}",
+                                                        maxLines: 2,
+                                                        style: GoogleFonts.lato(
+                                                          textStyle: const TextStyle(
+                                                            fontSize: 15,
+                                                            fontWeight: FontWeight.w500,
+                                                            color: Color(0xff414040),
+                                                          ),
+                                                        )),
+                                                  ],
+                                                ),
 
-                                      // CustomAutoSizeTextMontserrat(
-                                      //   text:
-                                      //       "Hi, ${firstLetterChaptial(Get.find<BaseController>().model1.enquiryName)}",
-                                      //   fontSize: 14,
-                                      //   fontWeight: FontWeight.w500,
-                                      // ),
-                                      const SizedBox(
-                                        height: 2.5,
-                                      ),
-                                      const SizedBox(
-                                        height: 2.5,
-                                      ),
-                                      Stack(
-                                        children: [
-                                          Container(
-                                            decoration: BoxDecoration(
-                                                color: ThemeConstants
-                                                    .lightgreycolor,
-                                                borderRadius:
-                                                    BorderRadius.circular(20)),
-                                            width: 120,
-                                            height: 5,
+                                                // CustomAutoSizeTextMontserrat(
+                                                //   text:
+                                                //       "Hi, ${firstLetterChaptial(Get.find<BaseController>().model1.enquiryName)}",
+                                                //   fontSize: 14,
+                                                //   fontWeight: FontWeight.w500,
+                                                // ),
+                                                const SizedBox(
+                                                  height: 2.5,
+                                                ),
+                                                const SizedBox(
+                                                  height: 2.5,
+                                                ),
+                                                Stack(
+                                                  children: [
+                                                    Container(
+                                                      decoration: BoxDecoration(
+                                                          color: ThemeConstants
+                                                              .lightgreycolor,
+                                                          borderRadius:
+                                                          BorderRadius.circular(20)),
+                                                      width: 120,
+                                                      height: 5,
+                                                    ),
+                                                    Container(
+                                                      decoration: BoxDecoration(
+                                                          color: const Color.fromARGB(
+                                                              255, 16, 32, 255),
+                                                          borderRadius:
+                                                          BorderRadius.circular(20)),
+                                                      width: profileValidationModel!.totalPercentageComplete!.toDouble() *
+                                                          1.2,
+                                                      height: 5,
+                                                    )
+                                                  ],
+                                                ),
+                                                const SizedBox(
+                                                  height: 5,
+                                                ),
+                                                Text(
+                                                    "${profileValidationModel?.totalPercentageComplete}% completed",
+                                                    style: GoogleFonts.lato(
+                                                      textStyle: TextStyle(
+                                                          fontSize: 10,
+                                                          fontWeight: FontWeight.w500,
+                                                          color:
+                                                          ThemeConstants.TextColor),
+                                                    ))
+                                              ]),
+                                        )
+                                      ] else ...[
+                                        const Spacer(),
+                                        SizedBox(
+                                          width: 30,
+                                          height: 30,
+                                          child: CircularProgressIndicator(
+                                            color: ThemeConstants.bluecolor,
                                           ),
-                                          Container(
-                                            decoration: BoxDecoration(
-                                                color: const Color.fromARGB(
-                                                    255, 16, 32, 255),
-                                                borderRadius:
-                                                    BorderRadius.circular(20)),
-                                            width: controller.data.value
-                                                    .totalPercentageComplete!
-                                                    .toDouble() *
-                                                1.2,
-                                            height: 5,
-                                          )
-                                        ],
-                                      ),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      Text(
-                                          "${controller.data.value.totalPercentageComplete}% completed",
-                                          style: GoogleFonts.lato(
-                                            textStyle: TextStyle(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.w500,
-                                                color:
-                                                    ThemeConstants.TextColor),
-                                          ))
+                                        ),
+                                        const Spacer(),
+                                      ]
                                     ]),
-                              )
-                            ] else ...[
-                              const Spacer(),
-                              SizedBox(
-                                width: 30,
-                                height: 30,
-                                child: CircularProgressIndicator(
-                                  color: ThemeConstants.bluecolor,
-                                ),
-                              ),
-                              const Spacer(),
-                            ]
-                          ]),
+                                  );
+                                }
+                                else {
+                                  return getLoading(context,
+                                      height: 140.0, width: 300.0);
+                                }
+                              }
+                            );
+                          }
+                          else{
+                            return getLoading(context,
+                                height: 60.0, width: 300.0);
+                          }
+    },
                         ),
 
                         // Container(
@@ -333,7 +369,7 @@ class CustomDrawer extends StatelessWidget {
                                             children: [
                                               svgImage(
                                                   "Dashboard",
-                                                  index == 0
+                                                  widget.index == 0
                                                       ? ThemeConstants.bluecolor
                                                       : ThemeConstants
                                                           .blackcolor,
@@ -359,7 +395,7 @@ class CustomDrawer extends StatelessWidget {
                                                     text: "My DashBoard",
                                                     fontSize: 15,
                                                     fontWeight: FontWeight.w500,
-                                                    textColor: index == 0
+                                                    textColor: widget.index == 0
                                                         ? ThemeConstants
                                                             .bluecolor
                                                         : ThemeConstants
@@ -388,7 +424,7 @@ class CustomDrawer extends StatelessWidget {
                                             // svgImage('track', ThemeConstants.IconColor, 20, 20),
                                             svgImage(
                                                 "Profile",
-                                                index == 1
+                                                widget.index == 1
                                                     ? ThemeConstants.bluecolor
                                                     : const Color.fromARGB(
                                                         255, 31, 31, 31),
@@ -421,7 +457,7 @@ class CustomDrawer extends StatelessWidget {
                                                     text: "Profile",
                                                     fontSize: 15,
                                                     fontWeight: FontWeight.w500,
-                                                    textColor: index == 1
+                                                    textColor: widget.index == 1
                                                         ? ThemeConstants
                                                             .bluecolor
                                                         : Colors.black,
@@ -454,7 +490,7 @@ class CustomDrawer extends StatelessWidget {
                                             children: [
                                               svgImage(
                                                   "Track appli",
-                                                  index == 2
+                                                  widget.index == 2
                                                       ? ThemeConstants.bluecolor
                                                       : const Color.fromARGB(
                                                           255, 31, 31, 31),
@@ -490,7 +526,7 @@ class CustomDrawer extends StatelessWidget {
                                                       fontSize: 15,
                                                       fontWeight:
                                                           FontWeight.w500,
-                                                      textColor: index == 2
+                                                      textColor: widget.index == 2
                                                           ? ThemeConstants
                                                               .bluecolor
                                                           : ThemeConstants
@@ -527,7 +563,7 @@ class CustomDrawer extends StatelessWidget {
                                               children: [
                                                 svgImage(
                                                     "Course search",
-                                                    index == 3
+                                                    widget.index == 3
                                                         ? ThemeConstants
                                                             .bluecolor
                                                         : const Color.fromARGB(
@@ -561,7 +597,7 @@ class CustomDrawer extends StatelessWidget {
                                                       fontWeight:
                                                           FontWeight.w500,
                                                       fontSize: 15,
-                                                      textColor: index == 3
+                                                      textColor: widget.index == 3
                                                           ? ThemeConstants
                                                               .bluecolor
                                                           : ThemeConstants
@@ -595,7 +631,7 @@ class CustomDrawer extends StatelessWidget {
                                             children: [
                                               svgImage(
                                                   "Review Course",
-                                                  index == 4
+                                                  widget.index == 4
                                                       ? ThemeConstants.bluecolor
                                                       : const Color.fromARGB(
                                                           255, 31, 31, 31),
@@ -631,7 +667,7 @@ class CustomDrawer extends StatelessWidget {
                                                       fontSize: 15,
                                                       fontWeight:
                                                           FontWeight.w500,
-                                                      textColor: index == 4
+                                                      textColor: widget.index == 4
                                                           ? ThemeConstants
                                                               .bluecolor
                                                           : ThemeConstants
@@ -665,7 +701,7 @@ class CustomDrawer extends StatelessWidget {
                                             children: [
                                               svgImage(
                                                   "Shortlist",
-                                                  index == 5
+                                                  widget.index == 5
                                                       ? ThemeConstants.bluecolor
                                                       : const Color.fromARGB(
                                                           255, 31, 31, 31),
@@ -702,7 +738,7 @@ class CustomDrawer extends StatelessWidget {
                                                       fontSize: 15,
                                                       fontWeight:
                                                           FontWeight.w500,
-                                                      textColor: index == 5
+                                                      textColor: widget.index == 5
                                                           ? ThemeConstants
                                                               .bluecolor
                                                           : ThemeConstants
@@ -730,7 +766,7 @@ class CustomDrawer extends StatelessWidget {
                                           children: [
                                             svgImage(
                                                 "totalFees",
-                                                index == 7
+                                                widget.index == 7
                                                     ? ThemeConstants.bluecolor
                                                     : const Color.fromARGB(
                                                         255, 31, 31, 31),
@@ -768,7 +804,7 @@ class CustomDrawer extends StatelessWidget {
                                                     text: "Plan your funds",
                                                     fontSize: 15,
                                                     fontWeight: FontWeight.w500,
-                                                    textColor: index == 7
+                                                    textColor: widget.index == 7
                                                         ? ThemeConstants
                                                             .bluecolor
                                                         : ThemeConstants
@@ -797,7 +833,7 @@ class CustomDrawer extends StatelessWidget {
                                         child: InkWell(
                                           highlightColor:
                                               ThemeConstants.whitecolor,
-                                          onTap: () {
+                                          onTap: () async{
                                             Get.back();
                                             eventZoneDrawerPopUp(
                                                 context,
@@ -814,81 +850,7 @@ class CustomDrawer extends StatelessWidget {
                                                         .expressPassGenerated ??
                                                     false);
                                           },
-                                          child: Row(
-                                            children: [
-                                              svgImage(
-                                                  "Calender icon",
-                                                  index == 8
-                                                      ? ThemeConstants.bluecolor
-                                                      : const Color.fromARGB(
-                                                          255, 31, 31, 31),
-                                                  20,
-                                                  20),
-                                              // SvgPicture.asset(
-                                              //   'assets/icons/Calender icon.svg',
-                                              //   color: index == 8
-                                              //       ? ThemeConstants.bluecolor
-                                              //       : const Color.fromARGB(
-                                              //           255, 31, 31, 31),
-                                              //   width: 20,
-                                              // ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    right: 10),
-                                                child: Container(
-                                                  height: 30,
-                                                  decoration: BoxDecoration(
-                                                      // color: index == 8
-                                                      //     ? ThemeConstants.lightblueColor
-                                                      //     : ThemeConstants.whitecolor,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0)),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 10, top: 5),
-                                                    child:
-                                                        CustomAutoSizeTextMontserrat(
-                                                      text: "Event Zone",
-                                                      fontSize: 15,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      textColor: index == 8
-                                                          ? ThemeConstants
-                                                              .bluecolor
-                                                          : ThemeConstants
-                                                              .blackcolor,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              const SizedBox(
-                                                width: 5,
-                                              ),
-                                              Container(
-                                                decoration: BoxDecoration(
-                                                    color: ThemeConstants.red,
-                                                    borderRadius:
-                                                        const BorderRadius.all(
-                                                            Radius.circular(
-                                                                5.0))),
-                                                child: Padding(
-                                                  padding: const EdgeInsets
-                                                      .symmetric(
-                                                      horizontal: 5,
-                                                      vertical: 2),
-                                                  child:
-                                                      CustomAutoSizeTextMontserrat(
-                                                    text: "New",
-                                                    fontSize: 10,
-                                                    textColor: ThemeConstants
-                                                        .whitecolor,
-                                                  ),
-                                                ),
-                                              )
-                                            ],
-                                          ),
+
                                         )),
                                   ),
                                 // InkWell(
@@ -995,6 +957,7 @@ class CustomDrawer extends StatelessWidget {
                                             ThemeConstants.whitecolor,
                                         onTap: () {
                                           Get.deleteAll();
+                                          Get.back();
                                           Get.toNamed(
                                               EventHistoryView.routeName);
                                         },
@@ -1002,7 +965,7 @@ class CustomDrawer extends StatelessWidget {
                                           children: [
                                             svgImage(
                                                 "Mark attendence",
-                                                index == 9
+                                                widget.index == 9
                                                     ? ThemeConstants.bluecolor
                                                     : const Color.fromARGB(
                                                         255, 31, 31, 31),
@@ -1037,7 +1000,7 @@ class CustomDrawer extends StatelessWidget {
                                                     text: "Event History",
                                                     fontSize: 15,
                                                     fontWeight: FontWeight.w500,
-                                                    textColor: index == 9
+                                                    textColor: widget.index == 9
                                                         ? ThemeConstants
                                                             .bluecolor
                                                         : ThemeConstants
@@ -1062,7 +1025,7 @@ class CustomDrawer extends StatelessWidget {
                                       children: [
                                         svgImage(
                                             "Support",
-                                            index == 6
+                                            widget.index == 6
                                                 ? ThemeConstants.bluecolor
                                                 : const Color.fromARGB(
                                                     255, 31, 31, 31),
@@ -1083,7 +1046,7 @@ class CustomDrawer extends StatelessWidget {
                                             text: "Gradlynk Support",
                                             fontSize: 15,
                                             fontWeight: FontWeight.w500,
-                                            textColor: index == 6
+                                            textColor: widget.index == 6
                                                 ? ThemeConstants.bluecolor
                                                 : ThemeConstants.blackcolor,
                                           ),

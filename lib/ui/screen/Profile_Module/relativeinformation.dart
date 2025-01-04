@@ -56,7 +56,7 @@ class RelativeInformation extends StatelessWidget {
               ));
   }
 
-// Funcation
+// Function
   callbackAnyRelativeCountryInterested(varTopic) {
     if (varTopic == "Yes") {
       controller.anyRelativeCountryInterestedSelected = "1";

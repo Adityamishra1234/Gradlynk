@@ -1,19 +1,16 @@
 import 'dart:async';
 import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:showcaseview/showcaseview.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:studentpanel/Test/checkBoxtest.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/controllers/dashboardcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/ui/controllers/versioncontroller.dart';
-import 'package:studentpanel/ui/screen/FeedBack/feedback.dart';
 import 'package:studentpanel/ui/screen/My_Application/applicationsummary.dart';
 import 'package:studentpanel/ui/screen/Profile_module_2/profile_view.dart';
 import 'package:studentpanel/ui/screen/course_search/coursesearch2.dart';
-import 'package:studentpanel/ui/screen/dashboard/notification.dart';
 import 'package:studentpanel/ui/screen/dashboard/testimonials.dart';
 import 'package:studentpanel/ui/screen/dashboard/youtube_video_section.dart';
 import 'package:studentpanel/ui/screen/mark_attendance/qrCodeScreen.dart';
@@ -26,10 +23,12 @@ import 'package:studentpanel/widgets/custom_dialog_box.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
 import 'package:studentpanel/widgets/dashboardeventSection.dart';
-import 'package:studentpanel/widgets/drawerfilter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+
+import '../../BlocData/Bloc/field_bloc.dart';
+import '../../BlocData/Repositories/field_repo.dart';
 
 class DashBoard extends StatefulWidget {
   const DashBoard({
@@ -71,7 +70,6 @@ class _DashBoardState extends State<DashBoard> {
 
   @override
   void initState() {
-    print(Get.previousRoute);
 // "/LoginCopy"
 // "/LoginCopy"
 
@@ -108,7 +106,7 @@ class _DashBoardState extends State<DashBoard> {
       }
     } catch (e) {}
     // Get.find<BaseController>().profiledetail();
-
+    bloc = FieldBloc(context.read<FieldRepo>());
     super.initState();
   }
 
@@ -146,53 +144,63 @@ class _DashBoardState extends State<DashBoard> {
                     backgroundColor: const Color.fromARGB(255, 248, 252, 255),
                     key: _scaffoldKey,
                     appBar: AppBar(
-                      elevation: 2.5,
-                      automaticallyImplyLeading: false,
-                      actions: [
-                        if (displayMobileLayout == true)
-                          IconButton(
-                            icon: const Icon(Icons.arrow_back,
-                                color: Colors.black),
-                            onPressed: () => Get.back(),
-                          ),
-                        if (displayMobileLayout == false)
-                          Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Showcase(
-                              descTextStyle: TextStyle(
-                                  color: ThemeConstants.whitecolor,
-                                  fontSize: 14),
-                              tooltipBackgroundColor: ThemeConstants.bluecolor,
-                              overlayColor: const Color.fromARGB(255, 0, 0, 0),
-                              overlayOpacity: 0.8,
-                              key: _nine,
-                              description:
-                                  "Your Navigation drawer is your easy to access all features zone.",
-                              child: IconButton(
-                                // icon: Image.asset("assets/images/gradlynk lense.png"),
-                                icon: const Icon(
-                                  Icons.menu,
-                                  color: Colors.black,
-                                ),
-                                onPressed: () {
-                                  // Get.find<BaseController>().profileDataValidator();
-                                  _scaffoldKey.currentState!.openDrawer();
-
-                                  DrawerFilter();
-                                },
-                              ),
-                            ),
-                          ),
-                        // svgImage("work", Colors.transparent, 32, 32),
-                        const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Image.network(
-                            "https://sieceducation.in/assets/assets/images/logo.png",
-                            width: 130,
-                            height: 30,
-                          ),
+                      elevation: 2.5, centerTitle: true,
+                      title: Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Image.network(
+                          "https://sieceducation.in/assets/assets/images/logo.png",
+                          width: 130,
+                          height: 30,
                         ),
+                      ),
+                      automaticallyImplyLeading: true,
+                      iconTheme:
+                          IconThemeData(color: ThemeConstants.blackcolor),
+                      actions: [
+                        // if (displayMobileLayout == true)
+                        //   IconButton(
+                        //     icon: const Icon(Icons.arrow_back,
+                        //         color: Colors.black),
+                        //     onPressed: () => Get.back(),
+                        //   ),
+                        // if (displayMobileLayout == true)
+                        //   Padding(
+                        //     padding: const EdgeInsets.only(left: 10),
+                        //     child: Showcase(
+                        //       descTextStyle: TextStyle(
+                        //           color: ThemeConstants.whitecolor,
+                        //           fontSize: 14),
+                        //       tooltipBackgroundColor: ThemeConstants.bluecolor,
+                        //       overlayColor: const Color.fromARGB(255, 0, 0, 0),
+                        //       overlayOpacity: 0.8,
+                        //       key: _nine,
+                        //       description:
+                        //       "Your Navigation drawer is your easy to access all features zone.",
+                        //       child: IconButton(
+                        //         // icon: Image.asset("assets/images/gradlynk lense.png"),
+                        //         icon: const Icon(
+                        //           Icons.menu,
+                        //           color: Colors.black,
+                        //         ),
+                        //         onPressed: () {
+                        //           // Get.find<BaseController>().profileDataValidator();
+                        //           _scaffoldKey.currentState!.openDrawer();
+                        //
+                        //           DrawerFilter();
+                        //         },
+                        //       ),
+                        //     ),
+                        //   ),
+                        // // svgImage("work", Colors.transparent, 32, 32),
+                        // const Spacer(),
+                        // Padding(
+                        //   padding: const EdgeInsets.only(top: 10),
+                        //   child: Image.network(
+                        //     "https://sieceducation.in/assets/assets/images/logo.png",
+                        //     width: 130,
+                        //     height: 30,
+                        //   ),
+                        // ),
                         // Padding(
                         //   padding: const EdgeInsets.only(top: 10),
                         //   child: Row(
@@ -213,7 +221,7 @@ class _DashBoardState extends State<DashBoard> {
                         //     ],
                         //   ),
                         // ),
-                        const Spacer(),
+                        // const Spacer(),
                         if (Get.find<BaseController>()
                                 .meetingZoneStatus
                                 .qrCodeGenerated ==
@@ -258,26 +266,25 @@ class _DashBoardState extends State<DashBoard> {
                       // ),
                       backgroundColor: Colors.white,
                     ),
+                    drawer: CustomDrawer(
+                      index: 0,
+                    ),
 
                     // appbar == true
                     //     ? controller.loadingStudentPanelData1.value == true
                     //         ? CustomAppBar("DashBoard", true)
                     //         : null
                     //     : null,
-                    drawer: displayMobileLayout == false
-                        ? CustomDrawer(
-                            index: 0,
-                          )
-                        : null,
+
                     body:
                         // setState(() {});
                         controller.loadingStudentPanelData1.value == true
                             ? Row(
                                 children: [
-                                  if (displayMobileLayout == true)
-                                    CustomDrawer(
-                                      index: 0,
-                                    ),
+                                  // if (displayMobileLayout == false)
+                                  //   CustomDrawer(
+                                  //     index: 0,
+                                  //   ),
                                   SizedBox(
                                     height: MediaQuery.of(context).size.height,
                                     width: displayMobileLayout == true

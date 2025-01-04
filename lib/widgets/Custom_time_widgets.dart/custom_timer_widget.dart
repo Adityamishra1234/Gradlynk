@@ -266,7 +266,7 @@ class _CustomTimerWidgetState extends State<CustomTimerWidget> {
   void initState() {
     super.initState();
     selectedDate = widget.startingDate ?? DateTime.now();
-    dateToShow = widget.initialTime ?? DateFormat("d MMM, yyyy").format(selectedDate);
+    dateToShow = widget.initialTime.toString()!=""? DateFormat("dd-MM-yyyy").format(DateTime.parse(widget.initialTime.toString())) : DateFormat("dd-MM-yyyy").format(selectedDate);
   }
 
   @override
@@ -294,7 +294,7 @@ class _CustomTimerWidgetState extends State<CustomTimerWidget> {
         if (picked != null && picked != selectedDate) {
           setState(() {
             selectedDate = picked;
-            dateToShow = DateFormat("d MMM, yyyy").format(picked);
+            dateToShow = DateFormat("dd-MM-yyyy").format(picked);
           });
           widget.callback(dateToShow);
         }
@@ -303,8 +303,10 @@ class _CustomTimerWidgetState extends State<CustomTimerWidget> {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 2.5),
         width: double.infinity,
         decoration: BoxDecoration(
-          color: ThemeConstants.lightblueColor,
-          borderRadius: BorderRadius.circular(10),
+          // color: ThemeConstants.lightblueColor,
+          // borderRadius: BorderRadius.circular(10),
+            color: ThemeConstants.whitecolor,
+            border: Border(bottom: BorderSide(color: ThemeConstants.blackcolor))
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

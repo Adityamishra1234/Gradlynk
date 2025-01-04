@@ -28,6 +28,9 @@ import 'package:studentpanel/utils/endpoint.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/custom_profile_dialogue/custom_profile_dialogue.dart';
 
+import '../../../../BlocData/Bloc/field_bloc.dart';
+import '../../../../main.dart';
+
 class ContactInformationInPopUpController extends GetxController
     with StateMixin {
   ApiServices apiServices = ApiServices();
@@ -91,7 +94,7 @@ class ContactInformationInPopUpController extends GetxController
   profileDataValidator() async {
     // change(null, status: RxStatus.loading());
 
-    var x = await Get.find<BaseController>().data.value;
+    var x = Get.find<BaseController>().data.value;
     // var x = await apiservice
     //     .profileDataValidation(Get.find<BaseController>().model1.id!);
     // var z = ProfileDataValidatorModel.fromJson(x);
@@ -289,6 +292,8 @@ class ContactInformationInPopUpController extends GetxController
                   Get.find<ContactInformationInPopUpController>()
                       .profileDataValidator();
                   Get.find<BaseController>().calculateProfilePercentage();
+                  // bloc.getLoginData();
+                  bloc.getProfileValidation(bloc.baseController.model1.id);
                   getDailog(1, context);
                 },
                 child: CourseInformationCopy())).whenComplete(() {
@@ -338,6 +343,8 @@ class ContactInformationInPopUpController extends GetxController
                   Get.find<ContactInformationInPopUpController>()
                       .profileDataValidator();
                   Get.find<BaseController>().calculateProfilePercentage();
+                  // bloc.getLoginData();
+                  bloc.getProfileValidation(bloc.baseController.model1.id);
                   getDailog(2, context);
                 },
                 child: QualificationDetailsCopy())).whenComplete(() {
@@ -381,6 +388,8 @@ class ContactInformationInPopUpController extends GetxController
                   Get.find<ContactInformationInPopUpController>()
                       .profileDataValidator();
                   Get.find<BaseController>().calculateProfilePercentage();
+                  // bloc.getLoginData();
+                  bloc.getProfileValidation(bloc.baseController.model1.id);
                   getDailog(3, context);
                 },
                 child: WorkHistoryCopy())).whenComplete(() {
@@ -424,6 +433,8 @@ class ContactInformationInPopUpController extends GetxController
                         Get.find<ContactInformationInPopUpController>()
                             .profileDataValidator();
                         Get.find<BaseController>().calculateProfilePercentage();
+                        // bloc.getLoginData();
+                        bloc.getProfileValidation(bloc.baseController.model1.id);
                         getDailog(4, context);
                       }
                     },
@@ -472,6 +483,8 @@ class ContactInformationInPopUpController extends GetxController
                         Get.find<ContactInformationInPopUpController>()
                             .profileDataValidator();
                         Get.find<BaseController>().calculateProfilePercentage();
+                        // bloc.getLoginData();
+                        bloc.getProfileValidation(bloc.baseController.model1.id);
                         getDailog(5, context);
                       }
                     },
@@ -523,6 +536,8 @@ class ContactInformationInPopUpController extends GetxController
                         Get.find<ContactInformationInPopUpController>()
                             .profileDataValidator();
                         Get.find<BaseController>().calculateProfilePercentage();
+                        // bloc.getLoginData();
+                        bloc.getProfileValidation(bloc.baseController.model1.id);
                         getDailog(6, context);
                       }
                     },
@@ -573,6 +588,8 @@ class ContactInformationInPopUpController extends GetxController
                   Get.find<ContactInformationInPopUpController>()
                       .profileDataValidator();
                   Get.find<BaseController>().calculateProfilePercentage();
+                  // bloc.getLoginData();
+                  bloc.getProfileValidation(bloc.baseController.model1.id);
                   getDailog(7, context);
                 },
                 child: TravingHistory())).whenComplete(() {
@@ -594,7 +611,6 @@ class ContactInformationInPopUpController extends GetxController
             builder: (_) => CustomProfileDialogue(
                 backButton: () {
                   Get.find<BaseController>().calculateProfilePercentage();
-
                   update();
                   Get.back();
                 },
@@ -620,6 +636,8 @@ class ContactInformationInPopUpController extends GetxController
                 },
                 onTap: () {
                   Get.find<BaseController>().calculateProfilePercentage();
+                  // bloc.getLoginData();
+                  bloc.getProfileValidation(bloc.baseController.model1.id);
                   Get.back();
                 },
                 child: RelativeInformation())).whenComplete(() {
@@ -662,8 +680,11 @@ class ContactInformationInPopUpController extends GetxController
                       if (res == true) {
                         Get.back();
                         Get.find<BaseController>().calculateProfilePercentage();
+                        bloc.getLoginData();
+                        bloc.getProfileValidation(bloc.baseController.model1.id);
                         getDailog(0, context);
                       }
+
                       // Get.back();
                     },
                     child: ContactInformationCopy(

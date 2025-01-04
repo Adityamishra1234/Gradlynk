@@ -19,6 +19,7 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdrawer.dart';
 
 import '../../../widgets/drawerfilter.dart';
+import '../dashboard.dart';
 import '../mark_attendance/qrCodeScreen.dart';
 
 class FinalShortList extends StatefulWidget {
@@ -77,46 +78,57 @@ class _FinalShortListState extends State<FinalShortList> {
         } catch (e) {
           print("object");
         }
-        Get.back();
+       Get.offAllNamed(DashBoard.routeNamed);
         return true;
       },
       child: Scaffold(
         key: _scaffoldKey,
           appBar:  AppBar(
             elevation: 2.5,
-            automaticallyImplyLeading: false,
-            actions: [
-              if (displayMobileLayout == true)
-                IconButton(
-                  icon: const Icon(Icons.arrow_back,
-                      color: Colors.black),
-                  onPressed: () => Get.back(),
-                ),
-              if (displayMobileLayout == false)
-                Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child:  IconButton(
-                    // icon: Image.asset("assets/images/gradlynk lense.png"),
-                    icon: const Icon(Icons.menu, color: Colors.black,),
-                    // icon: const Icon(Icons.menu,color: Colors.black,),
-                    onPressed: () {
-                      // Get.find<BaseController>().profileDataValidator();
-                      _scaffoldKey.currentState!.openDrawer();
-
-                      DrawerFilter();
-                    },
-                  ),
-                ),
-              // svgImage("work", Colors.transparent, 32, 32),
-              const Spacer(),
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: Image.network(
-                  "https://sieceducation.in/assets/assets/images/logo.png",
-                  width: 130,
-                  height: 30,
-                ),
+            centerTitle: true,
+            title: Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Image.network(
+                "https://sieceducation.in/assets/assets/images/logo.png",
+                width: 130,
+                height: 30,
               ),
+            ),
+            automaticallyImplyLeading: true,
+            iconTheme:
+            IconThemeData(color: ThemeConstants.blackcolor),
+            actions: [
+              // if (displayMobileLayout == true)
+              //   IconButton(
+              //     icon: const Icon(Icons.arrow_back,
+              //         color: Colors.black),
+              //     onPressed: () => Get.back(),
+              //   ),
+              // if (displayMobileLayout == false)
+              //   Padding(
+              //     padding: const EdgeInsets.only(left: 10),
+              //     child:  IconButton(
+              //       // icon: Image.asset("assets/images/gradlynk lense.png"),
+              //       icon: const Icon(Icons.menu, color: Colors.black,),
+              //       // icon: const Icon(Icons.menu,color: Colors.black,),
+              //       onPressed: () {
+              //         // Get.find<BaseController>().profileDataValidator();
+              //         _scaffoldKey.currentState!.openDrawer();
+              //
+              //         DrawerFilter();
+              //       },
+              //     ),
+              //   ),
+              // // svgImage("work", Colors.transparent, 32, 32),
+              // const Spacer(),
+              // Padding(
+              //   padding: const EdgeInsets.only(top: 10),
+              //   child: Image.network(
+              //     "https://sieceducation.in/assets/assets/images/logo.png",
+              //     width: 130,
+              //     height: 30,
+              //   ),
+              // ),
               // Padding(
               //   padding: const EdgeInsets.only(top: 10),
               //   child: Row(
@@ -137,7 +149,7 @@ class _FinalShortListState extends State<FinalShortList> {
               //     ],
               //   ),
               // ),
-              const Spacer(),
+              // const Spacer(),
               if (Get.find<BaseController>()
                   .meetingZoneStatus
                   .qrCodeGenerated ==
@@ -181,18 +193,14 @@ class _FinalShortListState extends State<FinalShortList> {
             // ),
             backgroundColor: Colors.white,
           ),
-          drawer: displayMobileLayout == false
-              ? CustomDrawer(
+          drawer:  CustomDrawer(
                   index: 5,
-                )
-              : null,
+                ),
+
           body: GetBuilder<FinalShortListController>(
             builder: (_) => Row(
               children: [
-                if (displayMobileLayout == true)
-                  CustomDrawer(
-                    index: 5,
-                  ),
+
                 Flexible(
                   child: Container(
                     color: ThemeConstants.whitecolor,

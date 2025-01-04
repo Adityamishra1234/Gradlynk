@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/endpoint.dart';
+import 'package:studentpanel/widgets/customBottomNavbar.dart';
 
 class LoginController extends GetxController with StateMixin {
   UserModel? userModel;
@@ -58,7 +59,9 @@ class LoginController extends GetxController with StateMixin {
       prefs.setString("userid", model!.user!.id.toString());
       prefs.setString("userToken", model!.token.toString());
       prefs.setString("enq_id", model!.user!.enqId.toString());
-      Get.offAllNamed(DashBoard.routeNamed, arguments: true);   // it should go to the
+      Get.offAllNamed(DashBoard.routeNamed, arguments: true);
+      // Get.offAllNamed(CustomButtomNavbar.routeNamed, arguments: true);
+      // it should go to the
 
         // custom bottom nav bar instead of dashboard.routenamed
       change(null, status: RxStatus.success());

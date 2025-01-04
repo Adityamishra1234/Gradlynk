@@ -1451,7 +1451,7 @@ class _ContactInformationInPopUpState extends State<ContactInformationInPopUp> {
         controller.genderIdSelected = null;
       } else if (gender[i].toString() == varTopic.toString()) {
         controller.genderSelected = gender[i];
-        controller.genderIdSelected = i + 1;
+        controller.genderIdSelected = i;
       }
     }
     controller.update();

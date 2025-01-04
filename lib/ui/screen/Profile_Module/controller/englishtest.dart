@@ -322,4 +322,44 @@ class EnglishTestController extends GetxController with StateMixin {
     change(null, status: RxStatus.success());
     update();
   }
+
+
+  getTestValidation(String? value) {
+    if (getNUllChecker(value) == false) {
+      if (examNameSelected == "PTE") {
+        if (double.parse(value!) >= 0 && double.parse(value) <= 90) {
+          if (double.parse(value) % 1 != 0) {
+            return SnackBarConstants.PTEValidation2;
+          }
+        } else {
+          return SnackBarConstants.PTEValidation1;
+        }
+      } else if (examNameSelected == "IELTS") {
+        if (double.parse(value!) >= 0 && double.parse(value) <= 9) {
+          if (double.parse(value) % 0.5 != 0) {
+            return SnackBarConstants.IELTSValidation2;
+          }
+        } else {
+          return SnackBarConstants.IELTSValidation1;
+        }
+      } else if (examNameSelected == "Cambridge") {
+        if (double.parse(value!) >= 0 && double.parse(value) <= 230) {
+          if (double.parse(value) % 0.5 != 0) {
+            return SnackBarConstants.CambridgeValidation2;
+          }
+        } else {
+          return SnackBarConstants.CambridgeSValidation1;
+        }
+      } else if (examNameSelected == "TOEFL") {
+        if (double.parse(value!) >= 0 && double.parse(value) <= 30) {
+          if (double.parse(value) % 0.5 != 0) {
+            return SnackBarConstants.ToeflSValidation2;
+          }
+        } else {
+          return SnackBarConstants.ToeflSValidation1;
+        }
+      }
+    }
+    return null;
+  }
 }

@@ -1,7 +1,10 @@
 import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:studentpanel/binding/applicationdetails.dart';
 import 'package:studentpanel/binding/applicationsummary.dart';
 import 'package:studentpanel/binding/coursesearch.dart';
@@ -16,6 +19,8 @@ import 'package:studentpanel/binding/visasummary.dart';
 import 'package:studentpanel/fcm/notification_service.dart';
 import 'package:studentpanel/presentation/features/event_history/event_history_view.dart';
 import 'package:studentpanel/ui/models/usermodel.dart';
+import 'package:studentpanel/ui/new_screens/authentication/intro_screen.dart';
+import 'package:studentpanel/ui/new_screens/authentication/login_screen.dart';
 import 'package:studentpanel/ui/screen/Delete/assigneeinformation.dart';
 import 'package:studentpanel/ui/screen/Profile_module_2/profile_view.dart';
 import 'package:studentpanel/ui/screen/course_search/coursesearch2.dart';
@@ -55,8 +60,12 @@ import 'package:studentpanel/ui/screen/track_application/trackapllication.dart';
 import 'package:studentpanel/ui/screen/upload_document/uploaddocument.dart';
 import 'package:studentpanel/ui/screen/welcomeScreen/welcome_view.dart';
 import 'package:studentpanel/utils/theme.dart';
+import 'package:studentpanel/widgets/customBottomNavbar.dart';
 import 'package:studentpanel/widgets/phonepelikeanimation.dart';
 import 'package:studentpanel/widgets/scrolltabbar.dart';
+import 'BlocData/Network/api_services.dart';
+import 'BlocData/Network/interceptors.dart';
+import 'BlocData/Repositories/field_repo.dart';
 import 'ui/screen/Login_Module/animationtest.dart';
 import 'ui/screen/My_Application/applicationcompletedetail.dart';
 import 'ui/screen/countryGuide/countryguide.dart';
@@ -91,7 +100,7 @@ Future<void> main() async {
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     systemNavigationBarColor: ThemeConstants.whitecolor,
-    systemStatusBarContrastEnforced: false,
+    // statusBarColor: ThemeConstants.greenColor,
     statusBarColor: ThemeConstants.bluecolor,
     statusBarIconBrightness: Brightness.light,
     systemNavigationBarIconBrightness: Brightness.light,
@@ -99,11 +108,21 @@ Future<void> main() async {
 
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  runApp(const MyApp());
+  Dio dio = Dio();
+  dio.interceptors.add(AppInterceptors());
+  final ApiService apiService = ApiService(dio);
+  final prefs = await SharedPreferences.getInstance();
+  runApp(MyApp(prefs, apiService));
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+  SharedPreferences prefs;
+  ApiService apiService;
+  MyApp(
+      this.prefs,
+      this.apiService, {
+        super.key,
+      });
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -148,315 +167,343 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      theme: ThemeData(
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-        useMaterial3: false,
-        primaryColor: const Color(0xff1a84b8),
-        // primarySwatch: Colors.blue,
-        pageTransitionsTheme: const PageTransitionsTheme(
-          builders: {
-            TargetPlatform.android: OpenUpwardsPageTransitionsBuilder(),
-            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-          }
+    return NotificationListener<OverscrollIndicatorNotification>(
+      onNotification: (OverscrollIndicatorNotification overScroll) {
+        overScroll.disallowIndicator();
+        return true;
+      },
+      child: MultiProvider(
+        providers: [
+          Provider<FieldRepo>.value(
+              value: FieldRepo(widget.apiService, widget.prefs)),
+        ],
+        child: GetMaterialApp(
+          theme: ThemeData(
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+            useMaterial3: false,
+            primaryColor: const Color(0xff1a84b8),
+            // primaryColor: ThemeConstants.greenColor,
+            primarySwatch: Colors.blue,
+            pageTransitionsTheme: const PageTransitionsTheme(
+              builders: {
+                TargetPlatform.android: OpenUpwardsPageTransitionsBuilder(),
+                TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+              }
+            ),
+          ),
+          title: "S2C_studentpanel",
+          debugShowCheckedModeBanner: false,
+          initialRoute: "/",
+          getPages: [
+            GetPage(
+              name: "/",
+              page: () => WelcomeView(),
+            ),
+            // GetPage(
+            //   name: "/",
+            //   page: () => const IntroductionScreen(),
+            // ),
+            GetPage(
+              name: ReceiveACallBackView.routeNamed,
+              page: () => ReceiveACallBackView(),
+            ),
+            GetPage(
+              name: FundParameter.routeNamed,
+              page: () => FundParameter(),
+            ),
+            GetPage(
+              name: FundPlan.routenamed,
+              page: () => FundPlan(),
+            ),
+
+            GetPage(
+              name: LetsGetStartedMainView.routeNamed,
+              page: () => LetsGetStartedMainView(),
+            ),
+
+            GetPage(
+              name: EventHistoryView.routeName,
+              page: () => const EventHistoryView(),
+            ),
+            GetPage(
+              name: Fundrequirement.routenamed,
+              page: () => Fundrequirement(),
+            ),
+            // GetPage(
+            //   name: "/",
+            //   page: () => LoginCopy(),
+            //   transition: Transition.fade,
+            // ),
+            GetPage(
+              name: LoginCopy.routeNamed,
+              page: () => const LoginCopy(),
+                transition: Transition.downToUp
+            ),
+            // GetPage(
+            //   name: LoginScreen.routeNamed,
+            //   page: () => LoginScreen(),
+            //   transition: Transition.fade,
+            // ),
+            // GetPage(
+            //   name: Login.routeNamed,
+            //   page: () => const Login(),
+            //   transition: Transition.fade,
+            // ),
+            GetPage(
+              name: RegisterationMainView.routeNmaed,
+              page: () => const RegisterationMainView(),
+                transition: Transition.downToUp
+            ),
+            GetPage(
+              name: MyDocument.routeNamed,
+              page: () => const MyDocument(),
+                transition: Transition.downToUp
+            ),
+            GetPage(
+              name: DashBoard.routeNamed,
+              // transition: Transition.cupertino,
+              binding: DashBoardBinding(),
+              page: () => const DashBoard(),
+              transition: Transition.upToDown,
+                transitionDuration: const Duration(milliseconds: 100),
+            ),
+            // GetPage(
+            //     name: ProfilePageCopy1.routeNamed,
+            //     transition: Transition.cupertino,
+            //     page: () => ProfilePageCopy1(),
+            //     binding: ProfilePageBinding()),
+            GetPage(
+                name: ProfilePageCopy.routeNamed,
+                // transition: Transition.zoom,
+                page: () => ProfilePageCopy(),
+                transition: Transition.downToUp,
+                binding: ProfilePageBinding()),
+            GetPage(
+                name: DetialScreen.routeNamed,
+                page: () => const DetialScreen(),
+                transition: Transition.downToUp,
+                // transition: Transition.fade,
+                binding: DetailBinding()),
+
+            //AnimationaPhonepe
+            GetPage(
+              name: AnimationaPhonepe.routeNamed,
+              transition: Transition.downToUp,
+              page: () => const AnimationaPhonepe(),
+            ),
+            GetPage(
+              name: OTPScreen.routeNamed,
+              // transition: Transition.fade,
+              page: () => OTPScreen(),
+              transition: Transition.downToUp,
+            ),
+            // GetPage(
+            //     name: UploadDocument.routeNamed,
+            //     transition: Transition.fade,
+            //     page: () =>  UploadDocument(),
+            //     binding: UploadDocumentBinding()),
+            GetPage(
+              name: ImageViewerScreen.routeNamed,
+              // transition: Transition.fade,
+              page: () => const ImageViewerScreen(),
+              transition: Transition.downToUp,
+            ),
+            GetPage(
+              name: CourseSearch2.routeNamed,
+              // transition: Transition.fade,
+              transition: Transition.downToUp,
+              binding: CourseSearchBinding(),
+              page: () => const CourseSearch2(),
+            ),
+
+            GetPage(
+              name: Test1.routeNamed,
+              transition: Transition.downToUp,
+              page: () => const Test1(),
+            ),
+
+            GetPage(
+              name: TestAutoScrollListView.routeNamed,
+              // transition: Transition.fade,
+              page: () => const TestAutoScrollListView(),
+              transition: Transition.downToUp,
+            ),
+            GetPage(
+                name: TrackApplication.routeNamed,
+                // transition: Transition.fade,
+                page: () => const TrackApplication(),
+                transition: Transition.downToUp,
+                binding: TrackApplicationBinding()),
+            GetPage(
+                name: TrackApplicationCopy.routeNamed,
+                // transition: Transition.fade,
+                transition: Transition.downToUp,
+                page: () => const TrackApplicationCopy(),
+                binding: TrackApplicationBinding()),
+            // GetPage(
+            //   name: LunchingPage.routeNamed,
+            //   transition: Transition.cupertino,
+            //   page: () => const LunchingPage(),
+            // ),
+            GetPage(
+              name: AnimationTest.routeNamed,
+              // transition: Transition.cupertino,
+              transition: Transition.downToUp,
+              page: () => const AnimationTest(),
+            ),
+
+            GetPage(
+              name: ScrollTabBar.routeNamed,
+              // transition: Transition.cupertino,
+              transition: Transition.downToUp,
+              page: () => ScrollTabBar(),
+            ),
+            GetPage(
+                name: ApplicationSummary.routeNamed,
+                // transition: Transition.cupertino,
+                transition: Transition.downToUp,
+                page: () => ApplicationSummary(),
+                binding: ApplicationSummaryBinding()),
+            GetPage(
+                name: ApplicationDetail.routeNamed,
+                // transition: Transition.cupertino,
+                transition: Transition.downToUp,
+                page: () => const ApplicationDetail(),
+                binding: ApplicationDetailBinding()),
+            GetPage(
+                name: FinalShortList.routeNamed,
+                // transition: Transition.cupertino,
+                transition: Transition.downToUp,
+                page: () => FinalShortList(),
+                binding: FinalShortListBinding()),
+            GetPage(
+              name: ReviewShortList.routeNamed,
+              page: () => ReviewShortList(),
+              // transition: Transition.fade,
+              transition: Transition.downToUp,
+              binding: ReviewShortListBinding(),
+            ),
+
+            GetPage(
+              name: AssigneeInformationCopy.routeNamed,
+              page: () => const AssigneeInformationCopy(),
+              transition: Transition.downToUp,
+              // transition: Transition.fade,
+            ),
+
+            GetPage(
+                name: VisaSummary.routeNamed,
+                page: () => VisaSummary(),
+                // transition: Transition.fade,
+                transition: Transition.downToUp,
+                binding: VisaSummaryBinding()),
+            GetPage(
+                name: UploadDocument.routeNamed,
+                page: () => UploadDocument(),
+                // transition: Transition.fade,
+                transition: Transition.downToUp,
+                binding: UploadDocumentBinding()),
+            GetPage(
+              name: DocumentTest.routeNamed,
+              page: () => const DocumentTest(),
+              // transition: Transition.fade,
+              transition: Transition.downToUp,
+            ),
+            GetPage(
+              name: TimepickerDemo.routeNamed,
+              page: () => const TimepickerDemo(),
+              // transition: Transition.fade,
+              transition: Transition.downToUp,
+            ),
+            GetPage(
+              name: StageProgress.routeNamed,
+              page: () => const StageProgress(),
+              // transition: Transition.fade,
+              transition: Transition.downToUp,
+            ),
+            GetPage(
+              name: ApplicationCompleteDetails.routeNamed,
+              page: () => const ApplicationCompleteDetails(),
+              // transition: Transition.fade,
+            ),
+            GetPage(
+              name: InternetConnectionStatusScreen.routeNamed,
+              page: () => InternetConnectionStatusScreen(),
+              // transition: Transition.fade,
+            ),
+            GetPage(
+              name: ScheduleExpertCall.routeNamed,
+              page: () => ScheduleExpertCall(),
+              // transition: Transition.fade,
+            ),
+            GetPage(
+              name: BookAnAppointment.routeNamed,
+              page: () => BookAnAppointment(),
+              // transition: Transition.fade,
+            ),GetPage(
+              name: CustomButtomNavbar.routeNamed,
+              page: () => CustomButtomNavbar(currentIndex: 0, context2: context),
+              // transition: Transition.fade,
+            ),
+            GetPage(
+              name: CountryGuide.routeNamed,
+              page: () => CountryGuide(),
+              // transition: Transition.fade,
+            ),
+            GetPage(
+              name: TestWidget.routeNamed,
+              page: () => const TestWidget(),
+              // transition: Transition.fade,
+            ),
+            GetPage(
+              name: TrackyourTickets.routeNamed,
+              page: () => TrackyourTickets(),
+              transition: Transition.downToUp,
+              // transition: Transition.fade,
+            ),
+            GetPage(
+              name: Suggestedimprovisation.routeNamed,
+              page: () => Suggestedimprovisation(),
+              // transition: Transition.fade,
+            ),
+            GetPage(
+              name: RaiseYourTicket.routeNamed,
+              page: () => RaiseYourTicket(),
+              transition: Transition.downToUp,
+              // transition: Transition.fade,
+            ),
+            GetPage(
+                name: ProfileView.routeNamed,
+                // transition: Transition.fade,
+                // page: () => ProfilePageCopy1(),
+                page: () => const ProfileView(),
+                transitionDuration: const Duration(milliseconds: 100),
+                transition: Transition.upToDown,
+
+                binding: ProfilePageBinding()),
+            GetPage(
+              name: EventDocumentUpload.routeNamed,
+              // transition: Transition.fade,
+              page: () => EventDocumentUpload(),
+              transition: Transition.upToDown,
+            ),
+            GetPage(
+              name: NotificationScreen.routeNamed,
+              // transition: Transition.fade,
+              page: () => NotificationScreen(),
+              transition: Transition.upToDown,
+              transitionDuration: const Duration(milliseconds: 100),
+            ),
+            GetPage(
+              name: LoginScreen.routeNamed,
+              // transition: Transition.fade,
+              page: () => const LoginScreen(),
+              transition: Transition.upToDown,
+              transitionDuration: const Duration(milliseconds: 100),
+            ),
+          ],
         ),
       ),
-      title: "S2C_studentpanel",
-      debugShowCheckedModeBanner: false,
-      initialRoute: "/",
-      getPages: [
-        GetPage(
-          name: "/",
-          page: () => WelcomeView(),
-        ),
-        GetPage(
-          name: ReceiveACallBackView.routeNamed,
-          page: () => ReceiveACallBackView(),
-        ),
-        GetPage(
-          name: FundParameter.routeNamed,
-          page: () => FundParameter(),
-        ),
-        GetPage(
-          name: FundPlan.routenamed,
-          page: () => FundPlan(),
-        ),
-
-        GetPage(
-          name: LetsGetStartedMainView.routeNamed,
-          page: () => LetsGetStartedMainView(),
-        ),
-
-        GetPage(
-          name: EventHistoryView.routeName,
-          page: () => const EventHistoryView(),
-        ),
-        GetPage(
-          name: Fundrequirement.routenamed,
-          page: () => Fundrequirement(),
-        ),
-        // GetPage(
-        //   name: "/",
-        //   page: () => LoginCopy(),
-        //   transition: Transition.fade,
-        // ),
-        GetPage(
-          name: LoginCopy.routeNamed,
-          page: () => const LoginCopy(),
-            transition: Transition.downToUp
-        ),
-        // GetPage(
-        //   name: LoginScreen.routeNamed,
-        //   page: () => LoginScreen(),
-        //   transition: Transition.fade,
-        // ),
-        // GetPage(
-        //   name: Login.routeNamed,
-        //   page: () => const Login(),
-        //   transition: Transition.fade,
-        // ),
-        GetPage(
-          name: RegisterationMainView.routeNmaed,
-          page: () => const RegisterationMainView(),
-            transition: Transition.downToUp
-        ),
-        GetPage(
-          name: MyDocument.routeNamed,
-          page: () => const MyDocument(),
-            transition: Transition.downToUp
-        ),
-        GetPage(
-          name: DashBoard.routeNamed,
-          // transition: Transition.cupertino,
-          binding: DashBoardBinding(),
-          page: () => const DashBoard(),
-          transition: Transition.upToDown,
-            transitionDuration: const Duration(milliseconds: 100),
-        ),
-        // GetPage(
-        //     name: ProfilePageCopy1.routeNamed,
-        //     transition: Transition.cupertino,
-        //     page: () => ProfilePageCopy1(),
-        //     binding: ProfilePageBinding()),
-        GetPage(
-            name: ProfilePageCopy.routeNamed,
-            // transition: Transition.zoom,
-            page: () => ProfilePageCopy(),
-            transition: Transition.downToUp,
-            binding: ProfilePageBinding()),
-        GetPage(
-            name: DetialScreen.routeNamed,
-            page: () => const DetialScreen(),
-            transition: Transition.downToUp,
-            // transition: Transition.fade,
-            binding: DetailBinding()),
-
-        //AnimationaPhonepe
-        GetPage(
-          name: AnimationaPhonepe.routeNamed,
-          transition: Transition.downToUp,
-          page: () => const AnimationaPhonepe(),
-        ),
-        GetPage(
-          name: OTPScreen.routeNamed,
-          // transition: Transition.fade,
-          page: () => OTPScreen(),
-          transition: Transition.downToUp,
-        ),
-        // GetPage(
-        //     name: UploadDocument.routeNamed,
-        //     transition: Transition.fade,
-        //     page: () =>  UploadDocument(),
-        //     binding: UploadDocumentBinding()),
-        GetPage(
-          name: ImageViewerScreen.routeNamed,
-          // transition: Transition.fade,
-          page: () => const ImageViewerScreen(),
-          transition: Transition.downToUp,
-        ),
-        GetPage(
-          name: CourseSearch2.routeNamed,
-          // transition: Transition.fade,
-          transition: Transition.downToUp,
-          binding: CourseSearchBinding(),
-          page: () => const CourseSearch2(),
-        ),
-
-        GetPage(
-          name: Test1.routeNamed,
-          transition: Transition.downToUp,
-          page: () => const Test1(),
-        ),
-
-        GetPage(
-          name: TestAutoScrollListView.routeNamed,
-          // transition: Transition.fade,
-          page: () => const TestAutoScrollListView(),
-          transition: Transition.downToUp,
-        ),
-        GetPage(
-            name: TrackApplication.routeNamed,
-            // transition: Transition.fade,
-            page: () => const TrackApplication(),
-            transition: Transition.downToUp,
-            binding: TrackApplicationBinding()),
-        GetPage(
-            name: TrackApplicationCopy.routeNamed,
-            // transition: Transition.fade,
-            transition: Transition.downToUp,
-            page: () => const TrackApplicationCopy(),
-            binding: TrackApplicationBinding()),
-        // GetPage(
-        //   name: LunchingPage.routeNamed,
-        //   transition: Transition.cupertino,
-        //   page: () => const LunchingPage(),
-        // ),
-        GetPage(
-          name: AnimationTest.routeNamed,
-          // transition: Transition.cupertino,
-          transition: Transition.downToUp,
-          page: () => const AnimationTest(),
-        ),
-
-        GetPage(
-          name: ScrollTabBar.routeNamed,
-          // transition: Transition.cupertino,
-          transition: Transition.downToUp,
-          page: () => ScrollTabBar(),
-        ),
-        GetPage(
-            name: ApplicationSummary.routeNamed,
-            // transition: Transition.cupertino,
-            transition: Transition.downToUp,
-            page: () => ApplicationSummary(),
-            binding: ApplicationSummaryBinding()),
-        GetPage(
-            name: ApplicationDetail.routeNamed,
-            // transition: Transition.cupertino,
-            transition: Transition.downToUp,
-            page: () => const ApplicationDetail(),
-            binding: ApplicationDetailBinding()),
-        GetPage(
-            name: FinalShortList.routeNamed,
-            // transition: Transition.cupertino,
-            transition: Transition.downToUp,
-            page: () => FinalShortList(),
-            binding: FinalShortListBinding()),
-        GetPage(
-          name: ReviewShortList.routeNamed,
-          page: () => ReviewShortList(),
-          // transition: Transition.fade,
-          transition: Transition.downToUp,
-          binding: ReviewShortListBinding(),
-        ),
-
-        GetPage(
-          name: AssigneeInformationCopy.routeNamed,
-          page: () => const AssigneeInformationCopy(),
-          transition: Transition.downToUp,
-          // transition: Transition.fade,
-        ),
-
-        GetPage(
-            name: VisaSummary.routeNamed,
-            page: () => VisaSummary(),
-            // transition: Transition.fade,
-            transition: Transition.downToUp,
-            binding: VisaSummaryBinding()),
-        GetPage(
-            name: UploadDocument.routeNamed,
-            page: () => UploadDocument(),
-            // transition: Transition.fade,
-            transition: Transition.downToUp,
-            binding: UploadDocumentBinding()),
-        GetPage(
-          name: DocumentTest.routeNamed,
-          page: () => const DocumentTest(),
-          // transition: Transition.fade,
-          transition: Transition.downToUp,
-        ),
-        GetPage(
-          name: TimepickerDemo.routeNamed,
-          page: () => const TimepickerDemo(),
-          // transition: Transition.fade,
-          transition: Transition.downToUp,
-        ),
-        GetPage(
-          name: StageProgress.routeNamed,
-          page: () => const StageProgress(),
-          // transition: Transition.fade,
-          transition: Transition.downToUp,
-        ),
-        GetPage(
-          name: ApplicationCompleteDetails.routeNamed,
-          page: () => const ApplicationCompleteDetails(),
-          // transition: Transition.fade,
-        ),
-        GetPage(
-          name: InternetConnectionStatusScreen.routeNamed,
-          page: () => InternetConnectionStatusScreen(),
-          // transition: Transition.fade,
-        ),
-        GetPage(
-          name: ScheduleExpertCall.routeNamed,
-          page: () => ScheduleExpertCall(),
-          // transition: Transition.fade,
-        ),
-        GetPage(
-          name: BookAnAppointment.routeNamed,
-          page: () => BookAnAppointment(),
-          // transition: Transition.fade,
-        ),
-        GetPage(
-          name: CountryGuide.routeNamed,
-          page: () => CountryGuide(),
-          // transition: Transition.fade,
-        ),
-        GetPage(
-          name: TestWidget.routeNamed,
-          page: () => const TestWidget(),
-          // transition: Transition.fade,
-        ),
-        GetPage(
-          name: TrackyourTickets.routeNamed,
-          page: () => TrackyourTickets(),
-          transition: Transition.downToUp,
-          // transition: Transition.fade,
-        ),
-        GetPage(
-          name: Suggestedimprovisation.routeNamed,
-          page: () => Suggestedimprovisation(),
-          // transition: Transition.fade,
-        ),
-        GetPage(
-          name: RaiseYourTicket.routeNamed,
-          page: () => RaiseYourTicket(),
-          transition: Transition.downToUp,
-          // transition: Transition.fade,
-        ),
-        GetPage(
-            name: ProfileView.routeNamed,
-            // transition: Transition.fade,
-            // page: () => ProfilePageCopy1(),
-            page: () => const ProfileView(),
-            transitionDuration: const Duration(milliseconds: 100),
-            transition: Transition.upToDown,
-
-            binding: ProfilePageBinding()),
-        GetPage(
-          name: EventDocumentUpload.routeNamed,
-          // transition: Transition.fade,
-          page: () => EventDocumentUpload(),
-          transition: Transition.upToDown,
-        ),
-        GetPage(
-          name: NotificationScreen.routeNamed,
-          // transition: Transition.fade,
-          page: () => NotificationScreen(),
-          transition: Transition.upToDown,
-          transitionDuration: const Duration(milliseconds: 100),
-        ),
-      ],
     );
   }
 }

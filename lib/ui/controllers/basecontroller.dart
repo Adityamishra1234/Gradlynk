@@ -70,18 +70,19 @@ class BaseController extends GetxController with StateMixin {
 
   bool loadinValidatorDataForDashboard = false;
   profileDataValidator() async {
-    ///todo
-    ///
-    ///
     try {
       loadinValidatorDataForDashboard = true;
-      update();
+
 
       var x = await apiServices.profileDataValidation(model1.id!);
+      print("this is coming : ${x}");
       var z = ProfileDataValidatorModel.fromJson(x);
       data.value = z;
-      loadinValidatorDataForDashboard = false;
+
       calculateProfilePercentage();
+      loadinValidatorDataForDashboard = false;
+      update();
+
       return z;
     } on Exception catch (e) {
       await StudentPanelBase().errorHandle(

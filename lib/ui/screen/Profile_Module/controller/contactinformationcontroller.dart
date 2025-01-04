@@ -306,9 +306,10 @@ class ContactInformationController extends GetxController with StateMixin {
         getToast(SnackBarConstants.maritalStatusError!);
       } else if (getNUllChecker(mobileNumber.text) == true) {
         getToast(SnackBarConstants.mobileNumberError!);
-      } else if (getNUllChecker(alt_Number.text) == true ||
-          alt_Number.text.length != 10) {
-        getToast(SnackBarConstants.alternateNumberError!);
+      } else if (getNUllChecker(alt_Number.text) != true) {
+        if (alt_Number.text.length != 10) {
+          getToast(SnackBarConstants.alternateNumberError!);
+        }
       } else if (getNUllChecker(email.text)) {
         getToast(SnackBarConstants.emailError!);
       } else if (getNUllChecker(countrySelected)) {

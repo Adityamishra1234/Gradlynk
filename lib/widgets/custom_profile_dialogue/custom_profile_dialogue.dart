@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:studentpanel/utils/config/size_config.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
@@ -68,13 +67,12 @@ class CustomProfileDialogue extends StatelessWidget {
                             left: 20, top: 10, bottom: 10),
                         child: InkWell(
                             onTap: viewDetail,
-                            child: Container(
-                                child: Text(
-                              "View Details",
-                              style: TextStyle(
-                                  fontSize: 13,
-                                  color: ThemeConstants.orangeColor),
-                            ))),
+                            child: Text(
+                                                          "View Details",
+                                                          style: TextStyle(
+                              fontSize: 13,
+                              color: ThemeConstants.orangeColor),
+                                                        )),
                       ),
                   ],
                 ),
@@ -98,9 +96,12 @@ class CustomProfileDialogue extends StatelessWidget {
                     children: [
                       InkWell(
                         onTap: backButton,
-                        child: CustomAutoSizeTextMontserrat(
-                          textColor: ThemeConstants.bluecolor,
-                          text: 'Cancel',
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: CustomAutoSizeTextMontserrat(
+                            textColor: ThemeConstants.bluecolor,
+                            text: 'Cancel',
+                          ),
                         ),
                       ),
                       InkWell(
@@ -109,7 +110,6 @@ class CustomProfileDialogue extends StatelessWidget {
                           // color: ThemeConstants.bluecolor,
                           decoration: BoxDecoration(
                               color: ThemeConstants.bluecolor,
-
                               borderRadius: BorderRadius.circular(10)),
                           padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 8),

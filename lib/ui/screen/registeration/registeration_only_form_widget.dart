@@ -94,7 +94,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                               child: CustomAutoSizeTextMontserrat(
                                 mandatory: true,
                                 text: 'Name',
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w500,
                                 fontSize: 13,
                               ),
                             ),
@@ -139,7 +139,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                             child: CustomAutoSizeTextMontserrat(
                               text: 'Phone Number',
                               mandatory: true,
-                              fontWeight: FontWeight.w400,
+                              fontWeight: FontWeight.w500,
                               fontSize: 13,
                             ),
                           ),
@@ -170,7 +170,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                               child: CustomAutoSizeTextMontserrat(
                                 text: 'Email',
                                 mandatory: true,
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w500,
                                 fontSize: 13,
                               ),
                             ),
@@ -205,7 +205,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                               child: CustomAutoSizeTextMontserrat(
                                 text: 'Nearest Siec Branch',
                                 mandatory: true,
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w500,
                                 fontSize: 13,
                               ),
                             ),
@@ -232,7 +232,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                               child: CustomAutoSizeTextMontserrat(
                                 mandatory: true,
                                 text: 'Target Service',
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w500,
                                 fontSize: 13,
                               ),
                             ),
@@ -261,7 +261,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                                 child: CustomAutoSizeTextMontserrat(
                                   mandatory: true,
                                   text: 'Target Test',
-                                  fontWeight: FontWeight.w400,
+                                  fontWeight: FontWeight.w500,
                                   fontSize: 13,
                                 ),
                               ),
@@ -301,7 +301,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                               child: CustomAutoSizeTextMontserrat(
                                 mandatory: true,
                                 text: 'Target Destination',
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w500,
                                 fontSize: 13,
                               ),
                             ),
@@ -328,7 +328,7 @@ class _RegisterationFormWidgetState extends State<RegisterationFormWidget> {
                               child: CustomAutoSizeTextMontserrat(
                                 mandatory: true,
                                 text: 'How did you hear about us?',
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w500,
                                 fontSize: 13,
                               ),
                             ),

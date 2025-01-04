@@ -10,6 +10,8 @@ import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 
+import '../../../widgets/customtextfield.dart';
+
 class QualificationWidget extends StatefulWidget {
   bool updateForEdit;
   int? index;
@@ -168,23 +170,29 @@ class _QualificationWidgetState extends State<QualificationWidget> {
             Obx(
               () => Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10),
-                child: TextField(
+                child: CustomTextField(
+                  hint: "Enter Qualification Name",
+                  validator: Validator.notEmpty,
                   controller:
                       QualificationDetailsController.qualificationName.value,
-                  scrollPadding: EdgeInsets.symmetric(
-                      vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-                  decoration: InputDecoration(
-                      hintText: "Enter Qualification Name",
-                      filled: true,
-                      fillColor: ThemeConstants.lightblueColor,
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      hintStyle:
-                          ThemeConstants.montserrattextstyleForPlaceHolder),
-                  style: ThemeConstants.montserrattextstyleForFilledText,
                 ),
+                // child: TextField(
+                //   controller:
+                //       QualificationDetailsController.qualificationName.value,
+                //   scrollPadding: EdgeInsets.symmetric(
+                //       vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+                //   decoration: InputDecoration(
+                //       hintText: "Enter Qualification Name",
+                //       filled: true,
+                //       fillColor: ThemeConstants.lightblueColor,
+                //       border: OutlineInputBorder(
+                //         borderSide: BorderSide.none,
+                //         borderRadius: BorderRadius.circular(15.0),
+                //       ),
+                //       hintStyle:
+                //           ThemeConstants.montserrattextstyleForPlaceHolder),
+                //   style: ThemeConstants.montserrattextstyleForFilledText,
+                // ),
               ),
             ),
             Padding(
@@ -241,7 +249,7 @@ class _QualificationWidgetState extends State<QualificationWidget> {
               padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
               child: Align(
                 alignment: AlignmentDirectional.topStart,
-                child: CustomAutoSizeTextMontserrat(
+                child: CustomAutoSizeTextMontserrat(mandatory: true,
                   text: "Year of Passing",
                   textColor: ThemeConstants.TextColor,
                   fontSize: SizeConfig.fontLabelSize,
@@ -275,54 +283,60 @@ class _QualificationWidgetState extends State<QualificationWidget> {
             Obx(
               () => Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10),
-                child: TextFormField(
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                child: CustomTextField(
+                  hint: "CGPA",
                   controller: QualificationDetailsController.cgpa.value,
-                  keyboardType: TextInputType.number,
-                  scrollPadding: EdgeInsets.only(
-                      bottom: MediaQuery.of(context).viewInsets.bottom + 40),
-                  decoration: InputDecoration(
-                    hintText: "CGPA",
-                    filled: true,
-                    hintStyle: ThemeConstants.montserrattextstyleForPlaceHolder,
-                    fillColor: ThemeConstants.lightblueColor,
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
-                  ),
-                  style: ThemeConstants.montserrattextstyleForFilledText,
-                  onChanged: (value) {
-                    try {
-                      if (getNUllChecker(QualificationDetailsController
-                                  .cgpa.value.text) ==
-                              false &&
-                          getNUllChecker(QualificationDetailsController
-                                  .multiplier.value.text) ==
-                              false) {
-                        QualificationDetailsController.percentage.value.text =
-                            (double.parse(QualificationDetailsController
-                                        .cgpa.value.text) *
-                                    double.parse(QualificationDetailsController
-                                        .multiplier.value.text))
-                                .toString();
-                      }
-                    } catch (e) {}
-
-                    setState(() {});
-                  },
-                  validator: (value) {
-                    if (getNUllChecker(value) == false) {
-                      if (double.parse(value!) > 11) {
-                        return 'CGPA in Between 0 to 10';
-                      } else {
-                        return null;
-                      }
-                    } else {
-                      return "CGPA in Between 0 to 10";
-                    }
-                  },
+                  keybord: TextInputType.number,
+                  validator: Validator.cgpa,
                 ),
+                // child: TextFormField(
+                //   autovalidateMode: AutovalidateMode.onUserInteraction,
+                //   controller: QualificationDetailsController.cgpa.value,
+                //   keyboardType: TextInputType.number,
+                //   scrollPadding: EdgeInsets.only(
+                //       bottom: MediaQuery.of(context).viewInsets.bottom + 40),
+                //   decoration: InputDecoration(
+                //     hintText: "CGPA",
+                //     filled: true,
+                //     hintStyle: ThemeConstants.montserrattextstyleForPlaceHolder,
+                //     fillColor: ThemeConstants.lightblueColor,
+                //     border: OutlineInputBorder(
+                //       borderSide: BorderSide.none,
+                //       borderRadius: BorderRadius.circular(15.0),
+                //     ),
+                //   ),
+                //   style: ThemeConstants.montserrattextstyleForFilledText,
+                //   onChanged: (value) {
+                //     try {
+                //       if (getNUllChecker(QualificationDetailsController
+                //                   .cgpa.value.text) ==
+                //               false &&
+                //           getNUllChecker(QualificationDetailsController
+                //                   .multiplier.value.text) ==
+                //               false) {
+                //         QualificationDetailsController.percentage.value.text =
+                //             (double.parse(QualificationDetailsController
+                //                         .cgpa.value.text) *
+                //                     double.parse(QualificationDetailsController
+                //                         .multiplier.value.text))
+                //                 .toString();
+                //       }
+                //     } catch (e) {}
+                //
+                //     setState(() {});
+                //   },
+                //   validator: (value) {
+                //     if (getNUllChecker(value) == false) {
+                //       if (double.parse(value!) > 11) {
+                //         return 'CGPA in Between 0 to 10';
+                //       } else {
+                //         return null;
+                //       }
+                //     } else {
+                //       return "CGPA in Between 0 to 10";
+                //     }
+                //   },
+                // ),
               ),
             ),
             Padding(
@@ -340,56 +354,62 @@ class _QualificationWidgetState extends State<QualificationWidget> {
             Obx(
               () => Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10),
-                child: TextFormField(
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                child: CustomTextField(
+                  hint: "Multiplier",
                   controller: QualificationDetailsController.multiplier.value,
-                  keyboardType: TextInputType.number,
-                  scrollPadding: EdgeInsets.only(
-                      bottom: MediaQuery.of(context).viewInsets.bottom + 40),
-                  decoration: InputDecoration(
-                      hintText: "Multiplier",
-                      filled: true,
-                      fillColor: ThemeConstants.lightblueColor,
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      hintStyle:
-                          ThemeConstants.montserrattextstyleForPlaceHolder),
-                  style: ThemeConstants.montserrattextstyle,
-                  onChanged: (value) {
-                    try {
-                      if (getNUllChecker(QualificationDetailsController
-                                  .cgpa.value.text) ==
-                              false &&
-                          getNUllChecker(QualificationDetailsController
-                                  .multiplier.value.text) ==
-                              false) {
-                        QualificationDetailsController.percentage.value.text =
-                            (double.parse(QualificationDetailsController
-                                        .cgpa.value.text) *
-                                    double.parse(QualificationDetailsController
-                                        .multiplier.value.text))
-                                .toString();
-                      }
-                    } catch (e) {}
-
-                    setState(() {});
-                  },
-                  validator: (value) {
-                    try {
-                      if (getNUllChecker(value) == false) {
-                        if (double.parse(value!) > 11) {
-                          return 'Multiplier in Between 0 to 10';
-                        } else {
-                          return null;
-                        }
-                      } else {
-                        return "Multiplier in Between 0 to 10";
-                      }
-                    } catch (e) {}
-                  },
+                  keybord: TextInputType.number,
+                  validator: Validator.multiplier,
                 ),
+                // child: TextFormField(
+                //   autovalidateMode: AutovalidateMode.onUserInteraction,
+                //   controller: QualificationDetailsController.multiplier.value,
+                //   keyboardType: TextInputType.number,
+                //   scrollPadding: EdgeInsets.only(
+                //       bottom: MediaQuery.of(context).viewInsets.bottom + 40),
+                //   decoration: InputDecoration(
+                //       hintText: "Multiplier",
+                //       filled: true,
+                //       fillColor: ThemeConstants.lightblueColor,
+                //       border: OutlineInputBorder(
+                //         borderSide: BorderSide.none,
+                //         borderRadius: BorderRadius.circular(15.0),
+                //       ),
+                //       hintStyle:
+                //           ThemeConstants.montserrattextstyleForPlaceHolder),
+                //   style: ThemeConstants.montserrattextstyle,
+                //   onChanged: (value) {
+                //     try {
+                //       if (getNUllChecker(QualificationDetailsController
+                //                   .cgpa.value.text) ==
+                //               false &&
+                //           getNUllChecker(QualificationDetailsController
+                //                   .multiplier.value.text) ==
+                //               false) {
+                //         QualificationDetailsController.percentage.value.text =
+                //             (double.parse(QualificationDetailsController
+                //                         .cgpa.value.text) *
+                //                     double.parse(QualificationDetailsController
+                //                         .multiplier.value.text))
+                //                 .toString();
+                //       }
+                //     } catch (e) {}
+                //
+                //     setState(() {});
+                //   },
+                //   validator: (value) {
+                //     try {
+                //       if (getNUllChecker(value) == false) {
+                //         if (double.parse(value!) > 11) {
+                //           return 'Multiplier in Between 0 to 10';
+                //         } else {
+                //           return null;
+                //         }
+                //       } else {
+                //         return "Multiplier in Between 0 to 10";
+                //       }
+                //     } catch (e) {}
+                //   },
+                // ),
               ),
             ),
             Padding(
@@ -407,37 +427,43 @@ class _QualificationWidgetState extends State<QualificationWidget> {
             Obx(
               () => Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10),
-                child: TextFormField(
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                child: CustomTextField(
+                  hint: "Enter your Percentage",
                   controller: QualificationDetailsController.percentage.value,
-                  keyboardType: TextInputType.number,
-                  scrollPadding: EdgeInsets.only(
-                      bottom: MediaQuery.of(context).viewInsets.bottom + 40),
-                  style: ThemeConstants.montserrattextstyleForFilledText,
-                  decoration: InputDecoration(
-                    hintText: "Enter your Percentage",
-                    filled: true,
-                    hintStyle: ThemeConstants.montserrattextstyleForPlaceHolder,
-                    fillColor: ThemeConstants.lightblueColor,
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
-                  ),
-                  validator: (value) {
-                    try {
-                      if (getNUllChecker(value) == false) {
-                        if (double.parse(value!) > 101) {
-                          return 'Percentage in Between 0 to 100';
-                        } else {
-                          return null;
-                        }
-                      } else {
-                        return "Percentage in Between 0 to 100";
-                      }
-                    } catch (e) {}
-                  },
+                  keybord: TextInputType.number,
+                  validator: Validator.percentage,
                 ),
+                // child: TextFormField(
+                //   autovalidateMode: AutovalidateMode.onUserInteraction,
+                //   controller: QualificationDetailsController.percentage.value,
+                //   keyboardType: TextInputType.number,
+                //   scrollPadding: EdgeInsets.only(
+                //       bottom: MediaQuery.of(context).viewInsets.bottom + 40),
+                //   style: ThemeConstants.montserrattextstyleForFilledText,
+                //   decoration: InputDecoration(
+                //     hintText: "Enter your Percentage",
+                //     filled: true,
+                //     hintStyle: ThemeConstants.montserrattextstyleForPlaceHolder,
+                //     fillColor: ThemeConstants.lightblueColor,
+                //     border: OutlineInputBorder(
+                //       borderSide: BorderSide.none,
+                //       borderRadius: BorderRadius.circular(15.0),
+                //     ),
+                //   ),
+                //   validator: (value) {
+                //     try {
+                //       if (getNUllChecker(value) == false) {
+                //         if (double.parse(value!) > 101) {
+                //           return 'Percentage in Between 0 to 100';
+                //         } else {
+                //           return null;
+                //         }
+                //       } else {
+                //         return "Percentage in Between 0 to 100";
+                //       }
+                //     } catch (e) {}
+                //   },
+                // ),
               ),
             ),
             Padding(
@@ -574,23 +600,28 @@ class _QualificationWidgetState extends State<QualificationWidget> {
             Obx(
               () => Padding(
                 padding: const EdgeInsets.only(left: 10, right: 10),
-                child: TextField(
-                  style: ThemeConstants.montserrattextstyleForFilledText,
-                  keyboardType: TextInputType.number,
+                child: CustomTextField(
+                  hint: "Enter backlogs",
                   controller: QualificationDetailsController.reApper.value,
-                  scrollPadding: EdgeInsets.symmetric(
-                      vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-                  decoration: InputDecoration(
-                      hintText: "Enter backlogs",
-                      filled: true,
-                      fillColor: ThemeConstants.lightblueColor,
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      hintStyle:
-                          ThemeConstants.montserrattextstyleForPlaceHolder),
+                  keybord: TextInputType.number,
                 ),
+                // child: TextField(
+                //   style: ThemeConstants.montserrattextstyleForFilledText,
+                //   keyboardType: TextInputType.number,
+                //   controller: QualificationDetailsController.reApper.value,
+                //   scrollPadding: EdgeInsets.symmetric(
+                //       vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+                //   decoration: InputDecoration(
+                //       hintText: "Enter backlogs",
+                //       filled: true,
+                //       fillColor: ThemeConstants.lightblueColor,
+                //       border: OutlineInputBorder(
+                //         borderSide: BorderSide.none,
+                //         borderRadius: BorderRadius.circular(15.0),
+                //       ),
+                //       hintStyle:
+                //           ThemeConstants.montserrattextstyleForPlaceHolder),
+                // ),
               ),
             ),
             if (widget.updateForEdit == true)

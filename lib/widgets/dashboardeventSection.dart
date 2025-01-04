@@ -89,7 +89,7 @@ class DashboardEventSection extends StatelessWidget {
                         if (Get.find<BaseController>()
                                 .meetingZoneStatus
                                 .markAttendance ==
-                            true)
+                            false)
                           InkWell(
                             onTap: () {
                               Get.to(CodeScreen());
@@ -130,7 +130,7 @@ class DashboardEventSection extends StatelessWidget {
                         if (Get.find<BaseController>()
                                 .meetingZoneStatus
                                 .expressPass ==
-                            true)
+                            false)
                           InkWell(
                             onTap: () {
                               Get.to(IntakeScreen());
@@ -166,7 +166,7 @@ class DashboardEventSection extends StatelessWidget {
                         if (Get.find<BaseController>()
                                 .meetingZoneStatus
                                 .expressPassGenerated ==
-                            true)
+                            false)
                           InkWell(
                             onTap: () {
                               try {
@@ -211,7 +211,7 @@ class DashboardEventSection extends StatelessWidget {
                         if (Get.find<BaseController>()
                                 .meetingZoneStatus
                                 .expressPassGenerated ==
-                            true)
+                            false)
                           InkWell(
                             onTap: () {
                               try {

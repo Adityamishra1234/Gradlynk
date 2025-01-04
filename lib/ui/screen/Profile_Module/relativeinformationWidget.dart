@@ -11,6 +11,8 @@ import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 import 'package:studentpanel/widgets/custombutton.dart';
 
+import '../../../widgets/customtextfield.dart';
+
 class RelativeInformationWidget extends StatelessWidget {
   int? index;
   bool updatForEdit;
@@ -223,32 +225,38 @@ class RelativeInformationWidget extends StatelessWidget {
       ),
       Obx(() => Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
-            child: TextFormField(
-              autofocus: true,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              controller: controller.realtiveEmail.value,
-              scrollPadding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).viewInsets.bottom + 40),
-              decoration: InputDecoration(
-                hintText: "Enter Relative Email",
-                filled: true,
-                fillColor: ThemeConstants.lightblueColor,
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-              ),
-              style: ThemeConstants.montserrattextstyle,
-              // onChanged: (value) {
-              //   if (relativeemailkey.currentState!.validate()) {
-              //     relativeemailkey.currentState!.save();
-              //   }
-              // },
-              validator: (value) {
-                print(value);
-                return getEmailvaliation(value);
-              },
-            ),
+        child: CustomTextField(
+          hint:   "Enter Relative Email",
+          controller:  controller.realtiveEmail.value,
+          keybord: TextInputType.emailAddress,
+          validator: Validator.email,
+        ),
+            // child: TextFormField(
+            //   autofocus: true,
+            //   autovalidateMode: AutovalidateMode.onUserInteraction,
+            //   controller: controller.realtiveEmail.value,
+            //   scrollPadding: EdgeInsets.only(
+            //       bottom: MediaQuery.of(context).viewInsets.bottom + 40),
+            //   decoration: InputDecoration(
+            //     hintText: "Enter Relative Email",
+            //     filled: true,
+            //     fillColor: ThemeConstants.lightblueColor,
+            //     border: OutlineInputBorder(
+            //       borderSide: BorderSide.none,
+            //       borderRadius: BorderRadius.circular(15.0),
+            //     ),
+            //   ),
+            //   style: ThemeConstants.montserrattextstyle,
+            //   // onChanged: (value) {
+            //   //   if (relativeemailkey.currentState!.validate()) {
+            //   //     relativeemailkey.currentState!.save();
+            //   //   }
+            //   // },
+            //   validator: (value) {
+            //     print(value);
+            //     return getEmailvaliation(value);
+            //   },
+            // ),
           )),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -266,33 +274,39 @@ class RelativeInformationWidget extends StatelessWidget {
       Obx(
         () => Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
-          child: TextFormField(
-            autofocus: true,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-
-            controller: controller.contactOfRelative.value,
-            keyboardType: TextInputType.number,
-            scrollPadding: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom + 40),
-            decoration: InputDecoration(
-              hintText: "Enter Contact of Relative",
-              filled: true,
-              fillColor: ThemeConstants.lightblueColor,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-            ),
-            style: ThemeConstants.montserrattextstyle,
-            // onChanged: (value) {
-            //   if (contactkey.currentState!.validate()) {
-            //     contactkey.currentState!.save();
-            //   }
-            // },
-            validator: (value) {
-              return getPhoneNumbervalidation(value);
-            },
+          child: CustomTextField(
+            hint:  "Enter Contact of Relative",
+            controller:  controller.contactOfRelative.value,
+            keybord: TextInputType.number,
+            validator: Validator.phone,
           ),
+          // child: TextFormField(
+          //   autofocus: true,
+          //   autovalidateMode: AutovalidateMode.onUserInteraction,
+          //
+          //   controller: controller.contactOfRelative.value,
+          //   keyboardType: TextInputType.number,
+          //   scrollPadding: EdgeInsets.only(
+          //       bottom: MediaQuery.of(context).viewInsets.bottom + 40),
+          //   decoration: InputDecoration(
+          //     hintText: "Enter Contact of Relative",
+          //     filled: true,
+          //     fillColor: ThemeConstants.lightblueColor,
+          //     border: OutlineInputBorder(
+          //       borderSide: BorderSide.none,
+          //       borderRadius: BorderRadius.circular(15.0),
+          //     ),
+          //   ),
+          //   style: ThemeConstants.montserrattextstyle,
+          //   // onChanged: (value) {
+          //   //   if (contactkey.currentState!.validate()) {
+          //   //     contactkey.currentState!.save();
+          //   //   }
+          //   // },
+          //   validator: (value) {
+          //     return getPhoneNumbervalidation(value);
+          //   },
+          // ),
         ),
       ),
       Padding(
@@ -311,22 +325,27 @@ class RelativeInformationWidget extends StatelessWidget {
       Obx(
         () => Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
-          child: TextField(
-            autofocus: true,
-            controller: controller.addresOfrelative.value,
-            scrollPadding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-            decoration: InputDecoration(
-              hintText: "Enter Contact of Relative",
-              filled: true,
-              fillColor: ThemeConstants.lightblueColor,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-            ),
-            style: ThemeConstants.montserrattextstyle,
+          child: CustomTextField(
+            hint:  "Enter Contact of Relative",
+            controller:  controller.addresOfrelative.value,
+            validator: Validator.notEmpty,
           ),
+          // child: TextField(
+          //   autofocus: true,
+          //   controller: controller.addresOfrelative.value,
+          //   scrollPadding: EdgeInsets.symmetric(
+          //       vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+          //   decoration: InputDecoration(
+          //     hintText: "Enter Contact of Relative",
+          //     filled: true,
+          //     fillColor: ThemeConstants.lightblueColor,
+          //     border: OutlineInputBorder(
+          //       borderSide: BorderSide.none,
+          //       borderRadius: BorderRadius.circular(15.0),
+          //     ),
+          //   ),
+          //   style: ThemeConstants.montserrattextstyle,
+          // ),
         ),
       ),
       if (updatForEdit == true)

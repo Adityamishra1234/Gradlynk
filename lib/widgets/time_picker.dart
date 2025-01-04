@@ -64,11 +64,13 @@ class _TimePickerExampleState extends State<TimePickerExample> {
               fontSize: 22.0,
             ),
             child: Container(
-              height: 60,
+              // height: 60,
               width: MediaQuery.of(context).size.width - 10,
               decoration: BoxDecoration(
-                  color: ThemeConstants.lightblueColor,
-                  borderRadius: const BorderRadius.all(Radius.circular(15.0))),
+                  // color: ThemeConstants.lightblueColor,
+                color: ThemeConstants.whitecolor,border: Border(bottom: BorderSide(color: ThemeConstants.blackcolor)),
+                  // borderRadius: const BorderRadius.all(Radius.circular(15.0))
+              ),
               child: CupertinoButton(
                   // Display a CupertinoDatePicker in date picker mode.
                   onPressed: () => _showDialog(

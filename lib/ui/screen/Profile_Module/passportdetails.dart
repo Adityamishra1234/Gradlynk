@@ -9,6 +9,8 @@ import 'package:studentpanel/widgets/customDatePicker.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 
+import '../../../widgets/customtextfield.dart';
+
 class PassportDetails extends StatelessWidget {
   PassportDetails({Key? key, this.editButton}) : super(key: key);
   var controller = Get.put(PassportController());
@@ -152,7 +154,7 @@ class PassportDetails extends StatelessWidget {
             mandatory: true,
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontWeight: SizeConfig.fontLabelWeight,
           ),
         ),
       ),
@@ -179,28 +181,33 @@ class PassportDetails extends StatelessWidget {
             mandatory: true,
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontWeight: SizeConfig.fontLabelWeight,
           ),
         ),
       ),
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          controller: PassportController.passportNumber,
-          readOnly: controller.editSave.value == false,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: "Enter passport number",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-          ),
-          style: ThemeConstants.montserrattextstyle,
+        child: CustomTextField(
+          hint:  "Enter passport number",
+          controller:  PassportController.passportNumber,
+          readOrEdit: controller.editSave.value == false,
         ),
+        // child: TextField(
+        //   controller: PassportController.passportNumber,
+        //   readOnly: controller.editSave.value == false,
+        //   scrollPadding: EdgeInsets.symmetric(
+        //       vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+        //   decoration: InputDecoration(
+        //     hintText: "Enter passport number",
+        //     filled: true,
+        //     fillColor: ThemeConstants.lightblueColor,
+        //     border: OutlineInputBorder(
+        //       borderSide: BorderSide.none,
+        //       borderRadius: BorderRadius.circular(15.0),
+        //     ),
+        //   ),
+        //   style: ThemeConstants.montserrattextstyle,
+        // ),
       ),
       // Padding(
       //   padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -211,7 +218,7 @@ class PassportDetails extends StatelessWidget {
       //       mandatory: true,
       //       textColor: ThemeConstants.TextColor,
       //       fontSize: 14,
-      //       fontWeight: FontWeight.bold,
+      //       fontWeight: SizeConfig.fontLabelWeight,
       //     ),
       //   ),
       // ),
@@ -237,7 +244,7 @@ class PassportDetails extends StatelessWidget {
             mandatory: true,
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontWeight: SizeConfig.fontLabelWeight,
           ),
         ),
       ),
@@ -264,7 +271,7 @@ class PassportDetails extends StatelessWidget {
             mandatory: true,
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontWeight: SizeConfig.fontLabelWeight,
           ),
         ),
       ),
@@ -290,7 +297,7 @@ class PassportDetails extends StatelessWidget {
       //       mandatory: true,
       //       textColor: ThemeConstants.TextColor,
       //       fontSize: 14,
-      //       fontWeight: FontWeight.bold,
+      //       fontWeight: SizeConfig.fontLabelWeight,
       //     ),
       //   ),
       // ),
@@ -316,7 +323,7 @@ class PassportDetails extends StatelessWidget {
             mandatory: true,
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontWeight: SizeConfig.fontLabelWeight,
           ),
         ),
       ),
@@ -354,7 +361,7 @@ class PassportDetails extends StatelessWidget {
             mandatory: true,
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontWeight: SizeConfig.fontLabelWeight,
           ),
         ),
       ),

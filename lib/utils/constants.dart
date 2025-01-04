@@ -10,6 +10,7 @@ import 'package:studentpanel/ui/controllers/applicationcompletedetails.dart';
 import 'package:studentpanel/ui/controllers/basecontroller.dart';
 import 'package:studentpanel/ui/screen/dashboard.dart';
 import 'package:studentpanel/ui/screen/internet_connection.dart';
+import 'package:studentpanel/utils/snackbarconstants.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/customdropdownfordailog.dart';
@@ -243,6 +244,87 @@ getOtpvalidation(String? value) {
   }
 }
 
+
+getCGPAValidation(String? value) {
+  if (getNUllChecker(value) == false) {
+    if (double.parse(value!) > 11) {
+      return 'CGPA in Between 0 to 10';
+    } else {
+      return null;
+    }
+  } else {
+    return "CGPA in Between 0 to 10";
+  }
+}
+
+getMultiplierValidation(String? value) {
+  if (getNUllChecker(value) == false) {
+    if (double.parse(value!) > 11) {
+      return 'Multiplier in Between 0 to 10';
+    } else {
+      return null;
+    }
+  } else {
+    return "Multiplier in Between 0 to 10";
+  }
+}
+
+validatePassword(String password) {
+  // Define the regular expression patterns for different rules
+  final RegExp minLength = RegExp(r'.{8,}'); // At least 8 characters
+  final RegExp hasUppercase = RegExp(r'[A-Z]'); // At least one uppercase letter
+  final RegExp hasLowercase = RegExp(r'[a-z]'); // At least one lowercase letter
+  final RegExp hasDigit = RegExp(r'\d'); // At least one number
+  final RegExp hasSpecialChar =
+  RegExp(r'[!@#$%^&*(),.?":{}|<>]'); // At least one special character
+
+  // Check if the password meets all the criteria
+  if (!minLength.hasMatch(password)) {
+    return false; // Password must be at least 8 characters long
+  }
+  if (!hasUppercase.hasMatch(password)) {
+    return false; // Password must contain at least one uppercase letter
+  }
+  if (!hasLowercase.hasMatch(password)) {
+    return false; // Password must contain at least one lowercase letter
+  }
+  if (!hasDigit.hasMatch(password)) {
+    return false; // Password must contain at least one number
+  }
+  if (!hasSpecialChar.hasMatch(password)) {
+    return false; // Password must contain at least one special character
+  }
+
+  return true; // Password is strong
+}
+getPercentageValidation(String? value) {
+  if (getNUllChecker(value) == false) {
+    if (double.parse(value!) > 101) {
+      return 'Percentage in Between 0 to 100';
+    } else {
+      return null;
+    }
+  } else {
+    return "Percentage in Between 0 to 100";
+  }
+}
+
+getDuolingoDefinite(String? value) {
+  if (getNUllChecker(value) == false) {
+    if (double.parse(value!) >= 0 && double.parse(value) <= 160) {
+      if (double.parse(value) % 5 != 0) {
+        return SnackBarConstants.DuolingoSValidation2;
+      }
+    } else {
+      return SnackBarConstants.DuolingoSValidation1;
+    }
+  }
+  else{
+    return null;
+  }
+}
+
+
 getsnakbar(String title, String data) {
   return Get.snackbar(
     title,
@@ -401,11 +483,11 @@ getSourceSelected(Function callbackSelectedSource, String id, int index,
       isDismissible: false);
 }
 
-getLoading(BuildContext context) {
+getLoading(BuildContext context,{height,width}) {
   return Center(
     child: SizedBox(
-      height: MediaQuery.of(context).size.height * 0.50,
-      width: MediaQuery.of(context).size.width * 0.50,
+      height: height ?? (MediaQuery.of(context).size.height * 0.50),
+      width: width ?? (MediaQuery.of(context).size.width * 0.50),
       child: Image.asset(
         "assets/icons/loading1.gif",
         gaplessPlayback: false,

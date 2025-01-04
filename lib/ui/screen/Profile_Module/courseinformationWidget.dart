@@ -83,8 +83,11 @@ class CourseInformationWidget extends StatelessWidget {
                       height: 45,
                       // width: 60,
                       decoration: BoxDecoration(
-                          color: ThemeConstants.lightblueColor,
-                          borderRadius: BorderRadius.circular(10.0)),
+                          // color: ThemeConstants.lightblueColor,
+                          // borderRadius: BorderRadius.circular(10.0)
+                          color: ThemeConstants.whitecolor,
+                          border: Border(bottom: BorderSide(color: ThemeConstants.blackcolor))
+                        ),
                       child: Align(
                         alignment: AlignmentDirectional.centerStart,
                         child: Padding(

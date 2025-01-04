@@ -11,6 +11,8 @@ import 'package:studentpanel/widgets/customDatePicker.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 
+import '../../../widgets/customtextfield.dart';
+
 class TravelHistoryWidget extends StatelessWidget {
   int? index;
   bool updateForEdit;
@@ -265,22 +267,27 @@ class TravelHistoryWidget extends StatelessWidget {
         Obx(
           () => Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
-            child: TextField(
-              controller: TravelHistoryController.applicationNumber.value,
-              keyboardType: TextInputType.number,
-              scrollPadding: EdgeInsets.symmetric(
-                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-              decoration: InputDecoration(
-                hintText: "Enter Application number",
-                filled: true,
-                fillColor: ThemeConstants.lightblueColor,
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-              ),
-              style: ThemeConstants.montserrattextstyle,
+            child: CustomTextField(
+              hint:  "Enter Application number",
+              controller:  TravelHistoryController.applicationNumber.value,
+              keybord: TextInputType.number,
             ),
+            // child: TextField(
+            //   controller: TravelHistoryController.applicationNumber.value,
+            //   keyboardType: TextInputType.number,
+            //   scrollPadding: EdgeInsets.symmetric(
+            //       vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            //   decoration: InputDecoration(
+            //     hintText: "Enter Application number",
+            //     filled: true,
+            //     fillColor: ThemeConstants.lightblueColor,
+            //     border: OutlineInputBorder(
+            //       borderSide: BorderSide.none,
+            //       borderRadius: BorderRadius.circular(15.0),
+            //     ),
+            //   ),
+            //   style: ThemeConstants.montserrattextstyle,
+            // ),
           ),
         ),
       Padding(
@@ -353,21 +360,26 @@ class TravelHistoryWidget extends StatelessWidget {
       Obx(
         () => Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
-          child: TextField(
-            controller: TravelHistoryController.reasonOfRejection.value,
-            scrollPadding: EdgeInsets.symmetric(
-                vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-            decoration: InputDecoration(
-              hintText: "Enter reason of rejection",
-              filled: true,
-              fillColor: ThemeConstants.lightblueColor,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15.0),
-              ),
-            ),
-            style: ThemeConstants.montserrattextstyle,
+          child: CustomTextField(
+            hint:  "Enter reason of rejection",
+            controller:  TravelHistoryController.reasonOfRejection.value,
+
           ),
+          // child: TextField(
+          //   controller: TravelHistoryController.reasonOfRejection.value,
+          //   scrollPadding: EdgeInsets.symmetric(
+          //       vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+          //   decoration: InputDecoration(
+          //     hintText: "Enter reason of rejection",
+          //     filled: true,
+          //     fillColor: ThemeConstants.lightblueColor,
+          //     border: OutlineInputBorder(
+          //       borderSide: BorderSide.none,
+          //       borderRadius: BorderRadius.circular(15.0),
+          //     ),
+          //   ),
+          //   style: ThemeConstants.montserrattextstyle,
+          // ),
         ),
       ),
       Padding(

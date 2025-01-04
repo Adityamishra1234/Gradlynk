@@ -11,6 +11,8 @@ import 'package:studentpanel/widgets/Custom_time_widgets.dart/custom_timer_widge
 import 'package:studentpanel/widgets/customDatePicker.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 
+import '../../../widgets/customtextfield.dart';
+
 class EnglishTestDetails extends StatelessWidget {
   EnglishTestDetails({Key? key, this.editButton}) : super(key: key);
 
@@ -214,14 +216,13 @@ class EnglishTestDetails extends StatelessWidget {
           ),
         ),
       ),
-      Container(
+      SizedBox(
         height: 45,
         child: Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: CustomTimerWidget(
             isBlank: true,
             // enableField: false,
-
             initialTime: controller.dateOfExamSelected,
             callback: (value) {
               callbackDateOfExam(value);
@@ -310,7 +311,6 @@ class EnglishTestDetails extends StatelessWidget {
             child: CustomTimerWidget(
               isBlank: true,
               // enableField: false,
-
               initialTime: controller.tentativeExamDateSelcted,
               callback: (value) {
                 callbackTentativeExamDate(value);
@@ -343,7 +343,7 @@ class EnglishTestDetails extends StatelessWidget {
             mandatory: true,
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontWeight: SizeConfig.fontLabelWeight,
           ),
         ),
       ),
@@ -368,7 +368,7 @@ class EnglishTestDetails extends StatelessWidget {
             text: "Date of Exam",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontWeight: SizeConfig.fontLabelWeight,
           ),
         ),
       ),
@@ -410,11 +410,11 @@ class EnglishTestDetails extends StatelessWidget {
             text: "Date of Test Report",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontWeight: SizeConfig.fontLabelWeight,
           ),
         ),
       ),
-      Container(
+      SizedBox(
         height: 45,
         child: Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
@@ -448,11 +448,11 @@ class EnglishTestDetails extends StatelessWidget {
             text: "Test Score Expiration Date",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontWeight: SizeConfig.fontLabelWeight,
           ),
         ),
       ),
-      Container(
+      SizedBox(
         height: 45,
         child: Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
@@ -489,7 +489,7 @@ class EnglishTestDetails extends StatelessWidget {
             text: "Exam Score Status",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontWeight: SizeConfig.fontLabelWeight,
           ),
         ),
       ),
@@ -513,32 +513,41 @@ class EnglishTestDetails extends StatelessWidget {
             text: "Overall Score",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontWeight: SizeConfig.fontLabelWeight,
           ),
         ),
       ),
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextField(
-          readOnly: controller.editSave.value == true ? true : false,
+        child: CustomTextField(
+          hint: getNUllChecker(
+              controller.englishTestDetailsViewModel.overAll) ==
+              false
+              ? "${controller.englishTestDetailsViewModel.overAll}"
+              : "Overall Score",
           controller: EnglishTestController.overallScoreController,
-          scrollPadding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-          decoration: InputDecoration(
-            hintText: getNUllChecker(
-                        controller.englishTestDetailsViewModel.overAll) ==
-                    false
-                ? controller.englishTestDetailsViewModel.overAll
-                : "Overall Score",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-          ),
-          style: ThemeConstants.montserrattextstyle,
+          readOrEdit: controller.editSave.value == true ? true : false,
         ),
+        // child: TextField(
+        //   readOnly: controller.editSave.value == true ? true : false,
+        //   controller: EnglishTestController.overallScoreController,
+        //   scrollPadding: EdgeInsets.symmetric(
+        //       vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+        //   decoration: InputDecoration(
+        //     hintText: getNUllChecker(
+        //                 controller.englishTestDetailsViewModel.overAll) ==
+        //             false
+        //         ? controller.englishTestDetailsViewModel.overAll
+        //         : "Overall Score",
+        //     filled: true,
+        //     fillColor: ThemeConstants.lightblueColor,
+        //     border: OutlineInputBorder(
+        //       borderSide: BorderSide.none,
+        //       borderRadius: BorderRadius.circular(15.0),
+        //     ),
+        //   ),
+        //   style: ThemeConstants.montserrattextstyle,
+        // ),
       ),
     ];
   }
@@ -553,7 +562,7 @@ class EnglishTestDetails extends StatelessWidget {
             text: "Listening",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontWeight: SizeConfig.fontLabelWeight,
           ),
         ),
       ),
@@ -575,42 +584,79 @@ class EnglishTestDetails extends StatelessWidget {
             // }
           },
           validator: (value) {
-            if (getNUllChecker(value) == false) {
-              if (controller.examNameSelected == "PTE") {
-                if (double.parse(value!) >= 0 && double.parse(value) <= 90) {
-                  if (double.parse(value) % 1 != 0) {
-                    return SnackBarConstants.PTEValidation2;
-                  }
-                } else {
-                  return SnackBarConstants.PTEValidation1;
-                }
-              } else if (controller.examNameSelected == "IELTS") {
-                if (double.parse(value!) >= 0 && double.parse(value) <= 9) {
-                  if (double.parse(value) % 0.5 != 0) {
-                    return SnackBarConstants.IELTSValidation2;
-                  }
-                } else {
-                  return SnackBarConstants.IELTSValidation1;
-                }
-              } else if (controller.examNameSelected == "Cambridge") {
-                if (double.parse(value!) >= 0 && double.parse(value) <= 230) {
-                  if (double.parse(value) % 0.5 != 0) {
-                    return SnackBarConstants.CambridgeValidation2;
-                  }
-                } else {
-                  return SnackBarConstants.CambridgeSValidation1;
-                }
-              } else if (controller.examNameSelected == "TOEFL") {
-                if (double.parse(value!) >= 0 && double.parse(value) <= 30) {
-                  if (double.parse(value) % 0.5 != 0) {
-                    return SnackBarConstants.ToeflSValidation2;
-                  }
-                } else {
-                  return SnackBarConstants.ToeflSValidation1;
-                }
-              }
-            }
-            return null;
+            return controller.getTestValidation(value);
+
+            // if (getNUllChecker(value) == false) {
+            //   if (controller.examNameSelected == "PTE") {
+            //     if (double.parse(value!) >= 0 && double.parse(value) <= 90) {
+            //       if (double.parse(value) % 1 != 0) {
+            //         return SnackBarConstants.PTEValidation2;
+            //       }
+            //     } else {
+            //       return SnackBarConstants.PTEValidation1;
+            //     }
+            //   } else if (controller.examNameSelected == "IELTS") {
+            //     if (double.parse(value!) >= 0 && double.parse(value) <= 9) {
+            //       if (double.parse(value) % 0.5 != 0) {
+            //         return SnackBarConstants.IELTSValidation2;
+            //       }
+            //     } else {
+            //       return SnackBarConstants.IELTSValidation1;
+            //     }
+            //   } else if (controller.examNameSelected == "Cambridge") {
+            //     if (double.parse(value!) >= 0 && double.parse(value) <= 230) {
+            //       if (double.parse(value) % 0.5 != 0) {
+            //         return SnackBarConstants.CambridgeValidation2;
+            //       }
+            //     } else {
+            //       return SnackBarConstants.CambridgeSValidation1;
+            //     }
+            //   } else if (controller.examNameSelected == "TOEFL") {
+            //     if (double.parse(value!) >= 0 && double.parse(value) <= 30) {
+            //       if (double.parse(value) % 0.5 != 0) {
+            //         return SnackBarConstants.ToeflSValidation2;
+            //       }
+            //     } else {
+            //       return SnackBarConstants.ToeflSValidation1;
+            //     }
+            //   }
+            // }
+            // return null;if (getNUllChecker(value) == false) {
+            //   if (controller.examNameSelected == "PTE") {
+            //     if (double.parse(value!) >= 0 && double.parse(value) <= 90) {
+            //       if (double.parse(value) % 1 != 0) {
+            //         return SnackBarConstants.PTEValidation2;
+            //       }
+            //     } else {
+            //       return SnackBarConstants.PTEValidation1;
+            //     }
+            //   } else if (controller.examNameSelected == "IELTS") {
+            //     if (double.parse(value!) >= 0 && double.parse(value) <= 9) {
+            //       if (double.parse(value) % 0.5 != 0) {
+            //         return SnackBarConstants.IELTSValidation2;
+            //       }
+            //     } else {
+            //       return SnackBarConstants.IELTSValidation1;
+            //     }
+            //   } else if (controller.examNameSelected == "Cambridge") {
+            //     if (double.parse(value!) >= 0 && double.parse(value) <= 230) {
+            //       if (double.parse(value) % 0.5 != 0) {
+            //         return SnackBarConstants.CambridgeValidation2;
+            //       }
+            //     } else {
+            //       return SnackBarConstants.CambridgeSValidation1;
+            //     }
+            //   } else if (controller.examNameSelected == "TOEFL") {
+            //     if (double.parse(value!) >= 0 && double.parse(value) <= 30) {
+            //       if (double.parse(value) % 0.5 != 0) {
+            //         return SnackBarConstants.ToeflSValidation2;
+            //       }
+            //     } else {
+            //       return SnackBarConstants.ToeflSValidation1;
+            //     }
+            //   }
+            // }
+            // return null;
           },
           scrollPadding: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewInsets.bottom + 40),
@@ -621,11 +667,13 @@ class EnglishTestDetails extends StatelessWidget {
                 ? "Listening"
                 : controller.englishTestDetailsViewModel.listening.toString(),
             filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
-            ),
+            // fillColor: ThemeConstants.lightblueColor,
+              fillColor: ThemeConstants.whitecolor,
+            border: UnderlineInputBorder(borderSide: BorderSide(color: ThemeConstants.blackcolor))
+            // border: OutlineInputBorder(
+            //   borderSide: BorderSide.none,
+            //   borderRadius: BorderRadius.circular(15.0),
+            // ),
           ),
           style: ThemeConstants.montserrattextstyle,
           keyboardType: TextInputType.number,
@@ -640,7 +688,7 @@ class EnglishTestDetails extends StatelessWidget {
             text: "Writing",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontWeight: SizeConfig.fontLabelWeight,
           ),
         ),
       ),
@@ -656,11 +704,13 @@ class EnglishTestDetails extends StatelessWidget {
           decoration: InputDecoration(
             hintText: "Writing",
             filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
-            ),
+              fillColor: ThemeConstants.whitecolor,
+              border: UnderlineInputBorder(borderSide: BorderSide(color: ThemeConstants.blackcolor))
+            // fillColor: ThemeConstants.lightblueColor,
+            // border: OutlineInputBorder(
+            //   borderSide: BorderSide.none,
+            //   borderRadius: BorderRadius.circular(15.0),
+            // ),
           ),
           style: ThemeConstants.montserrattextstyle,
           onChanged: (value) {
@@ -676,42 +726,43 @@ class EnglishTestDetails extends StatelessWidget {
             // }
           },
           validator: (value) {
-            if (getNUllChecker(value) == false) {
-              if (controller.examNameSelected == "PTE") {
-                if (double.parse(value!) >= 0 && double.parse(value) <= 90) {
-                  if (double.parse(value) % 1 != 0) {
-                    return SnackBarConstants.PTEValidation2;
-                  }
-                } else {
-                  return SnackBarConstants.PTEValidation1;
-                }
-              } else if (controller.examNameSelected == "IELTS") {
-                if (double.parse(value!) >= 0 && double.parse(value) <= 9) {
-                  if (double.parse(value) % 0.5 != 0) {
-                    return SnackBarConstants.IELTSValidation2;
-                  }
-                } else {
-                  return SnackBarConstants.IELTSValidation1;
-                }
-              } else if (controller.examNameSelected == "Cambridge") {
-                if (double.parse(value!) >= 0 && double.parse(value) <= 230) {
-                  if (double.parse(value) % 0.5 != 0) {
-                    return SnackBarConstants.CambridgeValidation2;
-                  }
-                } else {
-                  return SnackBarConstants.CambridgeSValidation1;
-                }
-              } else if (controller.examNameSelected == "TOEFL") {
-                if (double.parse(value!) >= 0 && double.parse(value) <= 30) {
-                  if (double.parse(value) % 0.5 != 0) {
-                    return SnackBarConstants.ToeflSValidation2;
-                  }
-                } else {
-                  return SnackBarConstants.ToeflSValidation1;
-                }
-              }
-            }
-            return null;
+            return controller.getTestValidation(value);
+            // if (getNUllChecker(value) == false) {
+            //   if (controller.examNameSelected == "PTE") {
+            //     if (double.parse(value!) >= 0 && double.parse(value) <= 90) {
+            //       if (double.parse(value) % 1 != 0) {
+            //         return SnackBarConstants.PTEValidation2;
+            //       }
+            //     } else {
+            //       return SnackBarConstants.PTEValidation1;
+            //     }
+            //   } else if (controller.examNameSelected == "IELTS") {
+            //     if (double.parse(value!) >= 0 && double.parse(value) <= 9) {
+            //       if (double.parse(value) % 0.5 != 0) {
+            //         return SnackBarConstants.IELTSValidation2;
+            //       }
+            //     } else {
+            //       return SnackBarConstants.IELTSValidation1;
+            //     }
+            //   } else if (controller.examNameSelected == "Cambridge") {
+            //     if (double.parse(value!) >= 0 && double.parse(value) <= 230) {
+            //       if (double.parse(value) % 0.5 != 0) {
+            //         return SnackBarConstants.CambridgeValidation2;
+            //       }
+            //     } else {
+            //       return SnackBarConstants.CambridgeSValidation1;
+            //     }
+            //   } else if (controller.examNameSelected == "TOEFL") {
+            //     if (double.parse(value!) >= 0 && double.parse(value) <= 30) {
+            //       if (double.parse(value) % 0.5 != 0) {
+            //         return SnackBarConstants.ToeflSValidation2;
+            //       }
+            //     } else {
+            //       return SnackBarConstants.ToeflSValidation1;
+            //     }
+            //   }
+            // }
+            // return null;
           },
         ),
       ),
@@ -723,7 +774,7 @@ class EnglishTestDetails extends StatelessWidget {
             text: "Reading",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontWeight: SizeConfig.fontLabelWeight,
           ),
         ),
       ),
@@ -739,11 +790,13 @@ class EnglishTestDetails extends StatelessWidget {
           decoration: InputDecoration(
             hintText: "Reading",
             filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
-            ),
+              fillColor: ThemeConstants.whitecolor,
+              border: UnderlineInputBorder(borderSide: BorderSide(color: ThemeConstants.blackcolor))
+            // fillColor: ThemeConstants.lightblueColor,
+            // border: OutlineInputBorder(
+            //   borderSide: BorderSide.none,
+            //   borderRadius: BorderRadius.circular(15.0),
+            // ),
           ),
           style: ThemeConstants.montserrattextstyle,
           onChanged: (value) {
@@ -759,42 +812,43 @@ class EnglishTestDetails extends StatelessWidget {
             // }
           },
           validator: (value) {
-            if (getNUllChecker(value) == false) {
-              if (controller.examNameSelected == "PTE") {
-                if (double.parse(value!) >= 0 && double.parse(value) <= 90) {
-                  if (double.parse(value) % 1 != 0) {
-                    return SnackBarConstants.PTEValidation2;
-                  }
-                } else {
-                  return SnackBarConstants.PTEValidation1;
-                }
-              } else if (controller.examNameSelected == "IELTS") {
-                if (double.parse(value!) >= 0 && double.parse(value) <= 9) {
-                  if (double.parse(value) % 0.5 != 0) {
-                    return SnackBarConstants.IELTSValidation2;
-                  }
-                } else {
-                  return SnackBarConstants.IELTSValidation1;
-                }
-              } else if (controller.examNameSelected == "Cambridge") {
-                if (double.parse(value!) >= 0 && double.parse(value) <= 230) {
-                  if (double.parse(value) % 0.5 != 0) {
-                    return SnackBarConstants.CambridgeValidation2;
-                  }
-                } else {
-                  return SnackBarConstants.CambridgeSValidation1;
-                }
-              } else if (controller.examNameSelected == "TOEFL") {
-                if (double.parse(value!) >= 0 && double.parse(value) <= 30) {
-                  if (double.parse(value) % 0.5 != 0) {
-                    return SnackBarConstants.ToeflSValidation2;
-                  }
-                } else {
-                  return SnackBarConstants.ToeflSValidation1;
-                }
-              }
-            }
-            return null;
+            return controller.getTestValidation(value);
+            // if (getNUllChecker(value) == false) {
+            //   if (controller.examNameSelected == "PTE") {
+            //     if (double.parse(value!) >= 0 && double.parse(value) <= 90) {
+            //       if (double.parse(value) % 1 != 0) {
+            //         return SnackBarConstants.PTEValidation2;
+            //       }
+            //     } else {
+            //       return SnackBarConstants.PTEValidation1;
+            //     }
+            //   } else if (controller.examNameSelected == "IELTS") {
+            //     if (double.parse(value!) >= 0 && double.parse(value) <= 9) {
+            //       if (double.parse(value) % 0.5 != 0) {
+            //         return SnackBarConstants.IELTSValidation2;
+            //       }
+            //     } else {
+            //       return SnackBarConstants.IELTSValidation1;
+            //     }
+            //   } else if (controller.examNameSelected == "Cambridge") {
+            //     if (double.parse(value!) >= 0 && double.parse(value) <= 230) {
+            //       if (double.parse(value) % 0.5 != 0) {
+            //         return SnackBarConstants.CambridgeValidation2;
+            //       }
+            //     } else {
+            //       return SnackBarConstants.CambridgeSValidation1;
+            //     }
+            //   } else if (controller.examNameSelected == "TOEFL") {
+            //     if (double.parse(value!) >= 0 && double.parse(value) <= 30) {
+            //       if (double.parse(value) % 0.5 != 0) {
+            //         return SnackBarConstants.ToeflSValidation2;
+            //       }
+            //     } else {
+            //       return SnackBarConstants.ToeflSValidation1;
+            //     }
+            //   }
+            // }
+            // return null;
           },
         ),
       ),
@@ -806,7 +860,7 @@ class EnglishTestDetails extends StatelessWidget {
             text: "Speaking",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontWeight: SizeConfig.fontLabelWeight,
           ),
         ),
       ),
@@ -825,11 +879,13 @@ class EnglishTestDetails extends StatelessWidget {
           decoration: InputDecoration(
             hintText: "Speaking",
             filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
-            ),
+              fillColor: ThemeConstants.whitecolor,
+              border: UnderlineInputBorder(borderSide: BorderSide(color: ThemeConstants.blackcolor))
+            // fillColor: ThemeConstants.lightblueColor,
+            // border: OutlineInputBorder(
+            //   borderSide: BorderSide.none,
+            //   borderRadius: BorderRadius.circular(15.0),
+            // ),
           ),
           style: ThemeConstants.montserrattextstyle,
           onChanged: (value) {
@@ -845,42 +901,43 @@ class EnglishTestDetails extends StatelessWidget {
             // }
           },
           validator: (value) {
-            if (getNUllChecker(value) == false) {
-              if (controller.examNameSelected == "PTE") {
-                if (double.parse(value!) >= 0 && double.parse(value) <= 90) {
-                  if (double.parse(value) % 1 != 0) {
-                    return SnackBarConstants.PTEValidation2;
-                  }
-                } else {
-                  return SnackBarConstants.PTEValidation1;
-                }
-              } else if (controller.examNameSelected == "IELTS") {
-                if (double.parse(value!) >= 0 && double.parse(value) <= 9) {
-                  if (double.parse(value) % 0.5 != 0) {
-                    return SnackBarConstants.IELTSValidation2;
-                  }
-                } else {
-                  return SnackBarConstants.IELTSValidation1;
-                }
-              } else if (controller.examNameSelected == "Cambridge") {
-                if (double.parse(value!) >= 0 && double.parse(value) <= 230) {
-                  if (double.parse(value) % 0.5 != 0) {
-                    return SnackBarConstants.CambridgeValidation2;
-                  }
-                } else {
-                  return SnackBarConstants.CambridgeSValidation1;
-                }
-              } else if (controller.examNameSelected == "TOEFL") {
-                if (double.parse(value!) >= 0 && double.parse(value) <= 30) {
-                  if (double.parse(value) % 0.5 != 0) {
-                    return SnackBarConstants.ToeflSValidation2;
-                  }
-                } else {
-                  return SnackBarConstants.ToeflSValidation1;
-                }
-              }
-            }
-            return null;
+            return controller.getTestValidation(value);
+            // if (getNUllChecker(value) == false) {
+            //   if (controller.examNameSelected == "PTE") {
+            //     if (double.parse(value!) >= 0 && double.parse(value) <= 90) {
+            //       if (double.parse(value) % 1 != 0) {
+            //         return SnackBarConstants.PTEValidation2;
+            //       }
+            //     } else {
+            //       return SnackBarConstants.PTEValidation1;
+            //     }
+            //   } else if (controller.examNameSelected == "IELTS") {
+            //     if (double.parse(value!) >= 0 && double.parse(value) <= 9) {
+            //       if (double.parse(value) % 0.5 != 0) {
+            //         return SnackBarConstants.IELTSValidation2;
+            //       }
+            //     } else {
+            //       return SnackBarConstants.IELTSValidation1;
+            //     }
+            //   } else if (controller.examNameSelected == "Cambridge") {
+            //     if (double.parse(value!) >= 0 && double.parse(value) <= 230) {
+            //       if (double.parse(value) % 0.5 != 0) {
+            //         return SnackBarConstants.CambridgeValidation2;
+            //       }
+            //     } else {
+            //       return SnackBarConstants.CambridgeSValidation1;
+            //     }
+            //   } else if (controller.examNameSelected == "TOEFL") {
+            //     if (double.parse(value!) >= 0 && double.parse(value) <= 30) {
+            //       if (double.parse(value) % 0.5 != 0) {
+            //         return SnackBarConstants.ToeflSValidation2;
+            //       }
+            //     } else {
+            //       return SnackBarConstants.ToeflSValidation1;
+            //     }
+            //   }
+            // }
+            // return null;
           },
         ),
       ),
@@ -898,41 +955,49 @@ class EnglishTestDetails extends StatelessWidget {
             text: "Literacy",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontWeight: SizeConfig.fontLabelWeight,
           ),
         ),
       ),
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextFormField(
-          autovalidateMode: AutovalidateMode.onUserInteraction,
+        child: CustomTextField(
+          hint:  "Literacy",
           controller: EnglishTestController.listening,
-          keyboardType: TextInputType.number,
-          scrollPadding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom + 40),
-          decoration: InputDecoration(
-            hintText: "Literacy",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-          ),
-          style: ThemeConstants.montserrattextstyle,
-          validator: (value) {
-            if (getNUllChecker(value) == false) {
-              if (double.parse(value!) >= 0 && double.parse(value) <= 160) {
-                if (double.parse(value) % 5 != 0) {
-                  return SnackBarConstants.DuolingoSValidation2;
-                }
-              } else {
-                return SnackBarConstants.DuolingoSValidation1;
-              }
-            }
-            return null;
-          },
+          keybord: TextInputType.number,
+          validator: Validator.duolingoDefinite,
         ),
+        // child: TextFormField(
+        //   autovalidateMode: AutovalidateMode.onUserInteraction,
+        //   controller: EnglishTestController.listening,
+        //   keyboardType: TextInputType.number,
+        //   scrollPadding: EdgeInsets.only(
+        //       bottom: MediaQuery.of(context).viewInsets.bottom + 40),
+        //   decoration: InputDecoration(
+        //     hintText: "Literacy",
+        //     filled: true,
+        //     fillColor: ThemeConstants.lightblueColor,
+        //     border: OutlineInputBorder(
+        //       borderSide: BorderSide.none,
+        //       borderRadius: BorderRadius.circular(15.0),
+        //     ),
+        //   ),
+        //   style: ThemeConstants.montserrattextstyle,
+        //   validator: (value) {
+        //     if (getNUllChecker(value) == false) {
+        //       if (double.parse(value!) >= 0 && double.parse(value) <= 160) {
+        //         if (double.parse(value) % 5 != 0) {
+        //           return SnackBarConstants.DuolingoSValidation2;
+        //         }
+        //       } else {
+        //         return SnackBarConstants.DuolingoSValidation1;
+        //       }
+        //     }
+        //     else{
+        //       return null;
+        //     }
+        //   },
+        // ),
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -942,53 +1007,59 @@ class EnglishTestDetails extends StatelessWidget {
             text: "Comprehension",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontWeight: SizeConfig.fontLabelWeight,
           ),
         ),
       ),
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextFormField(
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-
-          controller: EnglishTestController.writing,
-          keyboardType: TextInputType.number,
-          scrollPadding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom + 40),
-          decoration: InputDecoration(
-            hintText: "Comprehension",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-          ),
-          style: ThemeConstants.montserrattextstyle,
-          // onChanged: (value) {
-          //   if (Get.find<EnglishTestController>()
-          //       .comprehensionKey
-          //       .currentState!
-          //       .validate()) {
-          //     Get.find<EnglishTestController>()
-          //         .comprehensionKey
-          //         .currentState!
-          //         .save();
-          //   }
-          // },
-          validator: (value) {
-            if (getNUllChecker(value) == false) {
-              if (double.parse(value!) >= 0 && double.parse(value) <= 160) {
-                if (double.parse(value) % 5 != 0) {
-                  return SnackBarConstants.DuolingoSValidation2;
-                }
-              } else {
-                return SnackBarConstants.DuolingoSValidation1;
-              }
-            }
-            return null;
-          },
+        child: CustomTextField(
+          hint:  "Comprehension",
+          controller:  EnglishTestController.writing,
+          keybord: TextInputType.number,
+          validator: Validator.duolingoDefinite,
         ),
+        // child: TextFormField(
+        //   autovalidateMode: AutovalidateMode.onUserInteraction,
+        //
+        //   controller: EnglishTestController.writing,
+        //   keyboardType: TextInputType.number,
+        //   scrollPadding: EdgeInsets.only(
+        //       bottom: MediaQuery.of(context).viewInsets.bottom + 40),
+        //   decoration: InputDecoration(
+        //     hintText: "Comprehension",
+        //     filled: true,
+        //     fillColor: ThemeConstants.lightblueColor,
+        //     border: OutlineInputBorder(
+        //       borderSide: BorderSide.none,
+        //       borderRadius: BorderRadius.circular(15.0),
+        //     ),
+        //   ),
+        //   style: ThemeConstants.montserrattextstyle,
+        //   // onChanged: (value) {
+        //   //   if (Get.find<EnglishTestController>()
+        //   //       .comprehensionKey
+        //   //       .currentState!
+        //   //       .validate()) {
+        //   //     Get.find<EnglishTestController>()
+        //   //         .comprehensionKey
+        //   //         .currentState!
+        //   //         .save();
+        //   //   }
+        //   // },
+        //   validator: (value) {
+        //     if (getNUllChecker(value) == false) {
+        //       if (double.parse(value!) >= 0 && double.parse(value) <= 160) {
+        //         if (double.parse(value) % 5 != 0) {
+        //           return SnackBarConstants.DuolingoSValidation2;
+        //         }
+        //       } else {
+        //         return SnackBarConstants.DuolingoSValidation1;
+        //       }
+        //     }
+        //     return null;
+        //   },
+        // ),
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -998,53 +1069,59 @@ class EnglishTestDetails extends StatelessWidget {
             text: "Conversation",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontWeight: SizeConfig.fontLabelWeight,
           ),
         ),
       ),
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextFormField(
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-
-          controller: EnglishTestController.reading,
-          keyboardType: TextInputType.number,
-          scrollPadding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom + 40),
-          decoration: InputDecoration(
-            hintText: "Conversation",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-          ),
-          style: ThemeConstants.montserrattextstyle,
-          validator: (value) {
-            if (getNUllChecker(value) == false) {
-              if (double.parse(value!) >= 0 && double.parse(value) <= 160) {
-                if (double.parse(value) % 5 != 0) {
-                  return SnackBarConstants.DuolingoSValidation2;
-                }
-              } else {
-                return SnackBarConstants.DuolingoSValidation1;
-              }
-            }
-            return null;
-          },
-          // onChanged: (value) {
-          //   if (Get.find<EnglishTestController>()
-          //       .conversationKey
-          //       .currentState!
-          //       .validate()) {
-          //     Get.find<EnglishTestController>()
-          //         .comprehensionKey
-          //         .currentState!
-          //         .save();
-          //   }
-          // },
+        child: CustomTextField(
+          hint:  "Conversation",
+          controller:  EnglishTestController.reading,
+          keybord: TextInputType.number,
+          validator: Validator.duolingoDefinite,
         ),
+        // child: TextFormField(
+        //   autovalidateMode: AutovalidateMode.onUserInteraction,
+        //
+        //   controller: EnglishTestController.reading,
+        //   keyboardType: TextInputType.number,
+        //   scrollPadding: EdgeInsets.only(
+        //       bottom: MediaQuery.of(context).viewInsets.bottom + 40),
+        //   decoration: InputDecoration(
+        //     hintText: "Conversation",
+        //     filled: true,
+        //     fillColor: ThemeConstants.lightblueColor,
+        //     border: OutlineInputBorder(
+        //       borderSide: BorderSide.none,
+        //       borderRadius: BorderRadius.circular(15.0),
+        //     ),
+        //   ),
+        //   style: ThemeConstants.montserrattextstyle,
+        //   validator: (value) {
+        //     if (getNUllChecker(value) == false) {
+        //       if (double.parse(value!) >= 0 && double.parse(value) <= 160) {
+        //         if (double.parse(value) % 5 != 0) {
+        //           return SnackBarConstants.DuolingoSValidation2;
+        //         }
+        //       } else {
+        //         return SnackBarConstants.DuolingoSValidation1;
+        //       }
+        //     }
+        //     return null;
+        //   },
+        //   // onChanged: (value) {
+        //   //   if (Get.find<EnglishTestController>()
+        //   //       .conversationKey
+        //   //       .currentState!
+        //   //       .validate()) {
+        //   //     Get.find<EnglishTestController>()
+        //   //         .comprehensionKey
+        //   //         .currentState!
+        //   //         .save();
+        //   //   }
+        //   // },
+        // ),
       ),
       Padding(
         padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
@@ -1054,53 +1131,59 @@ class EnglishTestDetails extends StatelessWidget {
             text: "Production",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontWeight: SizeConfig.fontLabelWeight,
           ),
         ),
       ),
       Padding(
         padding: const EdgeInsets.only(left: 10, right: 10),
-        child: TextFormField(
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-
-          controller: EnglishTestController.speaking,
-          keyboardType: TextInputType.number,
-          scrollPadding: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom + 40),
-          decoration: InputDecoration(
-            hintText: "Production",
-            filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
-            ),
-          ),
-          style: ThemeConstants.montserrattextstyle,
-          validator: (value) {
-            if (getNUllChecker(value) == false) {
-              if (double.parse(value!) >= 0 && double.parse(value) <= 160) {
-                if (double.parse(value) % 5 != 0) {
-                  return SnackBarConstants.DuolingoSValidation2;
-                }
-              } else {
-                return SnackBarConstants.DuolingoSValidation1;
-              }
-            }
-            return null;
-          },
-          // onChanged: (value) {
-          //   if (Get.find<EnglishTestController>()
-          //       .productionkey
-          //       .currentState!
-          //       .validate()) {
-          //     Get.find<EnglishTestController>()
-          //         .productionkey
-          //         .currentState!
-          //         .save();
-          //   }
-          // },
+        child: CustomTextField(
+          hint:  "Production",
+          controller:  EnglishTestController.speaking,
+          keybord: TextInputType.number,
+          validator: Validator.duolingoDefinite,
         ),
+        // child: TextFormField(
+        //   autovalidateMode: AutovalidateMode.onUserInteraction,
+        //
+        //   controller: EnglishTestController.speaking,
+        //   keyboardType: TextInputType.number,
+        //   scrollPadding: EdgeInsets.only(
+        //       bottom: MediaQuery.of(context).viewInsets.bottom + 40),
+        //   decoration: InputDecoration(
+        //     hintText: "Production",
+        //     filled: true,
+        //     fillColor: ThemeConstants.lightblueColor,
+        //     border: OutlineInputBorder(
+        //       borderSide: BorderSide.none,
+        //       borderRadius: BorderRadius.circular(15.0),
+        //     ),
+        //   ),
+        //   style: ThemeConstants.montserrattextstyle,
+        //   validator: (value) {
+        //     if (getNUllChecker(value) == false) {
+        //       if (double.parse(value!) >= 0 && double.parse(value) <= 160) {
+        //         if (double.parse(value) % 5 != 0) {
+        //           return SnackBarConstants.DuolingoSValidation2;
+        //         }
+        //       } else {
+        //         return SnackBarConstants.DuolingoSValidation1;
+        //       }
+        //     }
+        //     return null;
+        //   },
+        //   // onChanged: (value) {
+        //   //   if (Get.find<EnglishTestController>()
+        //   //       .productionkey
+        //   //       .currentState!
+        //   //       .validate()) {
+        //   //     Get.find<EnglishTestController>()
+        //   //         .productionkey
+        //   //         .currentState!
+        //   //         .save();
+        //   //   }
+        //   // },
+        // ),
       ),
       ...overallScore(context),
     ];
@@ -1137,29 +1220,34 @@ class EnglishTestDetails extends StatelessWidget {
                 text: "Overall Score",
                 textColor: ThemeConstants.TextColor,
                 fontSize: 14,
-                fontWeight: FontWeight.bold,
+                fontWeight: SizeConfig.fontLabelWeight,
               ),
             ),
           ),
           //toStringAsFixed(2)
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
-            child: TextField(
-              controller: EnglishTestController.overallScoreController,
-              readOnly: true,
-              scrollPadding: EdgeInsets.symmetric(
-                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-              decoration: InputDecoration(
-                hintText: temp != 0 ? temp.toStringAsFixed(2) : "",
-                filled: true,
-                fillColor: ThemeConstants.lightblueColor,
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-              ),
-              style: ThemeConstants.montserrattextstyle,
+            child: CustomTextField(
+              hint:  temp != 0 ? temp.toStringAsFixed(2) : "",
+              controller:  EnglishTestController.overallScoreController,
+              readOrEdit: true,
             ),
+            // child: TextField(
+            //   controller: EnglishTestController.overallScoreController,
+            //   readOnly: true,
+            //   scrollPadding: EdgeInsets.symmetric(
+            //       vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            //   decoration: InputDecoration(
+            //     hintText: temp != 0 ? temp.toStringAsFixed(2) : "",
+            //     filled: true,
+            //     fillColor: ThemeConstants.lightblueColor,
+            //     border: OutlineInputBorder(
+            //       borderSide: BorderSide.none,
+            //       borderRadius: BorderRadius.circular(15.0),
+            //     ),
+            //   ),
+            //   style: ThemeConstants.montserrattextstyle,
+            // ),
           ),
         ];
       } else {
@@ -1184,28 +1272,34 @@ class EnglishTestDetails extends StatelessWidget {
                 text: "Overall Score",
                 textColor: ThemeConstants.TextColor,
                 fontSize: 14,
-                fontWeight: FontWeight.bold,
+                fontWeight: SizeConfig.fontLabelWeight,
               ),
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
-            child: TextField(
-              controller: EnglishTestController.overallScoreController,
-              readOnly: true,
-              scrollPadding: EdgeInsets.symmetric(
-                  vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-              decoration: InputDecoration(
-                hintText: temp != 0 ? temp.toStringAsFixed(2) : "",
-                filled: true,
-                fillColor: ThemeConstants.lightblueColor,
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-              ),
-              style: ThemeConstants.montserrattextstyle,
+            child: CustomTextField(
+              hint:  temp != 0 ? temp.toStringAsFixed(2) : "",
+              controller:  EnglishTestController.overallScoreController,
+              readOrEdit: true,
+
             ),
+            // child: TextField(
+            //   controller: EnglishTestController.overallScoreController,
+            //   readOnly: true,
+            //   scrollPadding: EdgeInsets.symmetric(
+            //       vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+            //   decoration: InputDecoration(
+            //     hintText: temp != 0 ? temp.toStringAsFixed(2) : "",
+            //     filled: true,
+            //     fillColor: ThemeConstants.lightblueColor,
+            //     border: OutlineInputBorder(
+            //       borderSide: BorderSide.none,
+            //       borderRadius: BorderRadius.circular(15.0),
+            //     ),
+            //   ),
+            //   style: ThemeConstants.montserrattextstyle,
+            // ),
           ),
         ];
       }

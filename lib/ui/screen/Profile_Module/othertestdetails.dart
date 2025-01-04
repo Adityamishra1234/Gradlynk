@@ -243,7 +243,7 @@ class OthertestDetail extends StatelessWidget {
                 mandatory: true,
                 textColor: ThemeConstants.TextColor,
                 fontSize: 14,
-                fontWeight: FontWeight.bold,
+                fontWeight: SizeConfig.fontLabelWeight,
               ),
             ],
           ),
@@ -270,7 +270,7 @@ class OthertestDetail extends StatelessWidget {
             text: "Date of Exam",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontWeight: SizeConfig.fontLabelWeight,
           ),
         ),
       ),
@@ -304,7 +304,7 @@ class OthertestDetail extends StatelessWidget {
                 mandatory: true,
                 textColor: ThemeConstants.TextColor,
                 fontSize: 14,
-                fontWeight: FontWeight.bold,
+                fontWeight: SizeConfig.fontLabelWeight,
               ),
             ],
           ),
@@ -331,7 +331,7 @@ class OthertestDetail extends StatelessWidget {
                   mandatory: true,
                   textColor: ThemeConstants.TextColor,
                   fontSize: 14,
-                  fontWeight: FontWeight.bold,
+                  fontWeight: SizeConfig.fontLabelWeight,
                 ),
               ],
             ),
@@ -358,7 +358,7 @@ class OthertestDetail extends StatelessWidget {
               text: "Tentative Exam Date",
               textColor: ThemeConstants.TextColor,
               fontSize: 14,
-              fontWeight: FontWeight.bold,
+              fontWeight: SizeConfig.fontLabelWeight,
             ),
           ),
         ),
@@ -573,7 +573,7 @@ class OthertestDetail extends StatelessWidget {
               text: "Analytical Writing",
               textColor: ThemeConstants.TextColor,
               fontSize: 14,
-              fontWeight: FontWeight.bold,
+              fontWeight: SizeConfig.fontLabelWeight,
             ),
           ),
         ),
@@ -614,11 +614,13 @@ class OthertestDetail extends StatelessWidget {
             decoration: InputDecoration(
               hintText: "Enter Analytical Writing",
               filled: true,
-              fillColor: ThemeConstants.lightblueColor,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15.0),
-              ),
+                fillColor: ThemeConstants.whitecolor,
+                border: UnderlineInputBorder(borderSide: BorderSide(color: ThemeConstants.blackcolor))
+              // fillColor: ThemeConstants.lightblueColor,
+              // border: OutlineInputBorder(
+              //   borderSide: BorderSide.none,
+              //   borderRadius: BorderRadius.circular(15.0),
+              // ),
             ),
             style: ThemeConstants.montserrattextstyle,
           ),
@@ -632,7 +634,7 @@ class OthertestDetail extends StatelessWidget {
               text: "Verbal Reasoning",
               textColor: ThemeConstants.TextColor,
               fontSize: 14,
-              fontWeight: FontWeight.bold,
+              fontWeight: SizeConfig.fontLabelWeight,
             ),
           ),
         ),
@@ -674,11 +676,13 @@ class OthertestDetail extends StatelessWidget {
             decoration: InputDecoration(
               hintText: "Enter Verbal Reasoning",
               filled: true,
-              fillColor: ThemeConstants.lightblueColor,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15.0),
-              ),
+                fillColor: ThemeConstants.whitecolor,
+                border: UnderlineInputBorder(borderSide: BorderSide(color: ThemeConstants.blackcolor))
+              // fillColor: ThemeConstants.lightblueColor,
+              // border: OutlineInputBorder(
+              //   borderSide: BorderSide.none,
+              //   borderRadius: BorderRadius.circular(15.0),
+              // ),
             ),
             style: ThemeConstants.montserrattextstyle,
           ),
@@ -692,7 +696,7 @@ class OthertestDetail extends StatelessWidget {
               text: "Quantitative Aptitude",
               textColor: ThemeConstants.TextColor,
               fontSize: 14,
-              fontWeight: FontWeight.bold,
+              fontWeight: SizeConfig.fontLabelWeight,
             ),
           ),
         ),
@@ -734,11 +738,13 @@ class OthertestDetail extends StatelessWidget {
             decoration: InputDecoration(
               hintText: "Enter Quantitative Aptitude",
               filled: true,
-              fillColor: ThemeConstants.lightblueColor,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15.0),
-              ),
+                fillColor: ThemeConstants.whitecolor,
+                border: UnderlineInputBorder(borderSide: BorderSide(color: ThemeConstants.blackcolor))
+              // fillColor: ThemeConstants.lightblueColor,
+              // border: OutlineInputBorder(
+              //   borderSide: BorderSide.none,
+              //   borderRadius: BorderRadius.circular(15.0),
+              // ),
             ),
             style: ThemeConstants.montserrattextstyle,
           ),
@@ -752,7 +758,7 @@ class OthertestDetail extends StatelessWidget {
               text: "Integrated Reasoning",
               textColor: ThemeConstants.TextColor,
               fontSize: 14,
-              fontWeight: FontWeight.bold,
+              fontWeight: SizeConfig.fontLabelWeight,
             ),
           ),
         ),
@@ -794,11 +800,13 @@ class OthertestDetail extends StatelessWidget {
             decoration: InputDecoration(
               hintText: "Enter Integrated Reasoning",
               filled: true,
-              fillColor: ThemeConstants.lightblueColor,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15.0),
-              ),
+                fillColor: ThemeConstants.whitecolor,
+                border: UnderlineInputBorder(borderSide: BorderSide(color: ThemeConstants.blackcolor))
+              // fillColor: ThemeConstants.lightblueColor,
+              // border: OutlineInputBorder(
+              //   borderSide: BorderSide.none,
+              //   borderRadius: BorderRadius.circular(15.0),
+              // ),
             ),
             style: ThemeConstants.montserrattextstyle,
           ),
@@ -811,7 +819,7 @@ class OthertestDetail extends StatelessWidget {
             text: "Overall Score ",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontWeight: SizeConfig.fontLabelWeight,
           ),
         ),
       ),
@@ -852,11 +860,13 @@ class OthertestDetail extends StatelessWidget {
           decoration: InputDecoration(
             hintText: "Enter Overall Score (Other Test)",
             filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
-            ),
+              fillColor: ThemeConstants.whitecolor,
+              border: UnderlineInputBorder(borderSide: BorderSide(color: ThemeConstants.blackcolor))
+            // fillColor: ThemeConstants.lightblueColor,
+            // border: OutlineInputBorder(
+            //   borderSide: BorderSide.none,
+            //   borderRadius: BorderRadius.circular(15.0),
+            // ),
           ),
           style: ThemeConstants.montserrattextstyle,
         ),
@@ -875,7 +885,7 @@ class OthertestDetail extends StatelessWidget {
               text: "Reading (Other Test)",
               textColor: ThemeConstants.TextColor,
               fontSize: 14,
-              fontWeight: FontWeight.bold,
+              fontWeight: SizeConfig.fontLabelWeight,
             ),
           ),
         ),
@@ -916,11 +926,13 @@ class OthertestDetail extends StatelessWidget {
             decoration: InputDecoration(
               hintText: "Enter Reading (Other Test)",
               filled: true,
-              fillColor: ThemeConstants.lightblueColor,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15.0),
-              ),
+                fillColor: ThemeConstants.whitecolor,
+                border: UnderlineInputBorder(borderSide: BorderSide(color: ThemeConstants.blackcolor))
+              // fillColor: ThemeConstants.lightblueColor,
+              // border: OutlineInputBorder(
+              //   borderSide: BorderSide.none,
+              //   borderRadius: BorderRadius.circular(15.0),
+              // ),
             ),
             style: ThemeConstants.montserrattextstyle,
           ),
@@ -934,7 +946,7 @@ class OthertestDetail extends StatelessWidget {
               text: "Writing and Language",
               textColor: ThemeConstants.TextColor,
               fontSize: 14,
-              fontWeight: FontWeight.bold,
+              fontWeight: SizeConfig.fontLabelWeight,
             ),
           ),
         ),
@@ -975,11 +987,13 @@ class OthertestDetail extends StatelessWidget {
             decoration: InputDecoration(
               hintText: "Enter Writing and Language",
               filled: true,
-              fillColor: ThemeConstants.lightblueColor,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15.0),
-              ),
+                fillColor: ThemeConstants.whitecolor,
+                border: UnderlineInputBorder(borderSide: BorderSide(color: ThemeConstants.blackcolor))
+              // fillColor: ThemeConstants.lightblueColor,
+              // border: OutlineInputBorder(
+              //   borderSide: BorderSide.none,
+              //   borderRadius: BorderRadius.circular(15.0),
+              // ),
             ),
             style: ThemeConstants.montserrattextstyle,
           ),
@@ -993,7 +1007,7 @@ class OthertestDetail extends StatelessWidget {
               text: "Essay(optional)",
               textColor: ThemeConstants.TextColor,
               fontSize: 14,
-              fontWeight: FontWeight.bold,
+              fontWeight: SizeConfig.fontLabelWeight,
             ),
           ),
         ),
@@ -1032,11 +1046,13 @@ class OthertestDetail extends StatelessWidget {
             decoration: InputDecoration(
               hintText: "Enter Essay(optional)",
               filled: true,
-              fillColor: ThemeConstants.lightblueColor,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15.0),
-              ),
+              fillColor: ThemeConstants.whitecolor,
+              border: UnderlineInputBorder(borderSide: BorderSide(color: ThemeConstants.blackcolor))
+              // fillColor: ThemeConstants.lightblueColor,
+              // border: OutlineInputBorder(
+              //   borderSide: BorderSide.none,
+              //   borderRadius: BorderRadius.circular(15.0),
+              // ),
             ),
             style: ThemeConstants.montserrattextstyle,
           ),
@@ -1050,7 +1066,7 @@ class OthertestDetail extends StatelessWidget {
               text: "Math",
               textColor: ThemeConstants.TextColor,
               fontSize: 14,
-              fontWeight: FontWeight.bold,
+              fontWeight: SizeConfig.fontLabelWeight,
             ),
           ),
         ),
@@ -1091,11 +1107,13 @@ class OthertestDetail extends StatelessWidget {
             decoration: InputDecoration(
               hintText: "Enter Math",
               filled: true,
-              fillColor: ThemeConstants.lightblueColor,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15.0),
-              ),
+              fillColor: ThemeConstants.whitecolor,
+              border: UnderlineInputBorder(borderSide: BorderSide(color: ThemeConstants.blackcolor))
+              // fillColor: ThemeConstants.lightblueColor,
+              // border: OutlineInputBorder(
+              //   borderSide: BorderSide.none,
+              //   borderRadius: BorderRadius.circular(15.0),
+              // ),
             ),
             style: ThemeConstants.montserrattextstyle,
           ),
@@ -1108,7 +1126,7 @@ class OthertestDetail extends StatelessWidget {
             text: "Overall Score (Other Test)",
             textColor: ThemeConstants.TextColor,
             fontSize: 14,
-            fontWeight: FontWeight.bold,
+            fontWeight: SizeConfig.fontLabelWeight,
           ),
         ),
       ),
@@ -1136,11 +1154,13 @@ class OthertestDetail extends StatelessWidget {
           decoration: InputDecoration(
             hintText: "Enter Overall Score (Other Test)",
             filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
-            ),
+            fillColor: ThemeConstants.whitecolor,
+            border: UnderlineInputBorder(borderSide: BorderSide(color: ThemeConstants.blackcolor))
+            // fillColor: ThemeConstants.lightblueColor,
+            // border: OutlineInputBorder(
+            //   borderSide: BorderSide.none,
+            //   borderRadius: BorderRadius.circular(15.0),
+            // ),
           ),
           style: ThemeConstants.montserrattextstyle,
         ),
@@ -1200,12 +1220,14 @@ class OthertestDetail extends StatelessWidget {
             decoration: InputDecoration(
               hintText: "Enter Analytical Writing",
               filled: true,
-              fillColor: ThemeConstants.lightblueColor,
-              hintStyle: ThemeConstants.montserrattextstyleForPlaceHolder,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15.0),
-              ),
+              fillColor: ThemeConstants.whitecolor,
+              border: UnderlineInputBorder(borderSide: BorderSide(color: ThemeConstants.blackcolor))
+              // fillColor: ThemeConstants.lightblueColor,
+              // hintStyle: ThemeConstants.montserrattextstyleForPlaceHolder,
+              // border: OutlineInputBorder(
+              //   borderSide: BorderSide.none,
+              //   borderRadius: BorderRadius.circular(15.0),
+              // ),
             ),
             style: ThemeConstants.montserrattextstyleForFilledText,
           ),
@@ -1262,11 +1284,13 @@ class OthertestDetail extends StatelessWidget {
               hintStyle: ThemeConstants.montserrattextstyleForPlaceHolder,
               hintText: "Enter Verbal Reasoning",
               filled: true,
-              fillColor: ThemeConstants.lightblueColor,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15.0),
-              ),
+              fillColor: ThemeConstants.whitecolor,
+              border: UnderlineInputBorder(borderSide: BorderSide(color: ThemeConstants.blackcolor))
+              // fillColor: ThemeConstants.lightblueColor,
+              // border: OutlineInputBorder(
+              //   borderSide: BorderSide.none,
+              //   borderRadius: BorderRadius.circular(15.0),
+              // ),
             ),
           ),
         ),
@@ -1321,11 +1345,13 @@ class OthertestDetail extends StatelessWidget {
               hintStyle: ThemeConstants.montserrattextstyleForPlaceHolder,
               hintText: "Enter Quantitative Aptitude",
               filled: true,
-              fillColor: ThemeConstants.lightblueColor,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(15.0),
-              ),
+              fillColor: ThemeConstants.whitecolor,
+              border: UnderlineInputBorder(borderSide: BorderSide(color: ThemeConstants.blackcolor))
+              // fillColor: ThemeConstants.lightblueColor,
+              // border: OutlineInputBorder(
+              //   borderSide: BorderSide.none,
+              //   borderRadius: BorderRadius.circular(15.0),
+              // ),
             ),
             style: ThemeConstants.montserrattextstyleForFilledText,
           ),
@@ -1379,11 +1405,13 @@ class OthertestDetail extends StatelessWidget {
             hintStyle: ThemeConstants.montserrattextstyleForPlaceHolder,
             hintText: "Enter Overall Score (Other Test)",
             filled: true,
-            fillColor: ThemeConstants.lightblueColor,
-            border: OutlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15.0),
-            ),
+            fillColor: ThemeConstants.whitecolor,
+            border: UnderlineInputBorder(borderSide: BorderSide(color: ThemeConstants.blackcolor))
+            // fillColor: ThemeConstants.lightblueColor,
+            // border: OutlineInputBorder(
+            //   borderSide: BorderSide.none,
+            //   borderRadius: BorderRadius.circular(15.0),
+            // ),
           ),
           style: ThemeConstants.montserrattextstyleForFilledText,
         ),

@@ -13,6 +13,8 @@ import 'package:studentpanel/widgets/customDatePicker.dart';
 import 'package:studentpanel/widgets/customautosizetextmontserrat.dart';
 import 'package:studentpanel/widgets/Custom%20Dropdown/custom_dropdown.dart';
 
+import '../../../widgets/customtextfield.dart';
+
 class WorkHistoryWidget extends StatelessWidget {
   Function callbackUpdate;
   Function callbackAdded;
@@ -60,78 +62,81 @@ class WorkHistoryWidget extends StatelessWidget {
       //       : "";
       // }
       return ListView(
-        padding: EdgeInsets.all(0),
+        padding: const EdgeInsets.all(0),
         controller: ScrollController(),
         children: [
-          Container(
-            child: Wrap(
-              alignment: WrapAlignment.spaceBetween,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
-                  child: Align(
-                    alignment: AlignmentDirectional.topStart,
-                    child: CustomAutoSizeTextMontserrat(
-                      text: "Name of Last Organisation",
-                      mandatory: true,
-                      textColor: ThemeConstants.TextColor,
-                      fontSize: SizeConfig.fontLabelSize,
-                      fontWeight: SizeConfig.fontLabelWeight,
-                    ),
+          Wrap(
+            alignment: WrapAlignment.spaceBetween,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 10, left: 20, right: 10),
+                child: Align(
+                  alignment: AlignmentDirectional.topStart,
+                  child: CustomAutoSizeTextMontserrat(
+                    text: "Name of Last Organisation",
+                    mandatory: true,
+                    textColor: ThemeConstants.TextColor,
+                    fontSize: SizeConfig.fontLabelSize,
+                    fontWeight: SizeConfig.fontLabelWeight,
                   ),
                 ),
+              ),
 
-                // Padding(
-                //   padding: const EdgeInsets.only(left: 20, top: 10, bottom: 10),
-                //   child: InkWell(
-                //       onTap: () {
-                //         // if (controller.loadingViewQualification.value == true) {
-                //         controller.setViewDetails(true);
-                //         // }
-                //       },
-                //       child: Container(
-                //           child: Text(
-                //         "View Details",
-                //         style: TextStyle(
-                //             fontSize: 12, color: ThemeConstants.orangeColor),
-                //       ))),
-                // ),
-                // Padding(
-                //   padding: const EdgeInsets.only(right: 10),
-                //   child: Align(
-                //     alignment: AlignmentDirectional.bottomEnd,
-                //     child: TextButton(
-                //         onPressed: () {},
-                //         child: CustomAutoSizeTextMontserrat(
-                //           text: "View Details",
-                //           fontSize: 14,
-                //           textColor: ThemeConstants.orangeColor,
-                //         )),
-                //   ),
-                // ),
-              ],
-            ),
+              // Padding(
+              //   padding: const EdgeInsets.only(left: 20, top: 10, bottom: 10),
+              //   child: InkWell(
+              //       onTap: () {
+              //         // if (controller.loadingViewQualification.value == true) {
+              //         controller.setViewDetails(true);
+              //         // }
+              //       },
+              //       child: Container(
+              //           child: Text(
+              //         "View Details",
+              //         style: TextStyle(
+              //             fontSize: 12, color: ThemeConstants.orangeColor),
+              //       ))),
+              // ),
+              // Padding(
+              //   padding: const EdgeInsets.only(right: 10),
+              //   child: Align(
+              //     alignment: AlignmentDirectional.bottomEnd,
+              //     child: TextButton(
+              //         onPressed: () {},
+              //         child: CustomAutoSizeTextMontserrat(
+              //           text: "View Details",
+              //           fontSize: 14,
+              //           textColor: ThemeConstants.orangeColor,
+              //         )),
+              //   ),
+              // ),
+            ],
           ),
           Obx(
             () => Padding(
               padding: const EdgeInsets.only(left: 10, right: 10),
-              child: TextField(
+              child: CustomTextField(
+                hint: "Enter name of last organisation",
                 controller: WorkHistoryController.lastOrganisation.value,
-                scrollPadding: EdgeInsets.symmetric(
-                    vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-                style: ThemeConstants.montserrattextstyleForFilledText,
-                decoration: InputDecoration(
-                    hintText: "Enter name of last organisation",
-                    filled: true,
-                    fillColor: ThemeConstants.lightblueColor,
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
-                    hintStyle:
-                        ThemeConstants.montserrattextstyleForPlaceHolder),
+                validator: Validator.notEmpty,
               ),
+              // child: TextField(
+              //   controller: WorkHistoryController.lastOrganisation.value,
+              //   scrollPadding: EdgeInsets.symmetric(
+              //       vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+              //   style: ThemeConstants.montserrattextstyleForFilledText,
+              //   decoration: InputDecoration(
+              //       hintText: "Enter name of last organisation",
+              //       filled: true,
+              //       fillColor: ThemeConstants.lightblueColor,
+              //       border: OutlineInputBorder(
+              //         borderSide: BorderSide.none,
+              //         borderRadius: BorderRadius.circular(15.0),
+              //       ),
+              //       hintStyle:
+              //           ThemeConstants.montserrattextstyleForPlaceHolder),
+              // ),
             ),
           ),
           Padding(
@@ -147,7 +152,7 @@ class WorkHistoryWidget extends StatelessWidget {
               ),
             ),
           ),
-          Container(
+          SizedBox(
             height: 45,
             child: Padding(
               padding: const EdgeInsets.only(left: 10, right: 10),
@@ -193,7 +198,7 @@ class WorkHistoryWidget extends StatelessWidget {
               ),
             ),
           ),
-          Container(
+          SizedBox(
             height: 45,
             child: Padding(
               padding: const EdgeInsets.only(left: 10, right: 10),
@@ -265,22 +270,26 @@ class WorkHistoryWidget extends StatelessWidget {
           Obx(
             () => Padding(
               padding: const EdgeInsets.only(left: 10, right: 10),
-              child: TextField(
+              child: CustomTextField(
+                hint: "Enter your Designation",
                 controller: WorkHistoryController.designation.value,
-                scrollPadding: EdgeInsets.symmetric(
-                    vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-                decoration: InputDecoration(
-                    hintText: "Enter your Designation",
-                    filled: true,
-                    fillColor: ThemeConstants.lightblueColor,
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
-                    hintStyle:
-                        ThemeConstants.montserrattextstyleForPlaceHolder),
-                style: ThemeConstants.montserrattextstyleForFilledText,
               ),
+              // child: TextField(
+              //   controller: WorkHistoryController.designation.value,
+              //   scrollPadding: EdgeInsets.symmetric(
+              //       vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+              //   decoration: InputDecoration(
+              //       hintText: "Enter your Designation",
+              //       filled: true,
+              //       fillColor: ThemeConstants.lightblueColor,
+              //       border: OutlineInputBorder(
+              //         borderSide: BorderSide.none,
+              //         borderRadius: BorderRadius.circular(15.0),
+              //       ),
+              //       hintStyle:
+              //           ThemeConstants.montserrattextstyleForPlaceHolder),
+              //   style: ThemeConstants.montserrattextstyleForFilledText,
+              // ),
             ),
           ),
           Padding(
@@ -328,23 +337,28 @@ class WorkHistoryWidget extends StatelessWidget {
           Obx(
             () => Padding(
               padding: const EdgeInsets.only(left: 10, right: 10),
-              child: TextField(
+              child: CustomTextField(
+                hint: "Enter Income",
                 controller: WorkHistoryController.income.value,
-                keyboardType: TextInputType.number,
-                scrollPadding: EdgeInsets.symmetric(
-                    vertical: MediaQuery.of(context).viewInsets.bottom + 30),
-                decoration: InputDecoration(
-                    hintText: "Enter Income",
-                    filled: true,
-                    fillColor: ThemeConstants.lightblueColor,
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
-                    hintStyle:
-                        ThemeConstants.montserrattextstyleForPlaceHolder),
-                style: ThemeConstants.montserrattextstyleForFilledText,
-              ),
+                keybord: TextInputType.number,
+                ),
+              // child: TextField(
+              //   controller: WorkHistoryController.income.value,
+              //   keyboardType: TextInputType.number,
+              //   scrollPadding: EdgeInsets.symmetric(
+              //       vertical: MediaQuery.of(context).viewInsets.bottom + 30),
+              //   decoration: InputDecoration(
+              //       hintText: "Enter Income",
+              //       filled: true,
+              //       fillColor: ThemeConstants.lightblueColor,
+              //       border: OutlineInputBorder(
+              //         borderSide: BorderSide.none,
+              //         borderRadius: BorderRadius.circular(15.0),
+              //       ),
+              //       hintStyle:
+              //           ThemeConstants.montserrattextstyleForPlaceHolder),
+              //   style: ThemeConstants.montserrattextstyleForFilledText,
+              // ),
             ),
           ),
           if (update == true)
