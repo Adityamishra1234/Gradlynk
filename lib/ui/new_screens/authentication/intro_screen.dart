@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studentpanel/new_widgets/text_fields.dart';
 import 'package:studentpanel/ui/new_screens/authentication/login_screen.dart';
+import 'package:studentpanel/ui/new_screens/authentication/registration_screen.dart';
 import 'package:studentpanel/utils/theme.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
@@ -99,6 +100,7 @@ class IntroductionScreenState extends State<IntroductionScreen> {
                           activeBgColor: [ThemeConstants.greenColor],
                           onToggle: (index) {
                             if (index == 0) {
+                              Get.toNamed(RegistrationScreen.routeNamed);
                             } else {
                               Get.toNamed(LoginScreen.routeNamed);
                             }

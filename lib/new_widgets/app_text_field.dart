@@ -44,6 +44,7 @@ class AppTextField extends StatelessWidget {
     this.onFieldSubmitted,
     this.textCapitalization = TextCapitalization.none,
     this.borderRadius = 0.0,
+    this.mandatory = false
   });
 
   final TextEditingController controller;
@@ -69,6 +70,7 @@ class AppTextField extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;
   final ValueChanged<String>? onFieldSubmitted;
   final TextCapitalization textCapitalization;
+  final bool? mandatory;
 
   @override
   Widget build(BuildContext context) {
@@ -78,11 +80,15 @@ class AppTextField extends StatelessWidget {
         if (showTitle)
           Padding(
             padding: const EdgeInsets.only(left: 5),
-            child: Text(title,
-                style: const TextStyle(
-                    fontSize: 15,
-                    color: Color(0xff000000),
-                    fontWeight: FontWeight.w800)),
+            child: RichText(text: TextSpan(children: [
+              TextSpan(text: title), if (mandatory == true)
+                TextSpan(text: '*', style: TextStyle(color: ThemeConstants.red))
+            ]))
+            // Text(title,
+            //     style: const TextStyle(
+            //         fontSize: 15,
+            //         color: Color(0xff000000),
+            //         fontWeight: FontWeight.w800)),
           ),
         if (showTitle) const SizedBox(height: 9),
         Material(

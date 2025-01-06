@@ -21,6 +21,8 @@ import 'package:studentpanel/presentation/features/event_history/event_history_v
 import 'package:studentpanel/ui/models/usermodel.dart';
 import 'package:studentpanel/ui/new_screens/authentication/intro_screen.dart';
 import 'package:studentpanel/ui/new_screens/authentication/login_screen.dart';
+import 'package:studentpanel/ui/new_screens/authentication/otp_verification_screen.dart';
+import 'package:studentpanel/ui/new_screens/authentication/registration_screen.dart';
 import 'package:studentpanel/ui/screen/Delete/assigneeinformation.dart';
 import 'package:studentpanel/ui/screen/Profile_module_2/profile_view.dart';
 import 'package:studentpanel/ui/screen/course_search/coursesearch2.dart';
@@ -498,6 +500,20 @@ class _MyAppState extends State<MyApp> {
               name: LoginScreen.routeNamed,
               // transition: Transition.fade,
               page: () => const LoginScreen(),
+              transition: Transition.upToDown,
+              transitionDuration: const Duration(milliseconds: 100),
+            ),
+            GetPage(
+              name: OTPVerificationScreen.routeNamed,
+              // transition: Transition.fade,
+              page: () => const OTPVerificationScreen(),
+              transition: Transition.upToDown,
+              transitionDuration: const Duration(milliseconds: 100),
+            ),
+            GetPage(
+              name: RegistrationScreen.routeNamed,
+              // transition: Transition.fade,
+              page: () => const RegistrationScreen(),
               transition: Transition.upToDown,
               transitionDuration: const Duration(milliseconds: 100),
             ),

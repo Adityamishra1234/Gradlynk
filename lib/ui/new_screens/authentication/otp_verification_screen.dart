@@ -1,28 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:studentpanel/new_widgets/app_text_field.dart';
-import 'package:studentpanel/new_widgets/custom_button.dart';
-import 'package:studentpanel/ui/new_screens/authentication/registration_screen.dart';
+import 'package:studentpanel/new_widgets/custom_text.dart';
 
-import '../../../new_widgets/custom_text.dart';
+import '../../../new_widgets/custom_button.dart';
 import '../../../new_widgets/text_fields.dart';
 import '../../../utils/theme.dart';
-import 'otp_verification_screen.dart';
+import '../../screen/Login_Module/LoginScreen.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
-  static const routeNamed = '/LoginScreen';
-
+class OTPVerificationScreen extends StatefulWidget {
+  const OTPVerificationScreen({super.key});
+  static const routeNamed = '/OTPVerificationScreen';
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<OTPVerificationScreen> createState() => _OTPVerificationScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController mobileController = TextEditingController();
+class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
+  TextEditingController otpController = TextEditingController();
   GlobalKey<FormState> key = GlobalKey();
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -50,59 +51,66 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(
                         height: 50,
                       ),
-                      Text('Login',
+                      Text('Verification Code',
                           overflow: TextOverflow.ellipsis,
                           textScaler: TextScaler.noScaling,
                           style: buttonStyleOpenSans(
-                              ThemeConstants.greenColor, FontWeight.bold, 44)),
+                              ThemeConstants.greenColor, FontWeight.bold, 32)),
                       const SizedBox(
                         height: 10,
                       ),
-                      Text('Enter your Credentials to access your account',
-                          maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
-                          textScaler: TextScaler.noScaling,
-                          style: buttonStyleOpenSans(
-                              ThemeConstants.blackcolor, FontWeight.w400, 18)),
+                      const CustomMandatoryText(text: 'Enter six digit code',
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,),
                       const SizedBox(
                         height: 50,
                       ),
-                      const CustomMandatoryText(text : 'Mobile number ', mandatory: true,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500 ),
+                      Text('+917541****08',
+                          overflow: TextOverflow.ellipsis,
+                          textScaler: TextScaler.noScaling,
+                          style: buttonStyleOpenSans(
+                              ThemeConstants.blackcolor, FontWeight.w500, 18)),
                       const SizedBox(
                         height: 10,
                       ),
-                      AppTextField(
-                        controller: mobileController,
-                        title: "Mobile Number",
-                        showTitle: false,
-                        keyboardType: TextInputType.phone,
-                        borderRadius: 10,
-                        hint: "Enter Mobile Number",
+                      PinCodeTextField(
+                        appContext: context,
+                        autoDisposeControllers: false,
+                        enablePinAutofill: true,
+                        controller: otpController,
+                        keyboardType: TextInputType.number,
+                        length: 6,validator: (v) {
+                        if (v!.length < 6) {
+                          return "Kindly enter six digit code";
+                        } else {
+                          return null;
+                        }
+                      },
                         inputFormatters: [
                           FilteringTextInputFormatter.digitsOnly
                         ],
-                        validator: Validator.phone,
-                        icon: Icon(
-                          Icons.call,
-                          color: ThemeConstants.greenColor,
-                          size: 25,
+                        cursorColor: ThemeConstants.blackcolor,
+                        pinTheme: PinTheme(
+                          shape: PinCodeFieldShape.box,
+                          borderRadius: BorderRadius.circular(8),
+                          fieldHeight: 40,
+                          fieldWidth: 35,
+                          activeFillColor: Colors.white,
+                          selectedColor: ThemeConstants.greenColor,
+                          inactiveColor: ThemeConstants.TextColor,
                         ),
+                        onCompleted: (value) async {},
+                        onChanged: (value) {},
                       ),
                       const SizedBox(
                         height: 60,
                       ),
                       CustomButton3(
-                        text: "Verify Number",
-                        height: 50,
-                        containerColor: ThemeConstants.greenColor,
-                        buttonTextSize: 16,
-                        fw: FontWeight.w500,
-                        onTap: () {
-                          Get.toNamed(OTPVerificationScreen.routeNamed);
-                        },
-                      ),
+                          text: "Verify OTP",
+                          height: 50,
+                          containerColor: ThemeConstants.greenColor,
+                          buttonTextSize: 16,
+                          fw: FontWeight.w500),
                       const SizedBox(
                         height: 20,
                       ),
@@ -111,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         children: [
                           Flexible(
                             child: Text(
-                              "Don't have an Account? ",
+                              "Don’t Receive an OTP? ",
                               overflow: TextOverflow.ellipsis,
                               textScaler: TextScaler.noScaling,
                               style: buttonStyleOpenSans(
@@ -122,9 +130,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           InkWell(
                             onTap: () {
-                              Get.toNamed(RegistrationScreen.routeNamed);
+                              Get.toNamed(LoginScreen.routeNamed);
                             },
-                            child: Text('Register Now',
+                            child: Text('Resend Now',
                                 overflow: TextOverflow.ellipsis,
                                 textScaler: TextScaler.noScaling,
                                 style: TextStyle(
