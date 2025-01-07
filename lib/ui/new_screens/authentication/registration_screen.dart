@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:linear_progress_bar/linear_progress_bar.dart';
 import 'package:studentpanel/new_widgets/custom_text.dart';
 import 'package:studentpanel/new_widgets/multiselect_dropdown.dart';
 import 'package:studentpanel/ui/new_screens/authentication/login_screen.dart';
@@ -21,8 +20,8 @@ class RegistrationScreen extends StatefulWidget {
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
   GlobalKey<FormState> key = GlobalKey();
-  int currentStep = 0;
 
+  int currentStep = 0;
   List<String> background = [
     "assets/images/white_bg.png",
     "assets/images/registration_bg2.png",
@@ -41,6 +40,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       setState(() {
         currentStep++;
       });
+
+    }
+  }
+
+  void decrementCounter() {
+    if (currentStep > 0) {
+      setState(() {
+        currentStep--;
+      });
     }
   }
 
@@ -55,62 +63,87 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           alignment: Alignment.bottomCenter,
           width: width,
           decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage(
-                    background[currentStep],
-                  ),
-                  fit: BoxFit.fill)),
+            image: DecorationImage(
+              image: AssetImage(
+                background[currentStep],
+              ),
+              fit: BoxFit.fill,
+            ),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
-                height: 10,
-              ),
+              const SizedBox(height: 10),
               Padding(
                 padding: const EdgeInsets.only(left: 15.0),
                 child: BackButton(
+                  color: currentStep == 2
+                      ? ThemeConstants.yellowColor
+                      : ThemeConstants.greenColor,
                   onPressed: () {
                     if (currentStep == 0) {
                       Get.back();
                     } else {
-                      setState(() {
-                        currentStep--;
-                      });
+                      decrementCounter();
                     }
                   },
                 ),
+
               ),
               const SizedBox(height: 25),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 28.0),
-                child: LinearProgressBar(
-                  maxSteps: 4,
-                  progressType: LinearProgressBar.progressTypeLinear,
-                  minHeight: 10,
-                  // Use Linear progress
-                  currentStep: currentStep + 1,
-                  progressColor: ThemeConstants.progressBar,
-                  backgroundColor: ThemeConstants.progressBar.withOpacity(0.4),
-                  borderRadius: BorderRadius.circular(10),
+                child: TweenAnimationBuilder<double>(
+                  tween: Tween<double>(
+                    begin: 0.0,
+                    end: (currentStep) / 4, // Convert step to percentage
+                  ),
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.easeInOut,
+                  builder: (context, value, child) {
+                    return Container(
+                      height: 10,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: ThemeConstants.progressBar.withOpacity(0.4),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Stack(
+                        children: [
+                          FractionallySizedBox(
+                            widthFactor: value,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: ThemeConstants.progressBar,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                 ),
               ),
               Flexible(
                 child: pages[currentStep],
+
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 28.0),
                 child: CustomButton3(
-                    borderColor: ThemeConstants.blackcolor,
-                    text: currentStep == 3 ? "Submit" : "Next",
-                    height: 50,
-                    onTap: incrementCounter,
-                    containerColor: ThemeConstants.greenColor,
-                    buttonTextSize: 16,
-                    fw: FontWeight.w500),
+                  borderColor: ThemeConstants.blackcolor,
+                  text: currentStep == 3 ? "Submit" : "Next",
+                  height: 50,
+                  onTap: incrementCounter,
+                  containerColor: currentStep == 2
+                      ? ThemeConstants.yellowColor
+                      : ThemeConstants.greenColor,
+                  buttonTextSize: 16,
+                  fw: FontWeight.w500,
+                ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
+              const SizedBox(height: 10),
             ],
           ),
         ),
@@ -118,6 +151,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     );
   }
 }
+
 
 class Fragment1 extends StatefulWidget {
   const Fragment1({super.key});
@@ -586,10 +620,10 @@ class _Fragment4State extends State<Fragment4> {
     "Vis",
     "Migratio",
   ];
+  TextEditingController overallPercentageController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 28.0),
       child: Form(
@@ -599,7 +633,7 @@ class _Fragment4State extends State<Fragment4> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(
-                height: 50,
+                height: 30,
               ),
               CustomMandatoryText(
                 text: 'Please fill your personal details',
@@ -618,20 +652,141 @@ class _Fragment4State extends State<Fragment4> {
                 maxLines: 3,
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
-                textColor: ThemeConstants.greenColor,
+                textColor: ThemeConstants.blackcolor,
                 mandatory: true,
               ),
               Container(
-                  height: 40,
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+                  height: 44,
+                  margin: const EdgeInsets.symmetric(vertical: 8),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(9.5),
                       border: Border.all(color: ThemeConstants.TextColor)),
                   child: DropdownWithMultiselect(
-                      spinnerHintText: "Select Country",
-                      searchHintText: "Search Country",
-                      values: iconText))
+                    spinnerHintText: "Select Country",
+                    searchHintText: "Search Country",
+                    values: iconText,
+                    isMultiSelect: true,
+                    onMultiSelectChanged: (value) {
+                      setState(() {});
+                    },
+                  )),
+              const SizedBox(
+                height: 10,
+              ),
+              CustomMandatoryText(
+                text: 'Your highest education level',
+                maxLines: 3,
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+                textColor: ThemeConstants.blackcolor,
+                mandatory: true,
+              ),
+              Container(
+                  height: 44,
+                  margin: const EdgeInsets.symmetric(vertical: 8),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(9.5),
+                      border: Border.all(color: ThemeConstants.TextColor)),
+                  child: DropdownWithMultiselect(
+                    spinnerHintText: "Select education",
+                    searchHintText: "Search education",
+                    values: iconText,
+                    isMultiSelect: true,
+                    onMultiSelectChanged: (value) {
+                      setState(() {});
+                    },
+                  )),
+              const SizedBox(
+                height: 10,
+              ),
+              AppTextField(
+                borderColor: ThemeConstants.greenColor,
+                controller: overallPercentageController,
+                title: "Your Overall Percentage",
+                keyboardType: TextInputType.number,
+                borderRadius: 10,
+                hint: "Enter Overall Percentage",
+                validator: Validator.notEmpty,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              CustomMandatoryText(
+                text: 'Which tests taken or planned?',
+                maxLines: 3,
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+                textColor: ThemeConstants.blackcolor,
+                mandatory: true,
+              ),
+              Container(
+                  height: 44,
+                  margin: const EdgeInsets.symmetric(vertical: 8),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(9.5),
+                      border: Border.all(color: ThemeConstants.TextColor)),
+                  child: DropdownWithMultiselect(
+                    spinnerHintText: "Select Test",
+                    searchHintText: "Search Test",
+                    values: iconText,
+                    isMultiSelect: true,
+                    onMultiSelectChanged: (value) {
+                      setState(() {});
+                    },
+                  )),
+              const SizedBox(
+                height: 10,
+              ),
+              CustomMandatoryText(
+                text: 'Which major do you want to pursue?',
+                maxLines: 3,
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+                textColor: ThemeConstants.blackcolor,
+              ),
+              Container(
+                  height: 44,
+                  margin: const EdgeInsets.symmetric(vertical: 8),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(9.5),
+                      border: Border.all(color: ThemeConstants.TextColor)),
+                  child: DropdownWithMultiselect(
+                    spinnerHintText: "Select One",
+                    searchHintText: "Search",
+                    values: iconText,
+                    isMultiSelect: true,
+                    onMultiSelectChanged: (value) {
+                      setState(() {});
+                    },
+                  )),
+              const SizedBox(
+                height: 10,
+              ),
+              CustomMandatoryText(
+                text: 'How did you find us?',
+                maxLines: 3,
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+                textColor: ThemeConstants.blackcolor,
+              ),
+              Container(
+                  height: 44,
+                  margin: const EdgeInsets.symmetric(vertical: 8),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(9.5),
+                      border: Border.all(color: ThemeConstants.TextColor)),
+                  child: DropdownWithMultiselect(
+                    spinnerHintText: "Select One",
+                    searchHintText: "Search",
+                    values: iconText,
+                    isMultiSelect: true,
+                    onMultiSelectChanged: (value) {
+                      setState(() {});
+                    },
+                  )),
+              const SizedBox(
+                height: 30,
+              ),
             ],
           ),
         ),

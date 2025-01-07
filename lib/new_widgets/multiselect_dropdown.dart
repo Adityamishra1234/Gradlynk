@@ -1,7 +1,8 @@
-
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:studentpanel/new_widgets/text_fields.dart';
+import 'package:studentpanel/utils/constants.dart';
 import 'package:studentpanel/utils/theme.dart';
 
 class DropdownWithMultiselect extends StatefulWidget {
@@ -72,7 +73,7 @@ class DropdownWithMultiselectState extends State<DropdownWithMultiselect> {
             ? DropdownMenuItem<String>(
                 value: 'deselect_all',
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  padding: const EdgeInsets.symmetric(vertical: 8.0,horizontal: 16),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -82,9 +83,28 @@ class DropdownWithMultiselectState extends State<DropdownWithMultiselect> {
                           textScaler: TextScaler.noScaling,
                           overflow: TextOverflow.ellipsis,
                           style: buttonStyleOpenSans(
-                              widget.textColor ?? ThemeConstants.blackcolor, FontWeight.w500, 12),
+                              widget.textColor ?? ThemeConstants.blackcolor,
+                              FontWeight.w500,
+                              12),
                         ),
                       ),
+                      Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(18),
+                            border: Border.all(
+                              color: ThemeConstants.greenColor,
+                              width: 2,
+                            ),
+                          ),
+                          child:  Container(
+                            margin: const EdgeInsets.all(2),
+                            height: 10,
+                            width: 10,
+                            decoration: BoxDecoration(
+                              color: ThemeConstants.greenColor,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ))
                     ],
                   ),
                 ),
@@ -92,7 +112,7 @@ class DropdownWithMultiselectState extends State<DropdownWithMultiselect> {
             : DropdownMenuItem<String>(
                 value: 'select_all',
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  padding: const EdgeInsets.symmetric(vertical: 8.0,horizontal: 16),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -102,9 +122,28 @@ class DropdownWithMultiselectState extends State<DropdownWithMultiselect> {
                           textScaler: TextScaler.noScaling,
                           overflow: TextOverflow.ellipsis,
                           style: buttonStyleOpenSans(
-                              widget.textColor ?? ThemeConstants.blackcolor, FontWeight.w500, 12),
+                              widget.textColor ?? ThemeConstants.blackcolor,
+                              FontWeight.w500,
+                              12),
                         ),
                       ),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(18),
+                          border: Border.all(
+                            color: ThemeConstants.greenColor,
+                            width: 2,
+                          ),
+                        ),
+                        child:  Container(
+                          margin: const EdgeInsets.all(2),
+                          height: 10,
+                          width: 10,
+                          decoration: BoxDecoration(
+                            color: ThemeConstants.whitecolor,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ))
                     ],
                   ),
                 ),
@@ -113,61 +152,123 @@ class DropdownWithMultiselectState extends State<DropdownWithMultiselect> {
     }
 
     menuItems.addAll(
-      widget.values
-          .toSet()
-          .map((item) => DropdownMenuItem(
-                value: item,
-                child: StatefulBuilder(
-                  builder: (context, menuItemState) {
-                    bool isSelected = selectedValues.contains(item);
-                    return InkWell(
-                      onTap: widget.isMultiSelect
-                          ? () {
-                              menuItemState(() {
-                                if (isSelected) {
-                                  setState(() {
-                                    selectedValues.remove(item);
-                                  });
-                                } else {
-                                  setState(() {
-                                    selectedValues.add(item);
-                                  });
-                                }
-                                if (widget.onMultiSelectChanged != null) {
-                                  widget.onMultiSelectChanged!(selectedValues);
-                                }
-                              });
-                            }
-                          : null,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Flexible(
-                              child: Text(
-                                item,
-                                textScaler: TextScaler.noScaling,
-                                overflow: TextOverflow.ellipsis,
-                                style: buttonStyleOpenSans(
-                                    widget.textColor ?? ThemeConstants.blackcolor,
-                                    FontWeight.w500,
-                                    12),
-                              ),
-                            ),
-                            Visibility(
-                              visible: isSelected && widget.isMultiSelect,
-                              child: Icon(Icons.check, color: ThemeConstants.greenColor),
-                            ),
-                          ],
+      widget.values.asMap().entries.map((entry) {
+        int index = entry.key;
+        String item = entry.value;
+
+        Color backgroundColor = index % 2 == 0
+            ? ThemeConstants.whitecolor
+            : ThemeConstants.lightgreycolor.withOpacity(0.4);
+        return DropdownMenuItem(
+          value: item,
+          child: StatefulBuilder(
+            builder: (context, menuItemState) {
+              bool isSelected = selectedValues.contains(item);
+              return InkWell(
+                onTap: widget.isMultiSelect
+                    ? () {
+                  menuItemState(() {
+                    if (isSelected) {
+                      setState(() {
+                        selectedValues.remove(item);
+                      });
+                    } else {
+                      setState(() {
+                        selectedValues.add(item);
+                      });
+                    }
+                    if (widget.onMultiSelectChanged != null) {
+                      widget.onMultiSelectChanged!(selectedValues);
+                    }
+                  });
+                }
+                    : null,
+                child: Container(
+                  color: backgroundColor, // Apply background color
+                  padding: const EdgeInsets.symmetric(vertical: 8.0,horizontal: 16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          item,
+                          textScaler: TextScaler.noScaling,
+                          overflow: TextOverflow.ellipsis,
+                          style: buttonStyleOpenSans(
+                            widget.textColor ?? ThemeConstants.blackcolor,
+                            FontWeight.w500,
+                            12,
+                          ),
                         ),
                       ),
-                    );
-                  },
+                      if (widget.isMultiSelect)
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(18),
+                            border: Border.all(
+                              color: ThemeConstants.greenColor,
+                              width: 2,
+                            ),
+                          ),
+                          child: isSelected && widget.isMultiSelect
+                              ? Container(
+                            margin: const EdgeInsets.all(2),
+                            height: 10,
+                            width: 10,
+                            decoration: BoxDecoration(
+                              color: ThemeConstants.greenColor,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          )
+                              : Container(
+                            margin: const EdgeInsets.all(2),
+                            height: 10,
+                            width: 10,
+                            decoration: BoxDecoration(
+                              color: ThemeConstants.whitecolor,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                        ),
+                      if (!widget.isMultiSelect)
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(18),
+                            border: Border.all(
+                              color: ThemeConstants.greenColor,
+                              width: 2,
+                            ),
+                          ),
+                          child: selectedValue == item
+                              ? Container(
+                            margin: const EdgeInsets.all(2),
+                            height: 10,
+                            width: 10,
+                            decoration: BoxDecoration(
+                              color: ThemeConstants.greenColor,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          )
+                              : Container(
+                            margin: const EdgeInsets.all(2),
+                            height: 10,
+                            width: 10,
+                            decoration: BoxDecoration(
+                              color: ThemeConstants.whitecolor,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
                 ),
-              ))
-          .toList(),
+              );
+            },
+          ),
+        );
+      }).toList(),
     );
+
 
     return DropdownButtonHideUnderline(
       child: DropdownButton2<String>(
@@ -189,7 +290,9 @@ class DropdownWithMultiselectState extends State<DropdownWithMultiselect> {
           overflow: TextOverflow.ellipsis,
           textScaler: TextScaler.noScaling,
           style: buttonStyleOpenSans(
-              widget.textColor ?? ThemeConstants.blackcolor, FontWeight.w500, 14),
+              widget.textColor ?? ThemeConstants.blackcolor,
+              FontWeight.w500,
+              14),
         ),
         items: menuItems,
         onChanged: (value) {
@@ -215,7 +318,7 @@ class DropdownWithMultiselectState extends State<DropdownWithMultiselect> {
               thumbColor: MaterialStateProperty.all(Colors.transparent),
               trackColor: MaterialStateProperty.all(Colors.transparent),
             )),
-        menuItemStyleData: const MenuItemStyleData(
+        menuItemStyleData: const MenuItemStyleData(padding: EdgeInsets.zero,
           height: 40,
         ),
         dropdownSearchData: widget.isSearch
@@ -232,7 +335,8 @@ class DropdownWithMultiselectState extends State<DropdownWithMultiselect> {
                   ),
                   child: TextField(
                     cursorColor: ThemeConstants.greenColor,
-                    style: buttonStyleOpenSans(ThemeConstants.blackcolor, FontWeight.w400, 12),
+                    style: buttonStyleOpenSans(
+                        ThemeConstants.blackcolor, FontWeight.w400, 12),
                     controller: textEditingController,
                     decoration: textFieldWithIconDecoration(
                         Icons.search, widget.searchHintText, 15),

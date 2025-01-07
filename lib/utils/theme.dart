@@ -57,6 +57,7 @@ class ThemeConstants {
   static Color selectedColor = const Color(0xff4ac8ae);
   static Color drawerBackgroundColor = const Color(0xff272d34);
   static Color bluecolor = const Color(0xFF1940B3);
+  static Color yellowColor = const Color(0xFFF1B95C);
   static Color greenColor = const Color(0xff185946);
   static Color whitecolor = const Color(0xFFFFFFFF);
   static Color ultrilightblue = const Color(0xFFF2F5FF);
