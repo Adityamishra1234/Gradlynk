@@ -85,6 +85,8 @@ class ThemeConstants {
   static Color lightRed = const Color(0xFFffe2e2);
   static Color red = const Color(0xFFcf3b3b);
   static Color yellow = Color.fromARGB(255, 247, 160, 38);
+  static Color progressBar = const Color(0xffF737373);
+  static Color progressBarBg = const Color(0xffFFDA9D);
   static Color skycolor = const Color.fromARGB(255, 36, 197, 206);
   static Color bluelightgreycolor2 = const Color.fromARGB(255, 164, 178, 202);
   static Color Lightcian = const Color(0xFFE9FEFF);

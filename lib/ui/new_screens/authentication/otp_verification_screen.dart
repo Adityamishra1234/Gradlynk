@@ -130,7 +130,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                           ),
                           InkWell(
                             onTap: () {
-                              Get.toNamed(LoginScreen.routeNamed);
+                              // Get.toNamed(LoginScreen.routeNamed);
                             },
                             child: Text('Resend Now',
                                 overflow: TextOverflow.ellipsis,

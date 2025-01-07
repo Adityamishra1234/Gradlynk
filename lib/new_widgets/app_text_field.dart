@@ -4,6 +4,7 @@ import 'package:studentpanel/new_widgets/text_fields.dart';
 import 'package:studentpanel/utils/theme.dart';
 
 import '../utils/constants.dart';
+import 'custom_text.dart';
 
 enum Validator {
   phone,
@@ -44,7 +45,9 @@ class AppTextField extends StatelessWidget {
     this.onFieldSubmitted,
     this.textCapitalization = TextCapitalization.none,
     this.borderRadius = 0.0,
-    this.mandatory = false
+    this.mandatory = false,
+    this.focusNode,
+    this.borderColor
   });
 
   final TextEditingController controller;
@@ -70,7 +73,9 @@ class AppTextField extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;
   final ValueChanged<String>? onFieldSubmitted;
   final TextCapitalization textCapitalization;
-  final bool? mandatory;
+  final bool mandatory;
+  final FocusNode? focusNode;
+  final Color? borderColor;
 
   @override
   Widget build(BuildContext context) {
@@ -78,18 +83,11 @@ class AppTextField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (showTitle)
-          Padding(
-            padding: const EdgeInsets.only(left: 5),
-            child: RichText(text: TextSpan(children: [
-              TextSpan(text: title), if (mandatory == true)
-                TextSpan(text: '*', style: TextStyle(color: ThemeConstants.red))
-            ]))
-            // Text(title,
-            //     style: const TextStyle(
-            //         fontSize: 15,
-            //         color: Color(0xff000000),
-            //         fontWeight: FontWeight.w800)),
-          ),
+          CustomMandatoryText(
+              text: title,
+              mandatory: mandatory,
+              fontSize: 18,
+              fontWeight: FontWeight.w500),
         if (showTitle) const SizedBox(height: 9),
         Material(
           elevation: 1.8,
@@ -98,6 +96,7 @@ class AppTextField extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
           child: TextFormField(
             autovalidateMode: AutovalidateMode.onUserInteraction,
+            focusNode: focusNode,
             style: buttonStyleOpenSans(
                 ThemeConstants.blackcolor, FontWeight.w500, 14),
             cursorColor: ThemeConstants.greenColor,
@@ -141,7 +140,7 @@ class AppTextField extends StatelessWidget {
                   TextStyle(color: ThemeConstants.blackcolor, fontSize: 14),
               enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(borderRadius),
-                  borderSide: BorderSide(color: ThemeConstants.TextColor)),
+                  borderSide: BorderSide(color: borderColor ?? ThemeConstants.TextColor)),
               focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(borderRadius),
                   borderSide: BorderSide(color: ThemeConstants.blackcolor)),

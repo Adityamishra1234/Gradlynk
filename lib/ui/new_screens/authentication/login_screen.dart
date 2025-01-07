@@ -20,30 +20,47 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController mobileController = TextEditingController();
+  final FocusNode focusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      FocusScope.of(context).requestFocus(focusNode);
+    });
+  }
+  @override
+  void dispose() {
+    focusNode.dispose();
+    super.dispose();
+  }
+
+
+
   GlobalKey<FormState> key = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Form(
-            key: key,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(
-                  height: 10,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 15.0),
-                  child: BackButton(
-                    onPressed: () {
-                      Get.back();
-                    },
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(28.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 15.0),
+              child: BackButton(
+                onPressed: () {
+                  Get.back();
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(28.0),
+              child: Form(
+                key: key,
+                child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -67,16 +84,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       const SizedBox(
                         height: 50,
                       ),
-                      const CustomMandatoryText(text : 'Mobile number ', mandatory: true,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500 ),
-                      const SizedBox(
-                        height: 10,
-                      ),
                       AppTextField(
                         controller: mobileController,
-                        title: "Mobile Number",
-                        showTitle: false,
+                        mandatory: true,
+                        title: "Mobile Number",focusNode: focusNode,
                         keyboardType: TextInputType.phone,
                         borderRadius: 10,
                         hint: "Enter Mobile Number",
@@ -117,18 +128,18 @@ class _LoginScreenState extends State<LoginScreen> {
                               style: buttonStyleOpenSans(
                                   ThemeConstants.blackcolor,
                                   FontWeight.w400,
-                                  16),
+                                  18),
                             ),
                           ),
                           InkWell(
                             onTap: () {
-                              Get.toNamed(RegistrationScreen.routeNamed);
+                              Get.offNamed(RegistrationScreen.routeNamed);
                             },
                             child: Text('Register Now',
                                 overflow: TextOverflow.ellipsis,
                                 textScaler: TextScaler.noScaling,
                                 style: TextStyle(
-                                    fontSize: 16,
+                                    fontSize: 18,
                                     fontWeight: FontWeight.w500,
                                     color: ThemeConstants.greenColor,
                                     decoration: TextDecoration.underline,
@@ -140,9 +151,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                 ),
-              ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

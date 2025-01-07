@@ -126,7 +126,8 @@ dependencies:
 
   #Added by Deepak
   toggle_switch: ^2.3.0
-
+  linear_progress_bar: ^1.1.3
+  dropdown_button2: ^2.3.9
 
 
   provider: ^6.0.5

@@ -26,23 +26,21 @@ class CustomMandatoryText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Text(text,
-            maxLines: maxLines,
-            overflow: TextOverflow.ellipsis,
-            textScaler: TextScaler.noScaling,
-            textAlign: textAlignCentre == true ? TextAlign.center : null,
-            style: buttonStyleOpenSans(textColor ?? ThemeConstants.blackcolor,
-                fontWeight ?? FontWeight.w400, fontSize ?? 18,textDecoration: underline)),
-        if(mandatory)Text("*",
-            maxLines: maxLines,
-            textAlign: textAlignCentre == true ? TextAlign.center : null,
-            overflow: TextOverflow.ellipsis,
-            textScaler: TextScaler.noScaling,
-            style: buttonStyleOpenSans(ThemeConstants.red,
-                fontWeight ?? FontWeight.w400, fontSize ?? 18,textDecoration: underline)),
-      ],
-    );
+    return RichText(textAlign: textAlignCentre == true ? TextAlign.center : TextAlign.left,
+        text: TextSpan(children: [
+      TextSpan(
+          text: text,
+          style: buttonStyleOpenSans(textColor ?? ThemeConstants.blackcolor,
+              fontWeight ?? FontWeight.w400, fontSize ?? 18,
+              textDecoration: underline)),
+      if (mandatory)
+        TextSpan(
+            text: " *",
+            style: buttonStyleOpenSans(
+                ThemeConstants.red,
+                fontWeight ?? FontWeight.w400,
+                fontSize ?? 18,
+                textDecoration: underline))
+    ]));
   }
 }
