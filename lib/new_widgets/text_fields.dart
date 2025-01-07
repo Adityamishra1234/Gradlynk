@@ -14,6 +14,30 @@ TextStyle buttonStyleOpenSans(Color color, FontWeight fWeight, double size,{bool
         overflow: TextOverflow.ellipsis,
       ));
 }
+TextStyle buttonStyleJost(Color color, FontWeight fWeight, double size,{bool? textDecoration = false}) {
+  return GoogleFonts.jost(
+      textStyle: TextStyle(
+        fontSize: size,
+        fontWeight: fWeight,
+        color: color,
+        decoration: textDecoration==true ? TextDecoration.underline : null,
+        decorationColor: textDecoration==true ? ThemeConstants.greenColor: null,
+        decorationThickness: textDecoration==true ? 2 :null,
+        overflow: TextOverflow.ellipsis,
+      ));
+}
+TextStyle buttonStylePop(Color color, FontWeight fWeight, double size,{bool? textDecoration = false}) {
+  return GoogleFonts.poppins(
+      textStyle: TextStyle(
+        fontSize: size,
+        fontWeight: fWeight,
+        color: color,
+        decoration: textDecoration==true ? TextDecoration.underline : null,
+        decorationColor: textDecoration==true ? ThemeConstants.greenColor: null,
+        decorationThickness: textDecoration==true ? 2 :null,
+        overflow: TextOverflow.ellipsis,
+      ));
+}
 
 
 
